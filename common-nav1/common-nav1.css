@@ -26,6 +26,7 @@ body {
     height: 9rem;
     /* width: 100%; */
     padding: 0 6rem;
+    background-color: #bde4c469;
     z-index: 100;
 }
 
@@ -43,33 +44,49 @@ body {
     display: flex;
     align-items: center;
     list-style: none;
+    font-size: 1.7rem;
+    font-weight: 400;
+    text-align: center;
+    list-style: none;
+}
+
+.nav a {
+    text-decoration: none;
+    transition: color 0.2s ease-out;
+    background-image: linear-gradient( rgba(252, 252, 252, 0.747), rgb(19, 38, 207)), none;
+    background-size: 0 2px, auto;
+    color: rgb(91, 164, 228);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    transition: all 0.3s ease-out;
+}
+
+.nav a:hover {
+    color: rgb(34, 69, 221);
+    background-size: 100% 2px, auto;
 }
 
 .nav__item {
     margin-left: 4rem;
 }
 
-.nav__link:link,
-.nav__link:visited {
-    font-size: 1.7rem;
-    font-weight: 400;
-    color: inherit;
-    text-decoration: none;
-    display: block;
-    transition: all 0.3s;
-}
-
-.nav__link--btn:link,
-.nav__link--btn:visited {
-    padding: 0.8rem 2.5rem;
+.nav__link--btn {
+    border: none;
     border-radius: 3rem;
-    background-color: rgba(189, 139, 139, 0.5);
-    color: #222;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    background-color: rgb(91, 164, 228);
+    background-image: linear-gradient( rgba(252, 252, 252, 0.747), rgba(233, 59, 59, 0.589), none);
+    background-size: 0 2px, auto;
+    color: aliceblue;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    transition: all 0.3s ease-out;
 }
 
-.nav__link--btn:hover,
-.nav__link--btn:active {
-    color: inherit;
-    background-color: rgb(230, 123, 123);
-    color: #333;
+.nav__link--btn:hover {
+    color: rgb(34, 69, 221);
+    background-color: white;
+    background-size: 100% 2px, auto;
 }
