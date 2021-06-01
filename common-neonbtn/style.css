@@ -23,6 +23,7 @@ body {
     font-size: 4rem;
     display: inline-block;
     cursor: pointer;
+    outline: none;
     text-decoration: none;
     color: var(--clr-neon);
     border: var(--clr-neon) 0.125em solid;
@@ -68,10 +69,7 @@ body {
 }
 
 .neon-button:hover::before,
-.neon-button:focus::before {
-    opacity: 1;
-}
-
+.neon-button:focus::before,
 .neon-button:hover::after,
 .neon-button:focus::after {
     opacity: 1;
