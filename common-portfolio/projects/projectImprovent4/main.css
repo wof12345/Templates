@@ -1,0 +1,198 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(189, 192, 194, 0.295);
+  font-family: "Noto Sans JP", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.grid1 {
+  grid-area: g1;
+}
+.grid2 {
+  grid-area: g2;
+}
+.grid3 {
+  grid-area: g3;
+}
+.grid4 {
+  grid-area: g4;
+}
+.grid5 {
+  grid-area: g5;
+}
+.grid6 {
+  grid-area: g6;
+}
+
+.mainbox {
+  background-color: rgb(252, 252, 252);
+  border-radius: 1rem;
+  margin: 10px;
+  max-width: 1400px;
+  max-height: 600px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 5px 8px 8px rgba(172, 170, 170, 0.178);
+}
+
+.mainbox_head2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 80px 100px 80px;
+}
+
+.mainbox_headnav {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.mainbox_headnav--nav {
+  text-decoration: none;
+  display: flex;
+  justify-content: flex-end;
+  width: 60%;
+}
+
+.mainbox_headnav--elem {
+  text-decoration: none;
+  color: black;
+  padding: 0;
+  margin-left: 30px;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.452);
+  transition: 1s;
+}
+
+.mainbox_headnav--elem:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.692);
+  transition: 1s;
+}
+
+.mainbox_search {
+  display: flex;
+  width: 100%;
+  margin: 40px 0px;
+  justify-content: space-between;
+}
+
+.mainbox_search--btn {
+  border: none;
+  background-color: white;
+  border-bottom: 1px solid;
+  margin-left: -4px;
+  height: 43px;
+  cursor: pointer;
+  outline: rgba(104, 100, 100, 0.582);
+  border-bottom: 1px solid rgba(177, 174, 174, 0.295);
+}
+
+.mainbox_search--btn-img {
+  height: 30px;
+  width: 30px;
+  padding: 2px;
+}
+
+.mainbox_search--main {
+  display: flex;
+}
+
+.mainbox_search--search {
+  border: none;
+  height: 43px;
+  font-size: 17px;
+  padding: 12px;
+  font-weight: 400;
+  outline: rgba(104, 100, 100, 0.582);
+  color: black;
+  border-bottom: 1px solid rgba(177, 174, 174, 0.295);
+}
+
+.mainbox_uploadbtn {
+  background-color: rgba(0, 0, 0, 0.849);
+  border-radius: 3px;
+  padding: 10px 45px;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 3px 5px 5px rgba(99, 98, 98, 0.253);
+  color: aliceblue;
+  border: none;
+}
+
+.main_box--grid {
+  display: grid;
+  grid-template-areas:
+    "g1 g2 g3"
+    "g4 g5 g6";
+  grid-gap: 10px;
+}
+
+.main_box--grid-item {
+  border: none;
+  height: 100%;
+  width: 180px;
+  position: relative;
+  z-index: 0;
+}
+
+.overlay {
+  opacity: 0;
+}
+
+.main_box--grid-item---hover {
+  height: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.521);
+  transition: 1s;
+  margin-top: -20px;
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.main_box--grid-item---hover-texts {
+  display: flex;
+  color: white;
+  flex-direction: column;
+  padding: 0px;
+  margin: 0px 5px 3px 5px;
+}
+
+.main_box--grid-item---hover--text-1 {
+  font-size: 9px;
+  margin-top: -5px;
+  margin-left: 3px;
+}
+
+.main_box--grid-item---hover--text {
+  font-size: 14px;
+  padding: 3px;
+}
+
+.main_box--grid-item---hover-image {
+  margin: 10px 20px;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
