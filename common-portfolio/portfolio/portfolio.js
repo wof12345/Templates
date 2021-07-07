@@ -4,6 +4,7 @@ let articles;
 let smalldesc;
 let buttons;
 let screenWidth;
+let elmtoreset;
 
 let animationParams = {
     param1: "",
@@ -25,8 +26,24 @@ function getelements() {
     // console.log(portfolios);
 }
 
+function getWidth() {
+    if (self.innerWidth) {
+        return self.innerWidth;
+    }
+
+    if (document.documentElement && document.documentElement.clientWidth) {
+        return document.documentElement.clientWidth;
+    }
+
+    if (document.body) {
+        return document.body.clientWidth;
+    }
+}
+
 function getScreenwidth() {
-    screenWidth = $(document).width();
+    screenWidth = getWidth();
+    console.log(screenWidth);
+    if (screenWidth < 800) resetElms();
     // console.log(screenWidth);
 }
 
@@ -41,13 +58,13 @@ function getValues() {
         animationParams.param7 = "252.59px";
         animationParams.param8 = "0";
     } else {
-        animationParams.param1 =
-            animationParams.param2 =
-            animationParams.param3 =
-            animationParams.param5 =
-            animationParams.param6 =
-            animationParams.param7 =
-            "null";
+        animationParams.param1 = "0px";
+        animationParams.param2 = "0px";
+        animationParams.param3 = "null";
+        animationParams.param5 = null;
+        animationParams.param6 = "null";
+        animationParams.param7 = "252.59px";
+
         animationParams.param4 = "1";
         animationParams.param8 = "0";
     }
@@ -68,6 +85,12 @@ function portfolioHoverAction(
     $(articles[index]).animate({ opacity: articleop });
 }
 
+function resetElms() {
+    console.log(elmtoreset);
+    portfolioHoverAction(elmtoreset, "0px", "0px", "252.59px", "0");
+    elmtoreset = null;
+}
+
 function changeelements(elm) {
     $(elm).each(function(index, element) {
         // console.log(index);
@@ -80,6 +103,7 @@ function changeelements(elm) {
                 animationParams.param3,
                 animationParams.param4
             );
+            elmtoreset = index;
         });
 
         $(element).mouseleave(function() {
@@ -91,6 +115,7 @@ function changeelements(elm) {
                 animationParams.param7,
                 animationParams.param8
             );
+            elmtoreset = index;
         });
     });
 }
@@ -101,5 +126,4 @@ getScreenwidth();
 $(document).ready(function() {
     changeelements(portfolios);
 });
-
 window.addEventListener("resize", getScreenwidth);

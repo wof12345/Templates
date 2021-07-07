@@ -1,5 +1,5 @@
 :root {
-    --clr-neon: hsl(213 100% 74%);
+    --clr-neon: hsl(213 100% 85%);
     --property_hidden: hidden;
     --propertybox: 1px solid rgba(0, 0, 0, 0.116);
 }
@@ -172,11 +172,8 @@ h1 {
     padding: 20px 30px;
     overflow: hidden;
     justify-content: space-between;
+    width: 90%;
     min-width: 900px;
-}
-
-.port_container-inner>* {
-    padding: 10px;
 }
 
 .port_container-inner:hover {
@@ -186,6 +183,11 @@ h1 {
 
 .port_img {
     width: 300px;
+}
+
+.smallDesc {
+    width: 252.59px;
+    text-align: center;
 }
 
 .view {
@@ -205,11 +207,13 @@ article {
     opacity: 0;
     width: 200px;
     height: 100px;
+    padding: 20px;
 }
 
 .port_link {
     text-decoration: none;
     /* background-color: #444; */
+    margin-right: 10px;
 }
 
 footer {

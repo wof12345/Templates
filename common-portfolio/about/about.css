@@ -1,7 +1,8 @@
 :root {
-    --clr-neon: hsl(213 100% 74%);
+    --clr-neon: hsl(213 100% 85%);
     --property_hidden: hidden;
     --propertybox: 1px solid rgba(0, 0, 0, 0.226);
+    --margin_prop: 120px;
 }
 
 * {
@@ -146,6 +147,72 @@ aside {
     opacity: 1;
 }
 
+.about {
+    width: 100%;
+    padding: 4rem;
+}
+
+article {
+    background-color: rgb(223, 213, 231);
+    padding: 1rem;
+}
+
+.about_desc {
+    background-color: rgb(223, 213, 231);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.paragraph {
+    min-width: 200px;
+    width: 500px;
+    overflow: hidden;
+    padding: 1rem;
+    transition: 0.5s;
+}
+
+.paragraph {
+    margin-left: var(--margin_prop);
+}
+
+.rev {
+    margin-right: var(--margin_prop);
+    margin-left: 0px;
+}
+
+.paragraph:hover {
+    cursor: pointer;
+    transition: 0.5s;
+    background-color: rgba(68, 68, 68, 0.178);
+}
+
+.letter::first-letter {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.link {
+    transition: 0.4s;
+    color: black;
+}
+
+.link:hover {
+    color: white;
+    font-size: 19px;
+    transition: 0.4s;
+}
+
+.picture {
+    min-width: 190px;
+    max-width: 200px;
+    height: 200px;
+    border-radius: 10rem;
+    object-fit: cover;
+}
+
 footer {
     background-color: rgba(68, 68, 68, 0.658);
     display: flex;
@@ -163,7 +230,7 @@ footer {
     color: rgb(77, 77, 80);
 }
 
-@media screen and (max-width: 635px) {
+@media screen and (max-width: 705px) {
     nav {
         justify-content: center;
     }
@@ -190,5 +257,21 @@ footer {
         flex-direction: column;
         padding: 1rem;
         transition: 0.5s;
+    }
+    .about_desc {
+        flex-direction: column;
+    }
+    .reverse {
+        flex-direction: column-reverse;
+    }
+    .paragraph {
+        margin: 1rem 0 0 0;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 705px) {
+    .about {
+        padding: 0;
     }
 }
