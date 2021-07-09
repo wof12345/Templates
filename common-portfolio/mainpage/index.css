@@ -1,0 +1,221 @@
+.nav_link:first-child {
+    text-decoration: underline;
+}
+
+.decription {
+    background-image: url("/common-portfolio/img/paint.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    z-index: 0;
+    padding: 13rem 0rem 5rem 6rem;
+    margin-top: 50px;
+    min-width: 300px;
+}
+
+.container {
+    transform: translateX(50px);
+    transition: 1s;
+    background-color: #fcfcfc2d;
+    width: clamp(60%, 70%, 80%);
+    padding: 2px;
+    border-radius: 3px;
+}
+
+h1 {
+    font-size: 2.3rem;
+}
+
+ul {
+    list-style: inside circle;
+}
+
+li {
+    margin-top: 3px;
+    padding-left: 10px;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+li:hover {
+    background-color: rgba(255, 255, 255, 0.733);
+}
+
+h4 {
+    text-align: center;
+    font-size: 2rem;
+    padding: 1.8rem;
+}
+
+.recent_showcase {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--cover_value), 1fr));
+}
+
+.card {
+    text-decoration: none;
+    color: black;
+}
+
+.card_card {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    padding: 10px;
+    transition: 0.5s;
+    background-color: #fcfcfc;
+}
+
+.card_card:hover {
+    background-color: rgba(68, 68, 68, 0.116);
+    border-radius: 10px;
+    transition: 0.5s;
+    box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.185);
+}
+
+.showcase {
+    min-width: 200px;
+    border-radius: 10px;
+}
+
+.description {
+    margin-top: 50px;
+    padding: 10px;
+    text-align: center;
+}
+
+.feature_card {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    margin: 60px;
+    border: 4px dashed rgba(73, 72, 72, 0.219);
+}
+
+.feature_card-dec {
+    margin-left: 90px;
+    display: flex;
+    flex-direction: column;
+}
+
+.feature_card-dec-btn {
+    padding: 10px;
+    background-color: rgb(179, 206, 206);
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    width: 100%;
+}
+
+.feature_card-dec-btn:hover {
+    transform: translateX(-10px);
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.267);
+    background-color: #fdd247;
+    transition: 0.5s;
+    color: white;
+    border: 1px solid white;
+}
+
+p {
+    font-size: 0.9rem;
+    min-width: 200px;
+}
+
+footer {
+    background-color: rgba(68, 68, 68, 0.658);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.footer_links a {
+    color: rgb(23, 23, 24);
+}
+
+.footer_links a:hover {
+    color: rgb(77, 77, 80);
+}
+
+@media screen and (max-width: 950px) {
+    .feature_card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+        margin: 60px;
+    }
+    .feature_card-dec {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 580px) {
+     :root {
+        --cover_value: 300px;
+    }
+    .feature_card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+        margin: 10px;
+    }
+}
+
+@media screen and (max-width: 478px) {
+    .decription {
+        padding: 0px;
+        color: black;
+    }
+    h1 {
+        font-size: 1.6rem;
+    }
+    .feature_card-dec {
+        margin-left: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .feature_card-img img {
+        width: 200px;
+    }
+    .feature_card-dec-btn {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 424px) {
+    .decription {
+        padding: 0px;
+        font-size: 10px;
+        color: black;
+        min-width: 200px;
+    }
+    .recent_showcase {
+        padding: 0;
+    }
+    .card_card {
+        margin: 2px;
+    }
+}
+
+@media screen and (max-width: 307px) {
+     :root {
+        --cover_value: 200px;
+    }
+    .decription {
+        padding: 180px 0 0 0;
+        font-size: 10px;
+        color: black;
+    }
+    .feature_card {
+        border: none;
+    }
+    .card_card {
+        margin: 0px;
+        padding: 0;
+    }
+}

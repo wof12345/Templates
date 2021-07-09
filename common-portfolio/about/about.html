@@ -9,8 +9,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@100;200;300;400;500&family=Montserrat:ital,wght@0,200;0,300;1,100;1,200;1,300&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/common-portfolio/global.css" />
     <link rel="stylesheet" href="/common-portfolio/about/about.css" />
     <title>About</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="/common-portfolio/Variables.js"></script>
+    <script defer src="/common-portfolio/global.js"></script>
     <script defer src="about.js"></script>
 </head>
 
@@ -22,11 +27,22 @@
             <div class="nav_links">
                 <a class="nav_link" href="/common-portfolio/mainpage/index.html">Home</a
           >
-          <a class="nav_link" href="/common-portfolio/portfolio/">About</a>
-                <a class="nav_link" href="/common-portfolio/portfolio/portfolio.html">Portfolio</a
+          <a class="nav_link" href="/common-portfolio/about/about.html"
+            >About</a
+          >
+          <a class="nav_link" href="/common-portfolio/portfolio/portfolio.html"
+            >Portfolio</a
           >
         </div>
       </nav>
+
+      <div class="admin_panel">
+        <img
+          src="https://scontent.fdac116-1.fna.fbcdn.net/v/t1.6435-9/87797912_2455220481397176_1058887516398026752_n.jpg?_nc_cat=104&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=lVhJ7pETpc4AX8yCerc&_nc_ht=scontent.fdac116-1.fna&oh=aa647afe13c50fe65fc584cc311dea40&oe=60EA84D4"
+          alt="pic"
+          class="picture1"
+        />
+      </div>
 
       <aside>
         <img src="/common-portfolio/img/menu.svg" alt="" class="table_icon" />
@@ -34,19 +50,36 @@
           <a class="nav_link" href="/common-portfolio/mainpage/index.html"
             >Home</a
           >
-          <a class="nav_link" href="#">About</a>
-                <a class="nav_link" href="/common-portfolio/portfolio/portfolio.html">Portfolio</a
+          <a class="nav_link" href="/common-portfolio/about/about.html"
+            >About</a
+          >
+          <a class="nav_link" href="/common-portfolio/portfolio/portfolio.html"
+            >Portfolio</a
           >
         </div>
       </aside>
     </header>
+
+    <section class="admin_login">
+      <div class="message">Not logged in.</div>
+
+      <div class="login_panel">
+        <label for="password">Login</label>
+        <input
+          type="text"
+          name="password"
+          id="pass_field"
+          placeholder="Password"
+        />
+      </div>
+    </section>
 
     <section class="about">
       <article>
         <div class="about_desc">
           <img
             src="https://scontent.fdac116-1.fna.fbcdn.net/v/t1.6435-9/87797912_2455220481397176_1058887516398026752_n.jpg?_nc_cat=104&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=lVhJ7pETpc4AX8yCerc&_nc_ht=scontent.fdac116-1.fna&oh=aa647afe13c50fe65fc584cc311dea40&oe=60EA84D4"
-            alt="logo"
+            alt="pic"
             class="picture"
           />
 

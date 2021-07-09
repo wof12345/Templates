@@ -1,10 +1,4 @@
-let portfolios;
-let portfolioImages;
-let articles;
-let smalldesc;
-let buttons;
-let screenWidth;
-let elmtoreset;
+page.eteredPort = true;
 
 let animationParams = {
     param1: "",
@@ -18,37 +12,21 @@ let animationParams = {
 };
 
 function getelements() {
-    portfolios = $(".port_container-inner");
-    portfolioImages = $(".port_img");
-    articles = $(".article");
-    smalldesc = $(".smallDesc");
-    buttons = $(".view");
+    portfolio.portfolios = $(".port_container-inner");
+    portfolio.portfolioImages = $(".port_img");
+    portfolio.articles = $(".article");
+    portfolio.smalldesc = $(".smallDesc");
+    portfolio.buttons = $(".view");
     // console.log(portfolios);
 }
 
-function getWidth() {
-    if (self.innerWidth) {
-        return self.innerWidth;
-    }
-
-    if (document.documentElement && document.documentElement.clientWidth) {
-        return document.documentElement.clientWidth;
-    }
-
-    if (document.body) {
-        return document.body.clientWidth;
-    }
-}
-
-function getScreenwidth() {
-    screenWidth = getWidth();
-    console.log(screenWidth);
-    if (screenWidth < 800) resetElms();
-    // console.log(screenWidth);
+function chnageForm() {
+    // console.log(portfolio.elmtoreset);
+    if (portfolio.elmtoreset !== null) resetElms();
 }
 
 function getValues() {
-    if (screenWidth > 800) {
+    if (page.screenWidth > 800) {
         animationParams.param1 = "70%";
         animationParams.param2 = "-600px";
         animationParams.param3 = "0px";
@@ -77,18 +55,17 @@ function portfolioHoverAction(
     smalldescwidth,
     articleop
 ) {
-    $(portfolioImages[index]).animate({ marginLeft: imgmrgin });
-    $(smalldesc[index]).animate({
+    $(portfolio.portfolioImages[index]).animate({ marginLeft: imgmrgin });
+    $(portfolio.smalldesc[index]).animate({
         marginTop: smalldescmrgin,
         width: smalldescwidth,
     });
-    $(articles[index]).animate({ opacity: articleop });
+    $(portfolio.articles[index]).animate({ opacity: articleop });
 }
 
 function resetElms() {
-    console.log(elmtoreset);
-    portfolioHoverAction(elmtoreset, "0px", "0px", "252.59px", "0");
-    elmtoreset = null;
+    portfolioHoverAction(portfolio.elmtoreset, "0px", "0px", "252.59px", "0");
+    portfolio.elmtoreset = null;
 }
 
 function changeelements(elm) {
@@ -103,7 +80,7 @@ function changeelements(elm) {
                 animationParams.param3,
                 animationParams.param4
             );
-            elmtoreset = index;
+            portfolio.elmtoreset = index;
         });
 
         $(element).mouseleave(function() {
@@ -115,7 +92,7 @@ function changeelements(elm) {
                 animationParams.param7,
                 animationParams.param8
             );
-            elmtoreset = index;
+            portfolio.elmtoreset = index;
         });
     });
 }
@@ -124,6 +101,5 @@ getelements();
 getScreenwidth();
 
 $(document).ready(function() {
-    changeelements(portfolios);
+    changeelements(portfolio.portfolios);
 });
-window.addEventListener("resize", getScreenwidth);
