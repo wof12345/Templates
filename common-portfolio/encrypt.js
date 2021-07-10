@@ -1,17 +1,19 @@
-import mysql from "/P.Projects/Projects/node_modules/mysql/index";
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'me',
-    password: 'secret',
-    database: 'playerbase'
-});
+import mysql from "./node_modules/mysql";
 
-connection.connect();
 
-connection.query('SELECT 1 + 1 AS solution', function(error, results, fields) {
-    if (error) throw error;
-    console.log('The solution is: ', results[0].solution);
-});
+// console.log(getWidth);
+// var connection = mysql.createConnection({
+//     host: '3306',
+//     user: 'root',
+//     password: 'HumanityRules1234567890',
+//     database: 'playerbase'
+// });
 
-connection.end();
+// connection.connect();
+
+// connection.query('SELECT 1 + 1 AS solution', function(error, results, fields) {
+//     if (error) throw error;
+//     console.log('The solution is: ', results[0].solution);
+// });
+
+// connection.end();

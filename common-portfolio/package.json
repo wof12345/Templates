@@ -1,0 +1,21 @@
+{
+    "name": "common-portfolio",
+    "version": "1.0.0",
+    "description": "",
+    "main": "Variables.js",
+    "dependencies": {
+        "crypto": "^1.0.1",
+        "jquery": "^3.6.0",
+        "lodash-es": "^4.17.21",
+        "mysql": "^2.18.1"
+    },
+    "devDependencies": {
+        "@parcel/transformer-image": "^2.0.0-nightly.2387",
+        "parcel": "^2.0.0-nightly.763"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "atif",
+    "license": "ISC"
+}

@@ -147,7 +147,6 @@ aside {
 }
 
 .admin_panel {
-    padding: 5px;
     border-radius: 20rem;
     height: 70px;
     width: 70px;
@@ -155,11 +154,13 @@ aside {
     position: absolute;
     transition: 0.5s;
     top: 5px;
+    transition: .5s;
 }
 
 .admin_panel:hover {
     background-color: rgba(68, 68, 68, 0.178);
     cursor: pointer;
+    transition: .5s;
 }
 
 .picture1 {
@@ -167,7 +168,16 @@ aside {
     width: 60px;
     height: 60px;
     border-radius: 10rem;
+    margin: 5px;
     object-fit: cover;
+    transition: .5s;
+}
+
+.picture1:hover {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    transition: .5s;
 }
 
 .admin_login {
