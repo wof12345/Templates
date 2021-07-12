@@ -21,14 +21,22 @@ if (!localStorage.getItem("Client_info")) {
     global_info.client_data = JSON.parse(localStorage.getItem("Client_info"));
 }
 
-if (
-    admininfo.IP === global_info.client_data.ipAddress &&
-    admininfo.city === global_info.client_data.city
-) {
-    login.loginMsg.style.display = "none";
-} else {
-    login.loginMsg.style.display = "block";
+function updateAdmin() {
+
+    // console.log(admininfoDB);
+    if (
+        admininfoDB.continentCode === global_info.client_data.continentCode &&
+        admininfoDB.city === global_info.client_data.city &&
+        admininfoDB.continentName === global_info.client_data.continentName
+    ) {
+        login.loginMsg.style.display = "none";
+        login.loginpass.style.display = 'block'
+    } else {
+        login.loginMsg.style.display = "block";
+        login.loginpass.style.display = 'none'
+    }
 }
+setTimeout(updateAdmin, 500);
 // console.log(global_info.client_data);
 
 // let req = window.indexedDB.open();
@@ -56,16 +64,23 @@ function getScreenwidth() {
     page.lastScreenWidth = page.screenWidth;
 }
 
-function toggleLogin(event, opacity, bool) {
+function toggleLogin(event, opacity, bool, pic) {
+    if (pic[1]) {
+        login.admin_pic.style = ` width: ${pic[0]}px;
+    height: ${pic[0]}px;
+    margin: ${10}px;`
+    } else {
+        login.admin_pic.style = ``
+    }
     login.loginPanel.style = `pointer-events:${event}; opacity:${opacity};`;
     login.isopen = bool;
 }
 
 login.admin_pic.addEventListener("click", () => {
     if (!login.isopen) {
-        toggleLogin("all", 1, true);
+        toggleLogin("all", 1, true, [50, true]);
     } else {
-        toggleLogin("none", 0, false);
+        toggleLogin("none", 0, false, [60, false]);
     }
 });
 
@@ -73,7 +88,7 @@ document.addEventListener("click", (e) => {
     // console.log(e.target);
     if (!e.target.closest(".admin_login") && e.target !== login.admin_pic) {
         if (login.isopen) {
-            toggleLogin("none", 0, false);
+            toggleLogin("none", 0, false, [60, false]);
         }
     }
 });

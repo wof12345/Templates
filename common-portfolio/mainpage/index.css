@@ -3,7 +3,7 @@
 }
 
 .decription {
-    background-image: url("/common-portfolio/img/paint.jpg");
+    background-image: url("../img/paint.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -51,6 +51,7 @@ h4 {
     padding: 2rem;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(var(--cover_value), 1fr));
+    transition: 1s;
 }
 
 .card {

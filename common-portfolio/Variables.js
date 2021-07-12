@@ -4,6 +4,18 @@ let page = {
     eteredPort: false,
 };
 
+let admininfoDB = {
+    name: '',
+    city: "",
+    continentCode: "",
+    continentName: "",
+    pass: ''
+}
+
+let index = {
+    showcase: document.querySelectorAll(`.section`)
+}
+
 let login = {
     admin_pic: document.querySelector(`.picture1`),
     loginPanel: document.querySelector(`.admin_login`),
@@ -13,8 +25,6 @@ let login = {
 };
 
 let admininfo = {
-    city: "Mymensingh",
-    IP: "103.132.90.173",
     loggedin: false,
 };
 

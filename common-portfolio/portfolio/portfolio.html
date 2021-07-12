@@ -9,13 +9,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@100;200;300;400;500&family=Montserrat:ital,wght@0,200;0,300;1,100;1,200;1,300&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/common-portfolio/global.css" />
+    <link rel="stylesheet" href="../global.css" />
     <link rel="stylesheet" href="portfolio.css" />
     <title>Portfolio</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script defer src="/common-portfolio/Variables.js"></script>
-    <script defer src="/common-portfolio/global.js"></script>
+    <script defer src="../Variables.js"></script>
+    <script defer src="../database.js" type="module"></script>
+    <script defer src="../encrypt.js" type="module"></script>
+    <script defer src="../global.js"></script>
     <script defer src="portfolio.js"></script>
 </head>
 
@@ -23,14 +25,14 @@
     <header class="nav_cont">
         <div class="empty"></div>
         <nav class="nav">
-            <img src="/common-portfolio/img/logo.png" alt="logo" class="nav_logo" id="logo" desginer="atif" />
+            <img src="../img/logo.png" alt="logo" class="nav_logo" id="logo" desginer="atif" />
             <div class="nav_links">
-                <a class="nav_link" href="/common-portfolio/mainpage/index.html">Home</a
+                <a class="nav_link" href="../mainpage/index.html">Home</a
           >
-          <a class="nav_link" href="/common-portfolio/about/about.html"
+          <a class="nav_link" href="../about/about.html"
             >About</a
           >
-          <a class="nav_link" href="/common-portfolio/portfolio/portfolio.html"
+          <a class="nav_link" href="../portfolio/portfolio.html"
             >Portfolio</a
           >
         </div>
@@ -45,15 +47,15 @@
       </div>
 
       <aside>
-        <img src="/common-portfolio/img/menu.svg" alt="" class="table_icon" />
+        <img src="../img/menu.svg" alt="" class="table_icon" />
         <div class="nav_links-aside">
-          <a class="nav_link" href="/common-portfolio/mainpage/index.html"
+          <a class="nav_link" href="../mainpage/index.html"
             >Home</a
           >
-          <a class="nav_link" href="/common-portfolio/about/about.html"
+          <a class="nav_link" href="../about/about.html"
             >About</a
           >
-          <a class="nav_link" href="/common-portfolio/portfolio/portfolio.html"
+          <a class="nav_link" href="../portfolio/portfolio.html"
             >Portfolio</a
           >
         </div>
@@ -85,13 +87,13 @@
           </article>
 
           <div class="img">
-            <img src="/common-portfolio/img/1.png" class="port_img" alt="" />
+            <img src="../img/1.png" class="port_img" alt="" />
           </div>
 
           <div class="smallDesc">Responsive and good looking page.</div>
 
           <a
-            href="/common-portfolio/projects/ProjectImprovementFinal/main.html"
+            href="../projects/ProjectImprovementFinal/main.html"
             class="port_link"
             ><button class="view">View</button></a
           >
@@ -106,13 +108,13 @@
           </article>
 
           <div class="img">
-            <img src="/common-portfolio/img/2.png" class="port_img" alt="" />
+            <img src="../img/2.png" class="port_img" alt="" />
           </div>
 
           <div class="smallDesc">A stunning looking webpage.</div>
 
           <a
-            href="/common-portfolio/projects/ProjectAirBnB/index.html"
+            href="../projects/ProjectAirBnB/index.html"
             class="port_link"
             ><button class="view">View</button></a
           >
@@ -126,13 +128,13 @@
           </article>
 
           <div class="img">
-            <img src="/common-portfolio/img/3.png" class="port_img" alt="" />
+            <img src="../img/3.png" class="port_img" alt="" />
           </div>
 
           <div class="smallDesc">Simple desgin.</div>
 
           <a
-            href="/common-portfolio/projects/projectimprovement1/main.html"
+            href="../projects/projectimprovement1/main.html"
             class="port_link"
             ><button class="view">View</button></a
           >
@@ -144,13 +146,13 @@
           <article class="article">Portion of a intricate desgin.</article>
 
           <div class="img">
-            <img src="/common-portfolio/img/4.png" class="port_img" alt="" />
+            <img src="../img/4.png" class="port_img" alt="" />
           </div>
 
           <div class="smallDesc">Simple page-box element.</div>
 
           <a
-            href="/common-portfolio/projects/ProjectImprovement5/main.html"
+            href="../projects/ProjectImprovement5/main.html"
             class="port_link"
             ><button class="view">View</button></a
           >
@@ -164,13 +166,13 @@
           </article>
 
           <div class="img">
-            <img src="/common-portfolio/img/5.png" class="port_img" alt="" />
+            <img src="../img/5.png" class="port_img" alt="" />
           </div>
 
           <div class="smallDesc">Simple yet elegent.</div>
 
           <a
-            href="/common-portfolio/projects/ProjectImprovent4/main.html"
+            href="../projects/ProjectImprovent4/main.html"
             class="port_link"
             ><button class="view">View</button></a
           >
@@ -184,13 +186,13 @@
           </article>
 
           <div class="img">
-            <img src="/common-portfolio/img/6.png" class="port_img" alt="" />
+            <img src="../img/6.png" class="port_img" alt="" />
           </div>
 
           <div class="smallDesc">Example</div>
 
           <a
-            href="/common-portfolio/projects/Project-improvement3/main.html/main.html"
+            href="../projects/Project-improvement3/main.html/main.html"
             class="port_link"
             ><button class="view">View</button></a
           >
@@ -204,13 +206,13 @@
           </article>
 
           <div class="img">
-            <img src="/common-portfolio/img/7.png" class="port_img" alt="" />
+            <img src="../img/7.png" class="port_img" alt="" />
           </div>
 
           <div class="smallDesc">A statistic simulation.</div>
 
           <a
-            href="/common-portfolio/projects/StatSim/main.html"
+            href="../projects/StatSim/main.html"
             class="port_link"
             ><button class="view">View</button></a
           >
@@ -226,7 +228,7 @@
 
           <div class="img">
             <img
-              src="/common-portfolio/img/Screenshot 2021-07-07 204353.png"
+              src="../img/Screenshot 2021-07-07 204353.png"
               class="port_img"
               alt=""
             />
@@ -243,12 +245,12 @@
 
     <footer>
       <div class="footer_links">
-        <a class="nav_link-footer" href="/common-portfolio/about/about.html"
+        <a class="nav_link-footer" href="../about/about.html"
           >About</a
         >
         <a
           class="nav_link-footer"
-          href="/common-portfolio/portfolio/portfolio.html"
+          href="../portfolio/portfolio.html"
           >Home</a
         >
       </div>
