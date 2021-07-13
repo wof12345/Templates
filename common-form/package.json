@@ -1,0 +1,14 @@
+{
+  "name": "common-form",
+  "version": "1.0.0",
+  "description": "form",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx parcel index.html"
+  },
+  "author": "atif",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.2"
+  }
+}
