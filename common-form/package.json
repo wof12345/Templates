@@ -4,11 +4,12 @@
   "description": "form",
   "main": "index.js",
   "scripts": {
-    "test": "npx parcel index.html"
+    "start": "npx parcel index.html"
   },
   "author": "atif",
   "license": "ISC",
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.0-beta.2",
     "parcel": "^2.0.0-beta.2"
   }
 }

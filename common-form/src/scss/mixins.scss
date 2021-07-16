@@ -1,0 +1,35 @@
+@mixin flex_align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex_col {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+@mixin wrapper_prop {
+        position: relative;
+        padding-top: 20px;
+        overflow: auto;
+        height: 100%;
+        width: 100%;
+        padding: 15px;
+
+        .common_btn,.common_btn_back{
+            margin: 10px
+        }
+}
+
+@mixin common_container {
+    @include flex_align;
+    position: absolute;
+    border-radius: 20px;
+    inset: 0;
+    margin: auto;
+}
+
+
+
