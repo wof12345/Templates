@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./src/scss/index.scss">
-  
-    <script  src="./variables.js"></script>
+
+    <script src="./variables.js"></script>
     <script defer src="./animations.js"></script>
     <script defer src="./mcq_comp.js"></script>
-    <script defer src="./textareadesign.js"></script>
-   
+    <script defer src="./dataprocessor.js"></script>
+
 </head>
 
 <body>
@@ -21,42 +21,48 @@
     </section>
 
     <section class="main_cont_select container">
-        <select name="type" id="form_type">
+
+        <div class="wrapper">
+            <select name="type" id="form_type">
             <option value="Quiz">Quiz</option>
             <option value="Survey">Survey</option>
             <option value="Personal Diary">Personal Diary</option>
             <option value="Personal Diary">Personal Information</option>
             <option value="Todo-list">Todo-list</option>
-        </select>
+            </select>
 
-        <div class="utility_btn">
-        <button class="common_btn">Done</button>
-        <button class="common_btn_back">Back</button>
+            <div class="utility_btn">
+                <button class="common_btn">Done</button>
+                <button class="common_btn_back">Back</button>
+            </div>
         </div>
     </section>
 
     <section class="main_cont_form container">
-      <div class="wrapper">
-        <div class="queries">
+        <div class="wrapper">
+            <div class="queries">
 
-        <button class="add">add</button>
+                <button class="add">add</button>
 
-        <div class="select_options"></div>
+                <div class="select_options"></div>
 
+            </div>
+
+            <div class="utility_btn">
+                <button class="common_btn">Done</button>
+                <button class="common_btn_back">Back</button>
+            </div>
         </div>
-
-        <div class="utility_btn">
-            <button class="common_btn">Done</button>
-            <button class="common_btn_back">Back</button>
-        </div>
-    </div>  
     </section>
 
     <section class="main_cont_view container">
-        <div class="utility_btn">
-            <button class="common_btn">Done</button>
-            <button class="common_btn_back">Back</button>
+        <div class="wrapper">
+
+            <div class="utility_btn">
+                <button class="common_btn">Done</button>
+                <button class="common_btn_back">Back</button>
             </div>
+        </div>
     </section>
 </body>
 

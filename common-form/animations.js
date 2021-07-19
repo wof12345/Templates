@@ -7,7 +7,8 @@ let upperCont={
 
 let pageCommon={
     button :  document.querySelectorAll(`.common_btn`),
-    buttonback:  document.querySelectorAll(`.common_btn_back`)
+    buttonback:  document.querySelectorAll(`.common_btn_back`),
+    wrapper:  document.querySelectorAll(`.wrapper`)
 }
 
 let containerProp={
@@ -79,7 +80,12 @@ elm.addEventListener('click',(e)=>{
     containerProp.lastSibbling.push(closestCont);
     if( containerProp.activeLayer<4){
         containerProp.activeLayer++;
-        }    
+        }
+        
+    
+    setTimeout(()=>{
+        (pageCommon.wrapper[containerProp.activeLayer-2]).style.opacity="1";
+    },2000)
     
     animateContainer(closestCont,nextCont,['transform:translateX(200px)','transform:translateX(-120%)'],["margin: 40px 60px 130px;"]); 
 })
@@ -96,7 +102,9 @@ pageCommon.buttonback.forEach(elm=>{
             containerProp.activeLayer--;
         }
         
-
+        setTimeout(()=>{
+            (pageCommon.wrapper[containerProp.activeLayer-1]).style="";
+        },2000)
         animateContainer(closestCont,uppersibbling,[` margin: ${40+layerValue}px ${60+layerValue}px ${130-layerValue}px`],['transform:translateX(.05%)',"margin: 40px 60px 130px;"]); 
         containerProp.lastSibbling.pop();
     })

@@ -1,110 +1,93 @@
 @import './mixins.scss';
 @import './common-behaviours.scss';
 @import './fonts.scss';
-
-.main_cont_create{
+.main_cont_create {
     @include common_container;
     background-color: rgb(238, 108, 108);
     margin: 40px 60px 130px;
     z-index: 10;
 }
 
-.main_cont_select{
+.main_cont_select {
     @include common_container;
     background-color: rgb(102, 190, 196);
     margin: 60px 80px 110px;
     z-index: 9;
 }
 
-.main_cont_form{
+.main_cont_form {
     @include common_container;
     gap: 100px;
     background-color: rgba(102, 140, 196, 0.986);
     margin: 80px 100px 90px;
     z-index: 8;
-
-    .wrapper{
-        @include wrapper_prop;
-
-        .add{
-            margin: 7px;
-        }
-    }
-
-    .add_mcq,.add{
+    .add_mcq,
+    .add {
         margin: 2px;
         padding: 6px 40px;
         background-color: #EE6C6C;
     }
-
-    .user_choice{
+    .user_choice {
         @include flex_col;
         padding: 10px;
         opacity: 1;
         display: flex;
         align-items: flex-start;
-
-        button{
+        button {
             padding: 5px 0px;
             width: 100%;
             background-color: #EE6C6C;
         }
     }
-
-    .choice_sel{
+    .choice_sel {
         @include flex_align;
         width: 100%;
     }
-
-    .choice_sel>*{
+    .choice_sel>* {
         margin: 4px;
     }
 }
 
-.main_cont_view{
+.main_cont_view {
     @include common_container;
     background-color: rgb(193, 102, 196);
     margin: 100px 120px 70px;
     z-index: 7;
 }
 
-.create_form{
-   @include flex_align;
-   background-color: #C166C4;
-   min-width: 200px;
-
-   &:hover{
-    letter-spacing: 1px;
-
-   }
+.create_form {
+    @include flex_align;
+    background-color: #C166C4;
+    min-width: 200px;
+    &:hover {
+        letter-spacing: 1px;
+    }
 }
 
-.toanimate{
+.toanimate {
     border: .3px solid rgb(247, 247, 247);
     min-width: 10px;
     margin: 3.5px;
     opacity: 0;
 }
 
-.utility_btn{
+.utility_btn {
     display: flex;
     flex-direction: column;
-
-    button{
+    button {
         padding: 13px 40px;
         margin: 5px;
         background-color: #EE6C6C;
-
-        &:hover{
-            box-shadow: 0px 0px 0px 7px rgba(85, 215, 224, 0.658) ;
+        &:hover {
+            box-shadow: 0px 0px 0px 7px rgba(85, 215, 224, 0.658);
         }
     }
 }
 
-.main_cont_select{
-
-    select,option{
-    outline: none;
-    background-color: #EE6C6C;
+.main_cont_select {
+    select,
+    option {
+        outline: none;
+        background-color: #EE6C6C;
     }
 }

@@ -17,6 +17,7 @@
         height: 100%;
         width: 100%;
         padding: 15px;
+        opacity: 0;
 
         .common_btn,.common_btn_back{
             margin: 10px
@@ -25,7 +26,15 @@
 
 @mixin common_container {
     @include flex_align;
+    .wrapper{
+        @include wrapper_prop;
+
+        .add{
+            margin: 7px;
+        }
+    }
     position: absolute;
+    min-width: 500px;
     border-radius: 20px;
     inset: 0;
     margin: auto;
