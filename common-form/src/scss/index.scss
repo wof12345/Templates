@@ -75,7 +75,7 @@
     display: flex;
     flex-direction: column;
     button {
-        padding: 13px 40px;
+        padding: 7px 40px;
         margin: 5px;
         background-color: #EE6C6C;
         &:hover {
@@ -89,5 +89,6 @@
     option {
         outline: none;
         background-color: #EE6C6C;
+        margin: 10px;
     }
 }
