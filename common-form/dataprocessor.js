@@ -14,7 +14,7 @@ let toSendToDB = {
 function getChoiceData(choiceCount, prevWritten) {
     let localChoice = [];
 
-    console.log(choiceCount,prevWritten);
+    // console.log(choiceCount,prevWritten);
     
 
     for(let index = prevWritten; index < mainpageElements.mcqChoices.length; index++) {
@@ -42,6 +42,8 @@ mainpageElements.button.addEventListener('click', function(e) {
     
     let wrapper = document.querySelector(`.queries`);
     let Conts = wrapper.innerHTML.split('<!--split-->');
+    // console.log(Conts[Conts.length-1]);
+    
     Conts.pop();
     Conts.shift();
 

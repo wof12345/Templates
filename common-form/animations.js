@@ -5,10 +5,17 @@ let upperCont = {
     animated: false,
 }
 
+let logics = {
+    optionsIsOpen: false
+}
+
 let pageCommon = {
     button: document.querySelectorAll(`.common_btn`),
     buttonback: document.querySelectorAll(`.common_btn_back`),
-    wrapper: document.querySelectorAll(`.wrapper`)
+    addbutton: document.querySelector(`.add`),
+    options: document.querySelector(`.select_options`),
+    wrapper: document.querySelectorAll(`.wrapper`),
+    queryCont: document.querySelector(`.queries`),
 }
 
 let containerProp = {
@@ -108,4 +115,22 @@ pageCommon.buttonback.forEach(elm => {
         animateContainer(closestCont, uppersibbling, [` margin: ${40+layerValue}px ${60+layerValue}px ${130-layerValue}px`], ['transform:translateX(.05%)', "margin: 40px 60px 130px;"]);
         containerProp.lastSibbling.pop();
     })
+})
+
+pageCommon.addbutton.addEventListener('click', (e) => {
+    if(!logics.optionsIsOpen) {
+        animateCommon([pageCommon.options], ['height:200px;'])
+        logics.optionsIsOpen = true;
+    } else {
+        animateCommon([pageCommon.options], [''])
+        logics.optionsIsOpen = false;
+    }
+})
+
+pageCommon.wrapper[1].addEventListener('click',e=>{
+    if(!e.target.closest('.select_options')&&e.target!==pageCommon.addbutton){
+        animateCommon([pageCommon.options], [''])
+        logics.optionsIsOpen = false;
+    }
+    
 })
