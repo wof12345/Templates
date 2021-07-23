@@ -28,7 +28,18 @@ let premadeElementBlocks = {
         <button class="add_mcq">add choice</button> 
         </div>
         <!--split-->`
-    }
+    },
+
+    WRITTEN: function(id) {
+        return `<div class="user_choice written" id="${id}"  style="opacity:0;padding: 0; transition:.5s;">
+        <div class="choice_sel"><p>${id+1}.</p><textarea rows="1"  class="ques" type="text" name="question"  id="${id}" placeholder="Question"></textarea></div>
+        <div class="choice_cont answer">
+        <textarea rows="1"  class="choice" type="text" placeholder="Answer" ></textarea>
+        </div>
+        </div>
+        <!--split-->`
+    },
+    
 }
 
 let quizProps = {
@@ -42,9 +53,13 @@ function selectResult(elm) {
     if(query === "MCQ") {
         addMCQ();
     }
+
+    if(query==="Written"){
+        addWRITTEN();
+    }
 };
 
-function addMCQ() {
+function commonQueryCode(premade){
     let target = mainpageElements.queryCont;
     let lastChild = target.lastElementChild;
     
@@ -60,26 +75,27 @@ function addMCQ() {
 
     mainpageElements.id = lastChoice;
 
-    target.insertAdjacentHTML('beforeend', premadeElementBlocks.MCQ(lastChoice));
+    target.insertAdjacentHTML('beforeend', premade(lastChoice));
     let mcqDiv = target.lastElementChild;
     setTimeout(() => { mcqDiv.style = '' }, 300);
-
-    quizProps.buttonAdd = document.querySelectorAll(`.add_mcq`);
-
-    initiateEventHandler(mainpageElements.id);
 }
 
-function initiateEventHandler(val) {
-    quizProps.buttonAdd[val].addEventListener('click', (e) => {
-        let sibbling = e.target.previousElementSibling;
-        let childs = sibbling.querySelectorAll('.choice_sel');
-        let lastChoice = childs[childs.length - 1].firstChild.getAttribute('value');
-        let currentName = childs[childs.length - 1].firstChild.getAttribute('name');
+function addMCQ() {
+    commonQueryCode(premadeElementBlocks.MCQ);
+}
 
-        +
-        lastChoice++;
-        sibbling.insertAdjacentHTML('beforeend', quizProps.mcq(lastChoice, currentName));
-    })
+function addWRITTEN(){
+    commonQueryCode(premadeElementBlocks.WRITTEN);
+}
+
+function initiateEventHandler(elm) {
+        let prevSib = elm.previousElementSibling;
+        let lastChild = prevSib.lastElementChild;
+        let lastChoice = lastChild.firstChild.getAttribute('value');
+        let currentName = lastChild.firstChild.getAttribute('name');
+
+        +lastChoice++;
+        prevSib.insertAdjacentHTML('beforeend', quizProps.mcq(lastChoice, currentName));
 }
 
 
@@ -133,6 +149,11 @@ mainpageElements.wrapper.addEventListener('click', e => {
             addeventlistenerTextArea(target);
         }
     }
+
+    if(targetClass.includes('add_mcq')){
+        initiateEventHandler(target);
+        // console.log(target.previousElementSibling.lastElementChild.firstChild);
+   }
 
     if(targetClass.includes('options')) {
         selectResult(target.textContent);
