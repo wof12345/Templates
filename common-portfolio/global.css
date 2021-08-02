@@ -148,14 +148,14 @@ aside {
 }
 
 .admin_panel {
-    border-radius: 20rem;
-    height: 70px;
-    width: 70px;
+    border-radius: 10rem;
+    width: 60px;
+    height: 60px;
     right: 30px;
     position: absolute;
-    transition: 0.5s;
     top: 5px;
     transition: .5s;
+    background-color: rgba(68, 68, 68, 0.178);
 }
 
 .admin_panel:hover {
@@ -165,19 +165,16 @@ aside {
 }
 
 .picture1 {
-    max-width: 200px;
     width: 60px;
-    height: 60px;
+    aspect-ratio: 1/1;
     border-radius: 10rem;
-    margin: 5px;
     object-fit: cover;
     transition: .5s;
 }
 
 .picture1:hover {
     width: 50px;
-    height: 50px;
-    margin: 10px;
+    margin: 5px;
     transition: .5s;
 }
 

@@ -5,7 +5,9 @@
         ".eslintrc.json",
         ".babelrc",
         ".prettierrc",
-        "src/"
+        "controllers/",
+        "routes/",
+        "app.js"
     ],
     "verbose": true,
     "ignore": ["*.test.js", "*.spec.js"]

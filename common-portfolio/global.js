@@ -1,10 +1,10 @@
 // export { getWidth };
 
-if (!localStorage.getItem("Client_info")) {
+if(!localStorage.getItem("Client_info")) {
     try {
         $.getJSON("https://api.db-ip.com/v2/free/self", function(data, status) {
-            if (status === "success") {
-                if (!data.error) {
+            if(status === "success") {
+                if(!data.error) {
                     localStorage.setItem("Client_info", JSON.stringify(data));
                     global_info.client_data = data;
                 } else {
@@ -14,7 +14,7 @@ if (!localStorage.getItem("Client_info")) {
                 throw new Error("Error occurred! " + status);
             }
         });
-    } catch (e) {
+    } catch(e) {
         console.log(e);
     }
 } else {
@@ -24,7 +24,7 @@ if (!localStorage.getItem("Client_info")) {
 function updateAdmin() {
 
     // console.log(admininfoDB);
-    if (
+    if(
         admininfoDB.continentCode === global_info.client_data.continentCode &&
         admininfoDB.city === global_info.client_data.city &&
         admininfoDB.continentName === global_info.client_data.continentName
@@ -43,31 +43,30 @@ setTimeout(updateAdmin, 500);
 // console.log(req);
 
 function getWidth() {
-    if (self.innerWidth) {
+    if(self.innerWidth) {
         return self.innerWidth;
     }
 
-    if (document.documentElement && document.documentElement.clientWidth) {
+    if(document.documentElement && document.documentElement.clientWidth) {
         return document.documentElement.clientWidth;
     }
 
-    if (document.body) {
+    if(document.body) {
         return document.body.clientWidth;
     }
 }
 
 function getScreenwidth() {
     page.screenWidth = getWidth();
-    if (page.eteredPort) {
+    if(page.eteredPort) {
         chnageForm();
     }
     page.lastScreenWidth = page.screenWidth;
 }
 
 function toggleLogin(event, opacity, bool, pic) {
-    if (pic[1]) {
+    if(pic[1]) {
         login.admin_pic.style = ` width: ${pic[0]}px;
-    height: ${pic[0]}px;
     margin: ${10}px;`
     } else {
         login.admin_pic.style = ``
@@ -77,7 +76,7 @@ function toggleLogin(event, opacity, bool, pic) {
 }
 
 login.admin_pic.addEventListener("click", () => {
-    if (!login.isopen) {
+    if(!login.isopen) {
         toggleLogin("all", 1, true, [50, true]);
     } else {
         toggleLogin("none", 0, false, [60, false]);
@@ -86,8 +85,8 @@ login.admin_pic.addEventListener("click", () => {
 
 document.addEventListener("click", (e) => {
     // console.log(e.target);
-    if (!e.target.closest(".admin_login") && e.target !== login.admin_pic) {
-        if (login.isopen) {
+    if(!e.target.closest(".admin_login") && e.target !== login.admin_pic) {
+        if(login.isopen) {
             toggleLogin("none", 0, false, [60, false]);
         }
     }

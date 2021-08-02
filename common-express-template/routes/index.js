@@ -1,8 +1,9 @@
 import express from 'express';
+import hello from '../controllers/main.js';
 
 const indexRouter = express.Router();
 
-import hello from '../controllers/main.js';
+
 
 indexRouter.get('/', hello);
 
