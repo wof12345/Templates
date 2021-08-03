@@ -16,7 +16,9 @@
     },
     "devDependencies": {
         "@parcel/transformer-image": "^2.0.0-nightly.2387",
-        "parcel": "^2.0.0-nightly.763"
+        "express": "^4.17.1",
+        "parcel": "^2.0.0-nightly.763",
+        "nodemon": "^2.0.12"
     },
     "scripts": {
         "start": "parcel mainpage/index.html",

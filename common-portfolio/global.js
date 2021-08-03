@@ -1,5 +1,3 @@
-// export { getWidth };
-
 if(!localStorage.getItem("Client_info")) {
     try {
         $.getJSON("https://api.db-ip.com/v2/free/self", function(data, status) {
