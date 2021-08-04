@@ -1,0 +1,6 @@
+  create-react-app <project-directory>
+
+For example:
+  create-react-app my-react-app
+
+Run create-react-app --help to see all options.
