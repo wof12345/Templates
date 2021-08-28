@@ -84,6 +84,11 @@ pageCommon.button.forEach(elm => {
         let closestCont = elm.closest('section')
         let nextCont = closestCont.nextElementSibling;
 
+        let getData = async function() {
+                fetch("http://localhost:3000/data").then(res => res.json()).then(data => console.log(data));
+            }
+            // getData();
+
         containerProp.lastSibbling.push(closestCont);
         if(containerProp.activeLayer < 4) {
             containerProp.activeLayer++;
@@ -127,10 +132,10 @@ pageCommon.addbutton.addEventListener('click', (e) => {
     }
 })
 
-pageCommon.wrapper[1].addEventListener('click',e=>{
-    if(!e.target.closest('.select_options')&&e.target!==pageCommon.addbutton){
+pageCommon.wrapper[1].addEventListener('click', e => {
+    if(!e.target.closest('.select_options') && e.target !== pageCommon.addbutton) {
         animateCommon([pageCommon.options], [''])
         logics.optionsIsOpen = false;
     }
-    
+
 })

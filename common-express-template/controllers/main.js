@@ -21,7 +21,7 @@ let tableStruc = `<tr>
 
 
 
-console.log(generatedHtml);
+// console.log(generatedHtml);
 
 
 const hello = (req, res) => {

@@ -15,7 +15,7 @@ function getChoiceData(choiceCount, prevWritten) {
     let localChoice = [];
 
     // console.log(choiceCount,prevWritten);
-    
+
 
     for(let index = prevWritten; index < mainpageElements.mcqChoices.length; index++) {
         localChoice.push(mainpageElements.mcqChoices[index].value);
@@ -27,7 +27,7 @@ function getChoiceData(choiceCount, prevWritten) {
     toSendToDB.mcqChoices.push(localChoice);
 }
 
-function resetQuery(){
+function resetQuery() {
     mainpageElements.globalWrittenCount = 0;
     toSendToDB.mcqChoices = [];
     toSendToDB.mcqQuestions = [];
@@ -39,15 +39,15 @@ function resetQuery(){
 mainpageElements.button.addEventListener('click', function(e) {
     resetQuery();
     // console.log(mainpageElements.mcqChoices);
-    
-    let wrapper = document.querySelector(`.queries`);
-    let Conts = wrapper.innerHTML.split('<!--split-->');
-    // console.log(Conts[Conts.length-1]);
-    
-    Conts.pop();
-    Conts.shift();
 
-    Conts.forEach((elm) => {
+    let queries = document.querySelector(`.queries`);
+    let fromElement = queries.innerHTML.split('<!--split-->');
+    // console.log(fromElement[fromElement.length-1]);
+
+    fromElement.pop();
+    fromElement.shift();
+
+    fromElement.forEach((elm) => {
         let choiceCount = (elm.match(/choices/g) || []).length;
         mainpageElements.mcqChoiceCounts.push(choiceCount);
     })
@@ -58,6 +58,6 @@ mainpageElements.button.addEventListener('click', function(e) {
         getChoiceData(mainpageElements.mcqChoiceCounts[ind], mainpageElements.globalWrittenCount);
     })
 
-    console.log(toSendToDB.mcqQuestions,toSendToDB.mcqChoices);
+    console.log(toSendToDB.mcqQuestions, toSendToDB.mcqChoices);
 
 })

@@ -34,7 +34,7 @@ let premadeElementBlocks = {
         return `<div class="user_choice written" id="${id}"  style="opacity:0;padding: 0; transition:.5s;">
         <div class="choice_sel"><p>${id+1}.</p><textarea rows="1"  class="ques" type="text" name="question"  id="${id}" placeholder="Question"></textarea></div>
         <div class="choice_cont answer">
-        <textarea rows="1"  class="choice" type="text" placeholder="Answer" ></textarea>
+        <textarea rows="1"  class="choices" type="text" placeholder="Answer" ></textarea>
         </div>
         </div>
         <!--split-->`

@@ -6,7 +6,7 @@ const indexRouter = express.Router();
 
 indexRouter.get('/', hello);
 
-indexRouter.get('/user', hello1);
+indexRouter.get('/data', hello1);
 
 
 export default indexRouter;
