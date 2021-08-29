@@ -1,6 +1,7 @@
 import express from 'express';
 import indexRouter from './routes/index.js';
 import cors from 'cors';
+
 const app = express();
 
 app.use(
@@ -8,8 +9,8 @@ app.use(
         origin: "*",
     })
 )
-console.log(cors);
 
+app.use(express.json())
 
 app.use('/', indexRouter);
 
