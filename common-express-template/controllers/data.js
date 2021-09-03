@@ -1,7 +1,9 @@
 import { MongoClient } from 'mongodb';
 
 const hello1 = (req, res) => {
-    console.log('User at data.');
+    let data = 'formData';
+
+    console.log(`${data} data request made!`);
     const url = "mongodb+srv://root:HumanityRules1234567890@cluster0.4m8b8.mongodb.net/database1?retryWrites=true&w=majority";
 
     connectGetData();
@@ -16,7 +18,7 @@ const hello1 = (req, res) => {
 
             const db = client.db('database1');
 
-            const items = await db.collection('admin info').find({}).toArray();
+            const items = await db.collection(`${data}`).find({}).toArray();
             console.log(items);
 
             res.json(items);

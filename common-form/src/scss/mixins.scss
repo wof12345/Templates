@@ -31,6 +31,7 @@
     height: 0px;
     width: 200px;
     left: 25px;
+    color: white;
 }
 
 @mixin common_container {
@@ -46,6 +47,7 @@
         .options {
             padding: 10px;
             text-align: center;
+            color: white;
             &:hover {
                 cursor: pointer;
                 background-color: #678CC4;

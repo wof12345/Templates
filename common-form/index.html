@@ -5,14 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Create a form</title>
     <link rel="stylesheet" href="./src/scss/index.scss">
 
+    <script defer src="./srcjs/variables.js"></script>
+    <script defer src="./srcjs/premadeelementblocks.js"></script>
+    <script defer src="./srcjs/cmnfunctions.js"></script>
+    <script defer src=" ./srcjs/dataprocessor.js "></script>
+    <script defer src="./srcjs/query_components.js"></script>
+    <script defer src="./srcjs/init.js"></script>
+    <script defer src="./srcjs/animations.js"></script>
+    <script defer src="./srcjs/otherfunctionalities.js"></script>
 
-    <script defer src="./animations.js"></script>
-    <script defer src="./query_components.js"></script>
-    <script defer src="./dataprocessor.js"></script>
-    <script defer src="./init.js" type="module"></script>
 
 </head>
 
@@ -24,7 +28,7 @@
     <section class="main_cont_select container">
 
         <div class="wrapper">
-            <select name="type" id="form_type" value="Quiz">
+            <select title="formtypes" name="type" id="form_type" value="Quiz">
             <option value="Quiz">Quiz</option>
             <option value="Survey">Survey</option>
             <option value="Personal Diary">Personal Diary</option>
@@ -61,9 +65,56 @@
         <div class="wrapper">
 
             <div class="utility_btn">
+                <div class="passInp">
+                    <label for="pass">Set a password for your form so you can later edit it:</label>
+                    <input type="text" name="pass" id="pass" maxlength="12" placeholder="max 12 characters">
+
+                    <label for="owner">Form owner's name:</label>
+                    <input type="text" name="owner" id="owner" placeholder="name">
+
+                    <label for="purpose">Form's purpose:</label>
+                    <input type="text" name="purpose" id="purpose" placeholder="purpose">
+                </div>
                 <button class="common_btn">Confirm</button>
                 <button class="common_btn_back">Back</button>
             </div>
+
+            <div class="end_section">
+                <p class="end_section-txt">
+                    Thank you for using my application. Your form has been saved and can be viewed by</p>
+                <button class="form_gen_link"> clicking this button</button>. <a href="http://localhost:1234">Click here</a> to start a new session.
+
+            </div>
+        </div>
+    </section>
+
+    <section class="generatedForm">
+        <div class="wrapper_genform">
+            <div class="edit_access_cont">
+                <button class="edit_form_access">Edit</button>
+                <div class="input_pass">
+                    <input type="text" name="passuser" id="passuser" placeholder="your password">
+                    <button class="submit_pass">confirm</button>
+                </div>
+            </div>
+
+            <div class="edit_only">
+                <button class="see_responses">See responses</button>
+                <button class="delete_form">Delete form</button>
+                <button class="edit_form">Edit form</button>
+            </div>
+
+            <p class="response_count"> # other responders</p>
+
+            <h1 class="form_owner_name">Your form</h1>
+            <h2 class="form_purpose_name">Your form</h2>
+
+            <form class="query_part">
+
+                <div class="submit_corner">
+                    <button class="submit">Submit</button> as <input type="text" maxlength="10" placeholder="max 10 characters" id="useras" name="useras" value="Anonymous">
+                </div>
+            </form>
         </div>
     </section>
 </body>

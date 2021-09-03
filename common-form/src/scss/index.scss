@@ -18,7 +18,7 @@
 .main_cont_form {
     @include common_container;
     gap: 100px;
-    background-color: rgba(102, 140, 196, 0.986);
+    background-color: rgb(87, 135, 206);
     margin: 80px 100px 90px;
     z-index: 8;
     .add_mcq,
@@ -27,25 +27,28 @@
         padding: 6px 40px;
         background-color: #EE6C6C;
     }
-    .user_choice {
-        @include flex_col;
-        padding: 10px;
-        opacity: 1;
-        display: flex;
-        align-items: flex-start;
-        button {
-            padding: 5px 0px;
-            width: 100%;
-            background-color: #EE6C6C;
-        }
-    }
-    .choice_sel {
-        @include flex_align;
+}
+
+.user_choice {
+    @include flex_col;
+    padding: 10px;
+    opacity: 1;
+    display: flex;
+    align-items: flex-start;
+    button {
+        padding: 5px 0px;
         width: 100%;
+        background-color: #EE6C6C;
     }
-    .choice_sel>* {
-        margin: 4px;
-    }
+}
+
+.choice_sel {
+    @include flex_align;
+    width: 100%;
+}
+
+.choice_sel>* {
+    margin: 4px;
 }
 
 .main_cont_view {
@@ -74,6 +77,8 @@
 .utility_btn {
     display: flex;
     flex-direction: column;
+    transition: 1s;
+    height: 400px;
     button {
         padding: 7px 40px;
         margin: 5px;
@@ -89,6 +94,88 @@
     option {
         outline: none;
         background-color: #EE6C6C;
+        margin: 10px;
+    }
+}
+
+.submit_corner {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    gap: 20px;
+}
+
+.form_gen_link {
+    padding: 10px;
+    background-color: #EE6C6C;
+    &:hover {
+        opacity: .5;
+    }
+}
+
+.passInp {
+    width: 70%;
+    margin: 30px;
+}
+
+.end_section {
+    height: 0;
+    opacity: 0;
+}
+
+.wrapper_genform {
+    overflow: auto;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    button {
+        padding: 3px 30px;
+        margin: 10px;
+        color: black;
+        text-align: center;
+    }
+    input[type="text"] {
+        text-align: center;
+        background-color: white;
+        color: black;
+    }
+    .edit_access_cont {
+        display: flex;
+        justify-content: center;
+    }
+    .input_pass {
+        width: 0;
+        height: 0;
+        padding: 0;
+    }
+}
+
+.response_count {
+    color: black;
+}
+
+.edit_only {
+    height: 0;
+}
+
+.query_part {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 10px;
+    color: black;
+    background-color: rgba(12, 122, 218, 0.575);
+    border-radius: 10px;
+    margin: 10px;
+    .choice_sel {
+        justify-content: flex-start;
+    }
+    textarea {
+        background-color: white;
+        color: black;
+        min-width: 200px;
+    }
+    &>* {
         margin: 10px;
     }
 }

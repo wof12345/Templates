@@ -1,15 +1,15 @@
 {
-  "name": "common-form",
-  "version": "1.0.0",
-  "description": "form",
-  "main": "index.js",
-  "scripts": {
-    "start": "npx parcel index.html"
-  },
-  "author": "atif",
-  "license": "ISC",
-  "devDependencies": {
-    "@parcel/transformer-sass": "^2.0.0-beta.2",
-    "parcel": "^2.0.0-beta.2"
-  }
+    "name": "common-form",
+    "version": "1.0.0",
+    "description": "form",
+    "main": "index.js",
+    "scripts": {
+        "start": "npx parcel index.html"
+    },
+    "author": "atif",
+    "license": "ISC",
+    "devDependencies": {
+        "@parcel/transformer-sass": "^2.0.0-rc.0",
+        "parcel": "^2.0.0-nightly.763"
+    }
 }

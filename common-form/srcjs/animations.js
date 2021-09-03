@@ -1,39 +1,3 @@
-let upperCont = {
-    button: document.querySelector(`.create_form`),
-    arrowcont: document.getElementById(`toanimate_cont`),
-    arrows: document.querySelectorAll(`.toanimate`),
-    animated: false,
-}
-
-let logics = {
-    optionsIsOpen: false
-}
-
-let pageCommon = {
-    button: document.querySelectorAll(`.common_btn`),
-    buttonback: document.querySelectorAll(`.common_btn_back`),
-    addbutton: document.querySelector(`.add`),
-    options: document.querySelector(`.select_options`),
-    wrapper: document.querySelectorAll(`.wrapper`),
-    queryCont: document.querySelector(`.queries`),
-}
-
-let containerProp = {
-    frameCount: 0,
-    currentContainer: '',
-    animationparams: [],
-    sibblinganimeparam: [],
-    lastSibbling: [],
-    interval: null,
-    nextCont: '',
-    activeLayer: 1,
-    layerValues: [20, 40, 60]
-}
-
-let globalClicks = {
-    back: 0,
-}
-
 function setProps(animationparams, container, frameCount, interval, nextCont, sibblinganimeparam) {
     containerProp.animationparams = animationparams;
     containerProp.currentContainer = container;
@@ -69,38 +33,43 @@ function animateContainer(container, nextCont, animationparams, sibblinganimepar
 }
 
 function arrowcont_animateseq1() {
-    animateCommon([upperCont.arrowcont, upperCont.button, upperCont.animated, upperCont.arrows[0], upperCont.arrows[1]], [`transform:translateX(30px)`, `padding-right:50px`, !upperCont.animated, ` transform: rotate(28deg);opacity:1`, ` transform: rotate(-28deg);opacity:1`])
+    animateCommon([upperCont.arrowcont, upperCont.button, logics.animated, upperCont.arrows[0], upperCont.arrows[1]], [`transform:translateX(30px)`, `padding-right:50px`, !logics.animated, ` transform: rotate(28deg);opacity:1`, ` transform: rotate(-28deg);opacity:1`])
 }
 
 function arrowcont_animateseq2() {
-    animateCommon([upperCont.arrowcont, upperCont.button, upperCont.animated, upperCont.arrows[0], upperCont.arrows[1]], ["", !upperCont.animated])
+    animateCommon([upperCont.arrowcont, upperCont.button, logics.animated, upperCont.arrows[0], upperCont.arrows[1]], ["", !logics.animated])
 }
 
 upperCont.button.addEventListener('mouseover', arrowcont_animateseq1);
 upperCont.button.addEventListener('mouseout', arrowcont_animateseq2);
 
-pageCommon.button.forEach(elm => {
-    elm.addEventListener('click', (e) => {
-        let closestCont = elm.closest('section')
-        let nextCont = closestCont.nextElementSibling;
+pageCommon.button.forEach((elm, ind) => {
+    if(ind < 3) {
 
-        let getData = async function() {
-                fetch("http://localhost:3000/data").then(res => res.json()).then(data => console.log(data));
+        elm.addEventListener('click', (e) => {
+            if(ind == 2) window.onbeforeunload = closeIt;
+            if(ind === 2 && (!toSendToDB.mcqChoices.length > 0 || !toSendToDB.mcqQuestions.length > 0)) {
+                alert('Atleast one item is required!');
+
+            } else {
+
+                let closestCont = elm.closest('section')
+                let nextCont = closestCont.nextElementSibling;
+
+                containerProp.lastSibbling.push(closestCont);
+                if(containerProp.activeLayer < 4) {
+                    containerProp.activeLayer++;
+                }
+
+
+                setTimeout(() => {
+                    (pageCommon.wrapper[containerProp.activeLayer - 2]).style.opacity = "1";
+                }, 2000)
+
+                animateContainer(closestCont, nextCont, ['transform:translateX(200px)', 'transform:translateX(-120%)'], ["margin: 40px 60px 130px;"]);
             }
-            // getData();
-
-        containerProp.lastSibbling.push(closestCont);
-        if(containerProp.activeLayer < 4) {
-            containerProp.activeLayer++;
-        }
-
-
-        setTimeout(() => {
-            (pageCommon.wrapper[containerProp.activeLayer - 2]).style.opacity = "1";
-        }, 2000)
-
-        animateContainer(closestCont, nextCont, ['transform:translateX(200px)', 'transform:translateX(-120%)'], ["margin: 40px 60px 130px;"]);
-    })
+        })
+    }
 })
 
 pageCommon.buttonback.forEach(elm => {
@@ -137,5 +106,24 @@ pageCommon.wrapper[1].addEventListener('click', e => {
         animateCommon([pageCommon.options], [''])
         logics.optionsIsOpen = false;
     }
+})
+
+pageCommon.wrapperGenForm.addEventListener('click', function(e) {
+    if(!logics.hasPass) {
+        if(!e.target.closest(".input_pass") && e.target !== mainpageElements1.editAccessBtn) {
+            animateCommon([mainpageElements1.imputPassCont], ['width:0px;height:0px']);
+        }
+    }
 
 })
+
+
+// document.body.addEventListener('click', () => {
+//     let seedBackup = currentSeed;
+//     getSeed()
+
+//     console.log(seedBackup, currentSeed);
+
+//     if(seedBackup !== currentSeed)
+//         setSeed(seedBackup);
+// })
