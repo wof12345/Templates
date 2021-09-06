@@ -2,6 +2,10 @@ let url;
 
 let currentSeed;
 
+let pageVariable = {
+    floatingWindow: document.querySelector(`.floating_message`),
+    floatingMessage: document.querySelector(`.floating_message-message`)
+}
 
 let mainpageElements = {
     generatedMCQ: [],
@@ -22,10 +26,6 @@ let mainpageElements1 = {
     mcqChoices: '',
     mcqChoiceCounts: [],
     globalWrittenCount: 0,
-    formPass: document.getElementById("pass"),
-    formOwner: document.getElementById(`owner`),
-    formPurpose: document.getElementById(`purpose`),
-    confirmBtn: document.querySelectorAll(`.common_btn`)[3],
     utilityBtns: document.querySelectorAll(`.utility_btn`),
     endSection: document.querySelector(`.end_section`),
     formGenBtn: document.querySelector(`.form_gen_link`),
@@ -42,6 +42,19 @@ let mainpageElements1 = {
     passUserSide: document.getElementById(`passuser`),
     passConfirm: document.querySelector(`.submit_pass`),
     editOnly: document.querySelector(`.edit_only`),
+}
+
+let creatorSideElm = {
+    formPass: document.getElementById("pass"),
+    formOwner: document.getElementById(`owner`),
+    formPurpose: document.getElementById(`purpose`),
+    confirmBtn: document.querySelectorAll(`.common_btn`)[3],
+    checkForAll: document.getElementById(`fillAll`),
+}
+
+let userSideElm = {
+    genFormUser: document.querySelector(`.wrapper_genform`),
+    endSectionUser: document.querySelector(`.end_section_user`)
 }
 
 let mainpageElements2 = {
@@ -72,6 +85,7 @@ let pageCommon = {
     button: document.querySelectorAll(`.common_btn`),
     buttonback: document.querySelectorAll(`.common_btn_back`),
     addbutton: document.querySelector(`.add`),
+    deletebutton: document.querySelector(`.delete`),
     options: document.querySelector(`.select_options`),
     wrapper: document.querySelectorAll(`.wrapper`),
     wrapperGenForm: document.querySelector(`.wrapper_genform`),

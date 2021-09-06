@@ -51,15 +51,19 @@ mainpageElements1.button.addEventListener('click', function(e) {
         getChoiceData(mainpageElements1.mcqChoiceCounts[ind], mainpageElements1.globalWrittenCount);
     })
 
-    mainpageElements1.confirmBtn.addEventListener('click', function(e) {
-        let formPass = mainpageElements1.formPass.value;
-        let formOwner = mainpageElements1.formOwner.value;
-        let formPurpose = mainpageElements1.formPurpose.value;
+    creatorSideElm.confirmBtn.addEventListener('click', function(e) {
+        let formPass = creatorSideElm.formPass.value;
+        let formOwner = creatorSideElm.formOwner.value;
+        let formPurpose = creatorSideElm.formPurpose.value;
+        let checkAllfill = creatorSideElm.checkForAll.checked ? true : false;
 
-        console.log(formPass, formOwner, formPurpose);
+        console.log(formPass, formOwner, formPurpose, checkAllfill);
 
-        if(formPass !== '')
-            handleTrigger(formPass, formOwner, formPurpose);
+        if(formPass !== '') {
+            handleTrigger(formPass, formOwner, formPurpose, checkAllfill);
+        } else {
+            generateFloatingWindow('Password cannot be empty.', ['270px', '300px'])
+        }
     })
 
     console.log(toSendToDB.mcqQuestions, toSendToDB.mcqChoices);
@@ -118,13 +122,23 @@ mainpageElements1.submitUserSide.addEventListener('click', function(e) {
         }
 
     }
-
-    // if(!canProceed) console.log('Everything must be answered');
-
     let submitter = mainpageElements1.submitAs.value;
 
     let dataToSend = [submitter, foundAnswers];
-    uploadData('updatedata', [currentSeed, dataToSend]);
     console.log(dataToSend);
+
+    let checkViability = true;
+    if(dataToRet.FormData[4])
+        if(!canProceed) {
+            generateFloatingWindow('Everything must be answered', ['250px', '330px']);
+            checkViability = false
+        }
+
+
+    if(checkViability) {
+        uploadData('updatedata', [currentSeed, dataToSend]);
+        viewEndPageUser();
+    }
+
 
 })

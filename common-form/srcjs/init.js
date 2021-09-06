@@ -28,8 +28,8 @@ if(currentSeed === '')
 
 getPossibleData('data');
 
-function handleTrigger(data1, data2, data3) {
-    const data = [currentSeed, toSendToDB, data1, data2, data3];
+function handleTrigger(data1, data2, data3, data4) {
+    const data = [currentSeed, toSendToDB, data1, data2, data3, data4];
 
     setTimeout(() => animateCommon([mainpageElements1.utilityBtns[2]], ['height: 0px;']), 300);
 

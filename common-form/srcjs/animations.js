@@ -7,12 +7,6 @@ function setProps(animationparams, container, frameCount, interval, nextCont, si
     containerProp.sibblinganimeparam = sibblinganimeparam;
 }
 
-function animateCommon(params, style) {
-    params.forEach((elm, ind) => {
-        elm.style = style[ind]
-    })
-}
-
 function animate() {
     if(containerProp.frameCount !== containerProp.animationparams.length) {
         containerProp.currentContainer.style = containerProp.animationparams[containerProp.frameCount];
@@ -49,7 +43,8 @@ pageCommon.button.forEach((elm, ind) => {
         elm.addEventListener('click', (e) => {
             if(ind == 2) window.onbeforeunload = closeIt;
             if(ind === 2 && (!toSendToDB.mcqChoices.length > 0 || !toSendToDB.mcqQuestions.length > 0)) {
-                alert('Atleast one item is required!');
+                // alert('Atleast one item is required!');
+                generateFloatingWindow('At least one query required!', ['200px', '200px']);
 
             } else {
 
@@ -100,6 +95,7 @@ pageCommon.addbutton.addEventListener('click', (e) => {
         logics.optionsIsOpen = false;
     }
 })
+
 
 pageCommon.wrapper[1].addEventListener('click', e => {
     if(!e.target.closest('.select_options') && e.target !== pageCommon.addbutton) {

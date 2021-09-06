@@ -87,6 +87,17 @@ mainpageElements.wrapper.addEventListener('click', e => {
         // console.log(target.previousElementSibling.lastElementChild.firstChild);
     }
 
+    if(targetClass.includes('delete_mcq')) {
+        // console.log(target.previousElementSibling.previousElementSibling.lastElementChild);
+        let choiceToRemove = target.previousElementSibling.previousElementSibling.lastElementChild;
+        if(choiceToRemove.firstElementChild.value <= 2) {
+
+
+        } else
+            target.previousElementSibling.previousElementSibling.lastElementChild.remove();
+
+    }
+
     if(targetClass.includes('options')) {
         selectResult(target.textContent);
     }
@@ -112,4 +123,15 @@ mainpageElements.select_value.addEventListener('change', (e) => {
     mainpageElements.form_type = e.target.value;
     clearFormPage();
     updateSelectMenu();
+})
+
+//addbutton functionality in animations
+
+// console.log(pageCommon.deletebutton);
+pageCommon.deletebutton.addEventListener('click', function(e) {
+    let lastQueryToRemove = e.target.previousElementSibling.previousElementSibling.lastElementChild;
+    if(lastQueryToRemove)
+        lastQueryToRemove.remove()
+    else
+        generateFloatingWindow('Nothing to delete!', ['200px', '200px']);
 })

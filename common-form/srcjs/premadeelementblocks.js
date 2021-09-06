@@ -10,7 +10,8 @@ let premadeElementBlocks = {
         <div class="choice_sel"><input class="choice" type="radio" name="choice${id}" value="1"><textarea rows="1"  class="choices" type="text" placeholder="choice1" ></textarea></div>
         <div class="choice_sel"><input class="choice" type="radio" name="choice${id}" value="2"><textarea rows="1"  class="choices" type="text" placeholder="choice2" ></textarea></div>
         </div>
-        <button class="add_mcq">add choice</button> 
+        <button class="add_mcq" style="margin:6px;padding:3px">add choice</button> 
+        <button class="delete_mcq" style="margin:6px;padding:3px">delete choice</button> 
         </div>
         <!--split-->`
     },

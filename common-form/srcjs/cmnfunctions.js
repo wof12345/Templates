@@ -1,4 +1,26 @@
-let dataToRet;
+function animateCommon(params, style) {
+    params.forEach((elm, ind) => {
+        elm.style = style[ind]
+    })
+}
+
+function viewEndPageUser() {
+    animateCommon([userSideElm.genFormUser], ['height:0px']);
+    animateCommon([userSideElm.endSectionUser], ['height:400px']);
+}
+
+function generateFloatingWindow(message, position) {
+    pageVariable.floatingMessage.textContent = message;
+
+    // console.log(pageVariable.floatingWindow);
+
+
+    animateCommon([pageVariable.floatingWindow], [`opacity:1; top:${position[0]};right:${position[1]};`]);
+
+    setTimeout(() => {
+        animateCommon([pageVariable.floatingWindow], [`opacity:0; top:${position[0]};right:${position[1]};`]);
+    }, 1000)
+}
 
 function commonQueryCode(premade) {
     let target = mainpageElements.queryCont;
@@ -21,6 +43,8 @@ function commonQueryCode(premade) {
     setTimeout(() => { mcqDiv.style = '' }, 300);
 }
 
+
+let dataToRet;
 async function getPossibleData(location) {
 
     fetch(`http://localhost:3000/${location}`, {
@@ -33,14 +57,12 @@ async function getPossibleData(location) {
         .then(data => {
             dataToRet = data;
             console.log(dataToRet);
-    
+
             let dataset = checkPresence(dataToRet, currentSeed);
             dataToRet = dataset[1];
             if(dataset[0]) {
                 generationPage();
                 console.log("generating page");
-                let responseCount = dataToRet[0].UserData.length;
-                mainpageElements1.responseView.textContent = responseCount +" other responders";
                 generateAndPush(0, dataToRet);
             }
 
@@ -79,7 +101,9 @@ function checkPresence(data, target) {
 }
 
 function generateAndPush(it, data) {
-    console.log(data);
+    // console.log(data);
+    let responseCount = data.UserData.length;
+    mainpageElements1.responseView.textContent = responseCount + " other responders";
 
     mainpageElements1.formOwnerView.textContent = "Form by " + data.FormData[3];
     mainpageElements1.formNameView.textContent = data.FormData[4];
