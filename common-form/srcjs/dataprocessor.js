@@ -1,9 +1,3 @@
-function getCheckedValue(elm) {
-    for(let it = 0; it < elm.length; it++) {
-        if(elm[it].checked) return [elm[it].value, it];
-    };
-}
-
 function getChoiceData(choiceCount, prevWritten) {
     let localChoice = [];
 
@@ -91,6 +85,7 @@ mainpageElements1.passConfirm.addEventListener('click', () => {
 
 })
 
+getCurrentDate();
 
 
 mainpageElements1.submitUserSide.addEventListener('click', function(e) {
@@ -123,8 +118,10 @@ mainpageElements1.submitUserSide.addEventListener('click', function(e) {
 
     }
     let submitter = mainpageElements1.submitAs.value;
+    let currentDate = getCurrentDate();
 
-    let dataToSend = [submitter, foundAnswers];
+
+    let dataToSend = [submitter, currentDate, foundAnswers];
     console.log(dataToSend);
 
     let checkViability = true;

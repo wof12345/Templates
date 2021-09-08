@@ -1,7 +1,37 @@
+function getCurrentDate() {
+    let date = new Date();
+    let formatted = date.toUTCString();
+    // console.log(formatted);
+    return formatted;
+}
+
 function animateCommon(params, style) {
     params.forEach((elm, ind) => {
         elm.style = style[ind]
     })
+}
+
+function getCheckedValue(elm) {
+    for(let it = 0; it < elm.length; it++) {
+        if(elm[it].checked) return [elm[it].value, it];
+    };
+}
+
+function checkEmpty(toCheck) {
+    for(let it = 0; it < toCheck.length; it++) {
+        // console.log(toCheck[it], "Check");
+        if(toCheck[it] === '') return false;
+    }
+    return true;
+}
+
+function populateResponses(data) {
+    data.forEach((elm, ind) => {
+        // console.log(elm);
+
+        mainpageElements2.responseViewContWindow.insertAdjacentHTML('beforeend', otherElements.responseCont(elm[0], elm[1]));
+    })
+
 }
 
 function viewEndPageUser() {
@@ -63,6 +93,15 @@ async function getPossibleData(location) {
             if(dataset[0]) {
                 generationPage();
                 console.log("generating page");
+                if(dataToRet.UserData.length > 0) {
+                    populateResponses(dataToRet.UserData);
+                    let responseCount = dataToRet.UserData.length;
+                    mainpageElements1.responseView.textContent = responseCount + " other responders";
+
+                    mainpageElements1.formOwnerView.textContent = "Form by " + dataToRet.FormData[3];
+                    mainpageElements1.formNameView.textContent = dataToRet.FormData[4];
+
+                }
                 generateAndPush(0, dataToRet);
             }
 
@@ -102,12 +141,6 @@ function checkPresence(data, target) {
 
 function generateAndPush(it, data) {
     // console.log(data);
-    let responseCount = data.UserData.length;
-    mainpageElements1.responseView.textContent = responseCount + " other responders";
-
-    mainpageElements1.formOwnerView.textContent = "Form by " + data.FormData[3];
-    mainpageElements1.formNameView.textContent = data.FormData[4];
-
     let dataMain = data.FormData[1];
     let currentQueryQues = dataMain.mcqQuestions[it];
     let currentQueryInput = dataMain.mcqChoices[it];

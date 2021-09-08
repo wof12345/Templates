@@ -60,7 +60,10 @@ let userSideElm = {
 let mainpageElements2 = {
     editBtnResponse: document.querySelector(`.see_responses`),
     editBtnDelete: document.querySelector(`.delete_form`),
-    editBtnEdit: document.querySelector(`.edit_form`)
+    editBtnEdit: document.querySelector(`.edit_form`),
+    responseViewCont: document.querySelector(`.response_view_window`),
+    responseBack: document.querySelector(`.response_back`),
+    responseViewContWindow: document.querySelector(`.response_view_window_cont`),
 }
 
 let toSendToDB = {

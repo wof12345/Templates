@@ -47,24 +47,29 @@ pageCommon.button.forEach((elm, ind) => {
                 generateFloatingWindow('At least one query required!', ['200px', '200px']);
 
             } else {
+                if(ind === 2 && !checkEmpty(toSendToDB.mcqQuestions)) {
+                    generateFloatingWindow('Question slots cannot be empty!', ['200px', '200px']);
+                } else {
 
-                let closestCont = elm.closest('section')
-                let nextCont = closestCont.nextElementSibling;
+                    let closestCont = elm.closest('section')
+                    let nextCont = closestCont.nextElementSibling;
 
-                containerProp.lastSibbling.push(closestCont);
-                if(containerProp.activeLayer < 4) {
-                    containerProp.activeLayer++;
+                    containerProp.lastSibbling.push(closestCont);
+                    if(containerProp.activeLayer < 4) {
+                        containerProp.activeLayer++;
+                    }
+
+
+                    setTimeout(() => {
+                        (pageCommon.wrapper[containerProp.activeLayer - 2]).style.opacity = "1";
+                    }, 2000)
+
+                    animateContainer(closestCont, nextCont, ['transform:translateX(200px)', 'transform:translateX(-120%)'], ["margin: 40px 60px 130px;"]);
                 }
-
-
-                setTimeout(() => {
-                    (pageCommon.wrapper[containerProp.activeLayer - 2]).style.opacity = "1";
-                }, 2000)
-
-                animateContainer(closestCont, nextCont, ['transform:translateX(200px)', 'transform:translateX(-120%)'], ["margin: 40px 60px 130px;"]);
             }
         })
     }
+
 })
 
 pageCommon.buttonback.forEach(elm => {

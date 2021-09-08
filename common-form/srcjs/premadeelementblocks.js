@@ -47,3 +47,10 @@ let quizProps = {
     mcq: function(choiceNo, name) { return `<div class="choice_sel"><input class="choice" type="radio" name="${name}" value="${choiceNo}"><textarea rows="1"  class="choices" type="text" placeholder="choice${choiceNo}" ></textarea></div>` },
     mcquserside: function(choiceNo, it, answer, name) { return `<div class="choice_sel"><input class="choice" type="radio" name="${name}" id="${choiceNo+""+it}"  value="${answer}"><p class="choices">${answer}</p></div>` },
 }
+
+let otherElements = {
+    responseCont: function(name, date) { return `    <div class="response_cont">
+    <p class="response">${name}</p>
+    <p class="date">${date}</p>
+</div>` }
+}

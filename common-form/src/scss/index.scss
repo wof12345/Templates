@@ -192,6 +192,39 @@
     }
 }
 
+.response_view_window {
+    position: absolute;
+    margin: 20px;
+    inset: 0;
+    z-index: 101;
+    height: 0;
+    background-color: #e79292;
+    border-radius: 10px;
+    padding: 0px;
+    // overflow: auto;
+    .response_back {
+        padding: 10px 30px;
+        color: black;
+    }
+    .response_view_window_cont {
+        position: relative;
+        overflow: auto;
+        margin: 30px;
+        height: 78%;
+        .response_cont {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            margin: 6px;
+            &:hover {
+                border-radius: 10px;
+                background-color: rgba(255, 255, 255, 0.322);
+                cursor: pointer;
+            }
+        }
+    }
+}
+
 .floating_message {
     position: absolute;
     z-index: 101;
