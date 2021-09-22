@@ -8,7 +8,7 @@
 }
 
 body {
-    overflow-x: hidden;
+    overflow-x: auto;
 }
 
 .selection {
@@ -59,20 +59,22 @@ input {
 }
 
 .start_execution,
-.clear {
+.clear,
+.display_toggle {
     padding: 10px 20px;
     border-radius: 10px;
     border: none;
 }
 
 .start_execution:hover,
-.clear:hover {
+.clear:hover,
+.display_toggle:hover {
     background-color: rgba(174, 203, 228, 0.514);
     cursor: pointer;
 }
 
 .iteration_result {
-    width: 90%;
+    min-width: 90%;
     padding: 10px;
     margin: 10px auto;
     background-color: rgba(150, 147, 147, 0.521);

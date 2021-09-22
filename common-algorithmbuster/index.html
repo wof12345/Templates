@@ -14,6 +14,7 @@
     <script defer src="./infolibrary.js"></script>
     <script defer src="./globalvars.js"></script>
     <script defer src="./commonfunctions.js"></script>
+    <script defer src="./algorithmfunctions.js"></script>
     <script defer src="./algorithms.js"></script>
     <script defer src="./pageattributes.js"></script>
 </head>
@@ -27,10 +28,10 @@
                 <option value="Merge-sort">Merge-sort</option>
                 <option value="Bubble-sort">Bubble-sort</option>
                 <option value="Quick-sort">Quick-sort</option>
-                <option value="Binary-sort">Binary-sort</option>
+                <!-- <option value="Binary-sort">Binary-sort</option> -->
                 <option value="Heap-sort">Heap-sort</option>
                 <option value="Insertion-sort">Insertion-sort</option>
-                <option value="selection-sort">selection-sort</option>
+                <!-- <option value="selection-sort">selection-sort</option> -->
             </select>
 
             <div class="selection_info">
@@ -39,10 +40,11 @@
         </div>
 
         <div class="input">
-            <label for="input">Input for the algorithm</label>
+            <label for="input">Input for the algorithm (If array, elements should be seperated by "," or " ".)</label>
             <input type="text" name="input" id="input">
             <button class="start_execution">Run</button>
             <button class="clear">Clear</button>
+            <button class="display_toggle">Iterations</button>
         </div>
 
         <div class="result_display">

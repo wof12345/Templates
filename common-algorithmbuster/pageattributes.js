@@ -8,7 +8,6 @@ pageElements.choice.addEventListener('change', () => {
 
 executionButton.addEventListener('click', () => {
     clear();
-    deflate_floater();
     setTimeout(() => {
 
         const selectionValue = document.getElementById(`choice`).value;
@@ -24,15 +23,49 @@ executionButton.addEventListener('click', () => {
         if (selectionValue === 'Insertion-sort') {
             insertionsort(givenArray);
         }
+        if (selectionValue === 'Merge-sort') {
+            let originalInput = [];
+            originalInput += givenArray;
+            timer('start');
+            mergesort(givenArray, 0, givenArray.length - 1, originalInput);
+            const timeTaken = timer('stop');
+            iterationPush(`Iterated : ${backupVariables.globalteration-1} times.`, `Time taken : ${timeTaken} seconds`, ``, `Current collection : ${givenArray}`, `Original collection : ${originalInput}`)
+            invoke_floater('left:10px;top:20px', `Iterated : ${backupVariables.globalteration-1} times. Time taken : ${timeTaken} seconds`, 2000)
+        }
+        if (selectionValue === 'Quick-sort') {
+            let originalInput = [];
+            originalInput += givenArray;
+            timer('start');
+            quickSort(givenArray, 0, givenArray.length - 1, originalInput);
+            const timeTaken = timer('stop');
+            iterationPush(`Iterated : ${backupVariables.globalteration-1} times.`, `Time taken : ${timeTaken} seconds`, ``, `Current collection : ${givenArray}`, `Original collection : ${originalInput}`)
+            invoke_floater('left:10px;top:20px', `Iterated : ${backupVariables.globalteration-1} times. Time taken : ${timeTaken} seconds`, 2000)
+        }
+        if (selectionValue === 'Heap-sort') {
+            heapSort(givenArray, givenArray.length);
+        }
+        if (selectionValue === 'Bubble-sort') {
+            bubblesort(givenArray);
+        }
+
+
+        // console.log(lastIterationQueries.iterations.length, lastIterationQueries.iterations);
     }, 500)
 
 })
 
 resultClearButton.addEventListener('click', () => {
     clear();
-    deflate_floater();
 })
 
 pageElements.floater.addEventListener('click', () => {
     deflate_floater();
+})
+
+pageElements.display_toggle.addEventListener('click', () => {
+    if (!backupVariables.iterationShown) {
+        iteration_toggle('show')
+    } else {
+        iteration_toggle('hide')
+    }
 })
