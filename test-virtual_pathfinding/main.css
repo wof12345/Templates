@@ -1,0 +1,33 @@
+* {
+    transition: .5s;
+}
+
+.background {
+    background-color: rgb(218, 210, 210);
+    width: 900px;
+    height: 600px;
+    margin: 10px 51px;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto;
+}
+
+.landmark {
+    border: 1px solid rgba(109, 107, 107, 0.548);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.landmark:hover {
+    background-color: rgba(240, 248, 255, 0.603);
+    cursor: pointer;
+}
+
+.playerCharacter {
+    background-color: rgb(8, 8, 8);
+    width: 40px;
+    aspect-ratio: 1/1;
+    border-radius: 20px;
+    position: absolute;
+    transition: .5s;
+}
