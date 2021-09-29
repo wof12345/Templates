@@ -17,7 +17,7 @@ function executeFirst(it, destinationCoordinates) {
     if (destinationCoordinates[0] > playerCharacterPosition.posX)
         playerCharacterPosition.posX += minorEffect;
     else if (destinationCoordinates[0] < playerCharacterPosition.posX)
-        playerCharacterPosition.posX -= (it % 2 == 0 ? 112 : 113);
+        playerCharacterPosition.posX -= (it % 2 != 0 ? 112 : 113);
 
     if(destinationCoordinates[0]===0 && (playerCharacterPosition.posX<0 || playerCharacter.posX===1)){
         playerCharacterPosition.posX=0;
