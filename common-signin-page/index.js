@@ -1,4 +1,6 @@
 let mainContainer = document.querySelector(`.main_container`);
+let header = document.querySelector('.header');
+let subtitle = document.querySelector(`.subtitle`)
 let animation_text_container = document.querySelector(`.header_animated_text `)
 let registerBtn = document.querySelector(`.register`);
 let register_login_btn = document.querySelector(`.register_login`);
@@ -26,6 +28,7 @@ function foldPage() {
     } else {
         generalAnimation([siginCont, registerCont, animation_text_container, forgot_pass_cont], ['transform:translateX(0px);max-height: 170px;', 'transform:translateX(500px);max-height: 170px;', 'min-height: 200px;', 'display:block'])
         logic.pagefold = 1;
+        subtitle.textContent = 'Please login to continue >';
     }
 }
 
