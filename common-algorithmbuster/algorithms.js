@@ -1,6 +1,4 @@
-// all codes taken from geekFromGeeks
 function selectionSort(input) {
-    // console.log(input);
     timer('start');
 
     let originalInput = [];
@@ -30,7 +28,8 @@ function selectionSort(input) {
 
     const timeTaken = timer('stop');
     iterationPush(`Iterated : ${iterationNo-1} times.`, `Time taken : ${timeTaken} seconds`, ``, `Current collection : ${input}`, `Original collection : ${originalInput}`)
-    invoke_floater('left:10px;top:20px', `Iterated : ${iterationNo-1} times. Time taken : ${timeTaken} seconds`, 2000)
+    invoke_floater('left:10px;top:20px', `Iterated : ${iterationNo-1} times. Time taken : ${timeTaken} seconds`, 2000);
+    backupVariables.lastTime = timeTaken;
 }
 
 
@@ -56,7 +55,8 @@ function insertionsort(input) {
     }
     const timeTaken = timer('stop');
     iterationPush(`Iterated : ${iterationNo-1} times.`, `Time taken : ${timeTaken} seconds`, ``, `Current collection : ${input}`, `Original collection : ${originalInput}`)
-    invoke_floater('left:10px;top:20px', `Iterated : ${iterationNo-1} times. Time taken : ${timeTaken} seconds`, 2000)
+    invoke_floater('left:10px;top:20px', `Iterated : ${iterationNo-1} times. Time taken : ${timeTaken} seconds`, 2000);
+    backupVariables.lastTime = timeTaken;
 }
 
 function mergesort(array, begin, end, originalInput) {
@@ -95,18 +95,14 @@ function bubblesort(input) {
     }
     const timeTaken = timer('stop');
     iterationPush(`Iterated : ${iterationNo-1} times.`, `Time taken : ${timeTaken} seconds`, ``, `Current collection : ${input}`, `Original collection : ${originalInput}`)
-    invoke_floater('left:10px;top:20px', `Iterated : ${iterationNo-1} times. Time taken : ${timeTaken} seconds`, 2000)
+    invoke_floater('left:10px;top:20px', `Iterated : ${iterationNo-1} times. Time taken : ${timeTaken} seconds`, 2000);
+    backupVariables.lastTime = timeTaken;
 }
 
 function quickSort(arr, low, high, originalInput) {
     if (low < high) {
-        /* pi is partitioning index, arr[p] is now 
-        at right place */
         iterationPush(`Iteration no : ${backupVariables.globalteration}`, `Current high ; ${high}, Current low : ${low}`, ``, `Current collection : ${arr}`, `Original collection : ${originalInput}`);
         let pi = partition(arr, low, high, originalInput);
-
-        // Separately sort elements before 
-        // partition and after partition 
         backupVariables.globalteration++;
         quickSort(arr, low, pi - 1, originalInput);
         quickSort(arr, pi + 1, high, originalInput);
@@ -117,21 +113,18 @@ function heapSort(input, n) {
     let originalInput = [];
     originalInput += input;
     timer('start');
-    // Build heap (rearrange array)
     for (let i = Math.floor(n / 2 - 1); i >= 0; i--, backupVariables.globalteration++) {
         iterationPush(`Iteration No : ${backupVariables.globalteration} times.`, `Entering heapify with length ${n} , middle point ${i} `, ``, `Current collection : ${input}`, `Original collection : ${originalInput}`)
         heapify(input, n, i, originalInput);
     }
 
-    // One by one extract an element from heap
     for (let i = n - 1; i > 0; i--) {
-        // Move current root to end
         swap(input, 0, i);
 
-        // call max heapify on the reduced heap
         heapify(input, i, 0, originalInput);
     }
     const timeTaken = timer('stop');
     iterationPush(`Iterated : ${backupVariables.globalteration-1} times.`, `Time taken : ${timeTaken} seconds`, ``, `Current collection : ${input}`, `Original collection : ${originalInput}`)
-    invoke_floater('left:10px;top:20px', `Iterated : ${backupVariables.globalteration-1} times. Time taken : ${timeTaken} seconds`, 2000)
+    invoke_floater('left:10px;top:20px', `Iterated : ${backupVariables.globalteration-1} times. Time taken : ${timeTaken} seconds`, 2000);
+    backupVariables.lastTime = timeTaken;
 }

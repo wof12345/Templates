@@ -10,9 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,100&family=Scheherazade+New&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./index.css">
     <title>Document</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 
     <script defer src="./infolibrary.js"></script>
     <script defer src="./globalvars.js"></script>
+    <script defer src="./graph_code.js"></script>
     <script defer src="./commonfunctions.js"></script>
     <script defer src="./algorithmfunctions.js"></script>
     <script defer src="./algorithms.js"></script>
@@ -23,7 +25,7 @@
     <section class="container_main">
         <div class="selection">
             <select name="algorithm_choice" id="choice">
-                <option value="selection-sort">None</option>
+                <option value="none">None</option>
                 <option value="Selection-sort">Selection-sort</option>
                 <option value="Merge-sort">Merge-sort</option>
                 <option value="Bubble-sort">Bubble-sort</option>
@@ -40,7 +42,7 @@
         </div>
 
         <div class="input">
-            <label for="input">Input for the algorithm (If array, elements should be seperated by "," or " ".)</label>
+            <label for="input">Input for the algorithm (If array, elements should be seperated by "," or " ". Note that iterations are not balanced :)</label>
             <input type="text" name="input" id="input">
             <button class="start_execution">Run</button>
             <button class="clear">Clear</button>
@@ -55,6 +57,17 @@
             <p class="text_floater"></p>
         </div>
 
+        <div class="input_gen_cont">
+            <label for="input_gen">Number of inputs to generate : <br>(number of inputs and input <br> range seperated by comma.)</label>
+            <input type="text" id="input_gen">
+
+            <button class="generate">Generate</button>
+        </div>
+
+
+        <div class="char_cont">
+            <canvas id='graph_cont' aria-label="backlash" role="img"></canvas>
+        </div>
     </section>
 </body>
 

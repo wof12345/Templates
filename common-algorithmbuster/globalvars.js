@@ -19,13 +19,38 @@ let pageElements = {
     floater: document.querySelector(`.floating_window`),
     floater_text: document.querySelector(`.text_floater`),
     display_toggle: document.querySelector(`.display_toggle`),
+    input_box: document.querySelector(`#input_gen`),
+    generationButton: document.querySelector(`.generate`),
 }
 
 let backupVariables = {
     iterationShown: false,
     globalteration: 1,
+    lastTime: 0,
 }
 
 let lastIterationQueries = {
     iterations: [],
 }
+
+let chartData = {
+    algo1: [0],
+    algo2: [0],
+    algo3: [0],
+    algo4: [0],
+    algo5: [0],
+    algo6: [0],
+    algo1labels: [0],
+    algo2labels: [0],
+    algo3labels: [0],
+    algo4labels: [0],
+    algo5labels: [0],
+    algo6labels: [0],
+}
+
+let chartCurrentData = {
+    labels: [],
+    data: []
+}
+
+let graph_cont = document.getElementById('graph_cont').getContext('2d');

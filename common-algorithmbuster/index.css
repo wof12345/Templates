@@ -57,7 +57,8 @@ input {
 
 .start_execution,
 .clear,
-.display_toggle {
+.display_toggle,
+button {
     padding: 10px 20px;
     border-radius: 10px;
     border: none;
@@ -65,7 +66,8 @@ input {
 
 .start_execution:hover,
 .clear:hover,
-.display_toggle:hover {
+.display_toggle:hover,
+button:hover {
     background-color: rgba(174, 203, 228, 0.514);
     cursor: pointer;
 }
@@ -100,4 +102,27 @@ input {
 .floating_window:hover {
     opacity: .5;
     cursor: pointer;
+}
+
+.chart_cont {
+    width: 200px;
+    height: 200px;
+}
+
+.input_gen_cont {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 150;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.input_gen_cont>input {
+    width: 200px;
+}
+
+.input_gen_cont>* {
+    margin: 10px;
 }
