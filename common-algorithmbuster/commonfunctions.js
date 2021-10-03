@@ -1,5 +1,5 @@
 function generateRandomNumber(range) {
-    return (Math.random() * range).toFixed(1);
+    return (Math.random() * range).toFixed(0);
 }
 
 function clear() {
@@ -26,14 +26,14 @@ function numberify(array) {
 
 function timer(command) {
     if (command === `start`) {
-        let dateob = new Date().getMilliseconds();
+        let dateob = new Date().getTime();
         lastTimerValue = dateob;
         console.log(dateob, lastTimerValue);
 
     }
 
     if (command === `stop`) {
-        let dateob = new Date().getMilliseconds();
+        let dateob = new Date().getTime();
         console.log(dateob, dateob - lastTimerValue);
         return Math.abs(dateob - lastTimerValue) / 1000;
     }
