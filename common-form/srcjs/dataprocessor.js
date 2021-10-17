@@ -4,11 +4,11 @@ function getChoiceData(choiceCount, prevWritten) {
     // console.log(choiceCount,prevWritten);
 
 
-    for(let index = prevWritten; index < mainpageElements1.mcqChoices.length; index++) {
+    for (let index = prevWritten; index < mainpageElements1.mcqChoices.length; index++) {
         localChoice.push(mainpageElements1.mcqChoices[index].value);
         // console.log(mainpageElements1.mcqChoices[index]);
         choiceCount--;
-        if(choiceCount === 0) { mainpageElements1.globalWrittenCount = ++index; break };
+        if (choiceCount === 0) { mainpageElements1.globalWrittenCount = ++index; break };
     }
 
     toSendToDB.mcqChoices.push(localChoice);
@@ -53,7 +53,7 @@ mainpageElements1.button.addEventListener('click', function(e) {
 
         console.log(formPass, formOwner, formPurpose, checkAllfill);
 
-        if(formPass !== '') {
+        if (formPass !== '') {
             handleTrigger(formPass, formOwner, formPurpose, checkAllfill);
         } else {
             generateFloatingWindow('Password cannot be empty.', ['270px', '300px'])
@@ -77,7 +77,7 @@ mainpageElements1.passConfirm.addEventListener('click', () => {
 
     let formPass = dataToRet.FormData[2];
 
-    if(givenPass === formPass) {
+    if (givenPass === formPass) {
         animateCommon([mainpageElements1.editOnly], ['height:100px; padding:7px ;margin-top:-100px']);
         animateCommon([mainpageElements1.editAccessCont], ['transform: translateY(-200px)']);
         logics.hasPass = true;
@@ -95,21 +95,21 @@ mainpageElements1.submitUserSide.addEventListener('click', function(e) {
     let foundAnswers = [];
     let canProceed = true;
 
-    for(let it = 0; it < queriesInside.length; it++) {
+    for (let it = 0; it < queriesInside.length; it++) {
         let results = 'other';
         let currentAnswers = document.getElementsByName(`${it}`);
         // console.log(currentAnswers[0].checked);
 
-        if(currentAnswers.length > 1) {
+        if (currentAnswers.length > 1) {
             results = getCheckedValue(currentAnswers);
-            if(!results) {
+            if (!results) {
                 canProceed = false;
                 break;
             }
             foundAnswers.push(results)
         } else {
             let currentAnswer = document.getElementById(`${it}`);
-            if(currentAnswer.value === "") {
+            if (currentAnswer.value === "") {
                 canProceed = false;
                 break;
             }
@@ -125,14 +125,15 @@ mainpageElements1.submitUserSide.addEventListener('click', function(e) {
     console.log(dataToSend);
 
     let checkViability = true;
-    if(dataToRet.FormData[4])
-        if(!canProceed) {
+    if (dataToRet.FormData[4])
+        if (!canProceed) {
             generateFloatingWindow('Everything must be answered', ['250px', '330px']);
             checkViability = false
         }
 
 
-    if(checkViability) {
+    if (checkViability) {
+
         uploadData('updatedata', [currentSeed, dataToSend]);
         viewEndPageUser();
     }
