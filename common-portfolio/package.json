@@ -21,7 +21,7 @@
         "nodemon": "^2.0.12"
     },
     "scripts": {
-        "start": "parcel mainpage/index.html",
+        "start": "parcel index.html",
         "build": "parcel build index.html",
         "database": "node database.js"
     },

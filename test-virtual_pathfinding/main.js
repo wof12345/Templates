@@ -26,7 +26,7 @@ let elementStat = {
 }
 
 function generateRandomNumber(limit) {
-    return Math.random(1) * limit - 1;
+    return Math.random() * limit + 1;
 }
 
 function generateBackground(count) {
@@ -90,7 +90,7 @@ function executeFirst(id, destinationCoordinates) {
         if (!moveLogic.triedXpos) {
             playerCharacterPosition.posX += playerCharacterPosition.xDistanceConstant;
             id += 1;
-            moveLogic.triedXpos = true;
+            // moveLogic.triedXpos = true;
         } else {
             playerCharacterPosition.posX -= playerCharacterPosition.xDistanceConstant;
             id -= 1;
@@ -132,7 +132,7 @@ function executeSecond(id, destinationCoordinates) {
         if (!moveLogic.triedYpos) {
             playerCharacterPosition.posY += playerCharacterPosition.yDistanceConstant;
             id += playerCharacterPosition.yChangeConstant;
-            moveLogic.triedYpos = true;
+            // moveLogic.triedYpos = true;
         } else {
             playerCharacterPosition.posY -= playerCharacterPosition.yDistanceConstant;
             id -= playerCharacterPosition.yChangeConstant;
@@ -210,7 +210,7 @@ function runMoveSequenceIneffecient(axis, total, forth, it, position, id) {
     // preid=id+playerCharacterPosition.yChangeConstant;
     
     console.log('current id : ', id);
-    if (originalId === id || isNaN(id)) {
+    if ( playerCharacterPosition.lastPositionId  === id || isNaN(id)) {
         let lastId = currentPath[currentPath.length - 2];
         if (lastId !== undefined)
             playerCharacterPosition.lastPositionId = lastId;
@@ -219,6 +219,7 @@ function runMoveSequenceIneffecient(axis, total, forth, it, position, id) {
 
         playerCharacterPosition.currentPositionId = lastId;
         console.log('lastvalid : ', lastId);
+        // it+=4;
         // console.log('valid paths : ', currentPath);
         // return;
     }
@@ -250,6 +251,8 @@ function runMoveSequenceIneffecient(axis, total, forth, it, position, id) {
 
     illuminatePath();
     if (it >= total) {
+        console.log('end called','end Id : ',id,'end position : ', position);
+        
         endSequence(playerCharacterPosition.currentPositionId);
         return;
     }
@@ -337,6 +340,10 @@ function placePlayerCharacter(element, elementId, position) {
 
 background.addEventListener('click', function(e) {
     let goingto = e.target;
+    if(goingto.className === 'playerCharacter'){
+        console.log('current position : ',goingto.offsetLeft - 14,goingto.offsetTop - 10 );
+        
+    }
     if (elementStat.moveComplete && !binarySearch(blockades, 0, blockades.length - 1, +goingto.id) && !(goingto.className === 'playerCharacter')) {
         if (playerClickCounter > 1) elementStat.moveComplete = false;
         elementStat.moveIteration = 1;
