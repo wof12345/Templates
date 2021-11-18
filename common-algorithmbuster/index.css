@@ -119,6 +119,12 @@ button:hover {
     flex-direction: column;
 }
 
+.input_gen_cont>label {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
 .input_gen_cont>input {
     width: 200px;
 }

@@ -22,7 +22,7 @@ let playerCharacterPosition = {
 }
 let elementStat = {
     moveComplete: true,
-
+    // moveIteration: 0,
 }
 
 function generateRandomNumber(limit) {
@@ -67,6 +67,8 @@ function generalAnimation(position) {
 }
 
 function executeFirst(id, coordinate) {
+    // let increased = false;
+    // let originalId = id;
     if (coordinate === 'x') {
         playerCharacterPosition.posX += playerCharacterPosition.xDistanceConstant;
         id += 1;
@@ -74,14 +76,40 @@ function executeFirst(id, coordinate) {
         playerCharacterPosition.posX -= playerCharacterPosition.xDistanceConstant;
         id -= 1;
     }
+    // } else {
+    //     if (!moveLogic.triedXpos) {
+    //         playerCharacterPosition.posX += playerCharacterPosition.xDistanceConstant;
+    //         id += 1;
+    //         // moveLogic.triedXpos = true;
+    //     } else {
+    //         playerCharacterPosition.posX -= playerCharacterPosition.xDistanceConstant;
+    //         id -= 1;
+    //         moveLogic.triedXpos = false;
+    //     }
+    // }
+    // if (destinationCoordinates[0] === 0 && (playerCharacterPosition.posX < 0 || playerCharacter.posX === 1)) {
+    //     playerCharacterPosition.posX = 0;
+    // }
+    // console.log(`First : `, playerCharacterPosition.posX, playerCharacterPosition.posY, id, `Gotten coords : `, destinationCoordinates[1], playerCharacterPosition.posY);
+    // let res = binarySearch(blockades, 0, blockades.length - 1, id)
+    // if (res !== false) {
+    //     if (true) {
+    //         playerCharacterPosition.posX -= playerCharacterPosition.xDistanceConstant;
+    //     } else {
+    //         playerCharacterPosition.posX += playerCharacterPosition.xDistanceConstant
+    //     }
 
+    //     id = executeSecond(originalId, destinationCoordinates);
+    //     return id;
+    // }
 
     generalAnimation([playerCharacterPosition.posX, playerCharacterPosition.posY]);
     return id;
 }
 
 function executeSecond(id, coordinate) {
-
+    // let increased = false;
+    // let originalId = id;
     if (coordinate === 'y') {
         playerCharacterPosition.posY += playerCharacterPosition.yDistanceConstant;
         id += playerCharacterPosition.yChangeConstant;
@@ -90,9 +118,34 @@ function executeSecond(id, coordinate) {
         playerCharacterPosition.posY -= playerCharacterPosition.yDistanceConstant;
         id -= playerCharacterPosition.yChangeConstant;
     }
+    // } else {
+    //     if (!moveLogic.triedYpos) {
+    //         playerCharacterPosition.posY += playerCharacterPosition.yDistanceConstant;
+    //         id += playerCharacterPosition.yChangeConstant;
+    //         // moveLogic.triedYpos = true;
+    //     } else {
+    //         playerCharacterPosition.posY -= playerCharacterPosition.yDistanceConstant;
+    //         id -= playerCharacterPosition.yChangeConstant;
+    //         moveLogic.triedYpos = false;
+    //     }
+    // }
+    // console.log(`Second : `, playerCharacterPosition.posX, playerCharacterPosition.posY, id, `Gotten coords : `, destinationCoordinates[1], playerCharacterPosition.posY);
 
+    // let res = binarySearch(blockades, 0, blockades.length - 1, id)
+    // if (res !== false) {
+    //     if (true) {
+    //         playerCharacterPosition.posY -= playerCharacterPosition.yDistanceConstant;
+    //     } else {
+    //         playerCharacterPosition.posY += playerCharacterPosition.yDistanceConstant
+    //     }
+
+    //     // console.log(`Tobe destination : `, destinationCoordinates);
+
+    //     id = executeFirst(originalId, destinationCoordinates);
+    //     return id;
+    // }
     console.log(id);
-
+    
 
     generalAnimation([playerCharacterPosition.posX, playerCharacterPosition.posY]);
     return id;
@@ -142,6 +195,9 @@ function endSequence(currentPositionId) {
 }
 
 function determineNextPath(currentPath, id, idForConsideration) {
+    // console.log(axis.splice(moveIteration));
+    // console.log(axis);
+
 
     if (currentPath === 'x') {
         let res = binarySearch(blockades, 0, blockades.length - 1, id + playerCharacterPosition.yDistanceConstant)
@@ -151,14 +207,36 @@ function determineNextPath(currentPath, id, idForConsideration) {
 }
 
 function runMoveSequenceIneffecient(axis, length, moveIteration, position, id) {
-    
+    // let preid;
+    // if(axis[0]==='x')
+    // preid= id+1;
+    // else
+    // preid=id+playerCharacterPosition.yChangeConstant;
     let res = binarySearch(blockades, 0, blockades.length - 1, id)
     if (res) {
 
+        // let completePath=[];
+        // let latterHalf = axis.splice(moveIteration);
+        // let fontHalf = determineNextPath(axis[moveIteration], id, moveIteration);
 
-        // console.log(id);
+        console.log(id);
         return;
     } else {
+
+        // console.log('current id : ', id, axis[moveIteration]);
+        // if (playerCharacterPosition.lastPositionId === id || isNaN(id)) {
+        //     let lastId = currentPath[currentPath.length - 2];
+        //     if (lastId !== undefined)
+        //         playerCharacterPosition.lastPositionId = lastId;
+        //     else
+        //         playerCharacterPosition.lastPositionId = playerCharacterPosition.lastPositionId;
+
+        //     playerCharacterPosition.currentPositionId = lastId;
+        //     console.log('lastvalid : ', lastId);
+        //     // it+=4;
+        //     // console.log('valid paths : ', currentPath);
+        //     // return;
+        // }
 
 
         if (moveIteration < length) {
@@ -176,6 +254,7 @@ function runMoveSequenceIneffecient(axis, length, moveIteration, position, id) {
 
         illuminatePath();
         if (moveIteration >= length) {
+            // console.log('end called','end Id : ',id,'end position : ', position);
 
             endSequence(playerCharacterPosition.currentPositionId);
             return;
@@ -193,6 +272,7 @@ function runMoveSequenceEfficient(it, total, position, id) {
     id = executeGeneral(id, position)
     currentPath.push(id);
 
+    // console.log(`Id : `, id);
 
     illuminatePath();
 
@@ -213,33 +293,54 @@ function determineJourneyStats(destinationCoordinates, position, elementId) {
     let latter, forth, axis = [],
         tracebackPaths = [];
 
-    // console.log('posion/destiation : ', destinationCoordinates, playerCharacterPosition.posX, playerCharacterPosition.posY);
+    // if (loopsForX < loopsForY) {
+    //     forth = loopsForX;
+    //     latter = loopsForY;
+    //     axis[0] = 'x';
+    //     axis[1] = 'y';
+    // } else {
+    //     forth = loopsForY;
+    //     latter = loopsForX;
+    //     axis[0] = 'y';
+    //     axis[1] = 'x';
+    // }
 
+    console.log('posion/destiation : ', destinationCoordinates, playerCharacterPosition.posX, playerCharacterPosition.posY);
+    
+    // let total = loopsForX + loopsForY;
     for (let i = 0; i < loopsForX; i++) {
-        if (position[0] > playerCharacterPosition.posX) {
+        if (position[0] > playerCharacterPosition.posX){
             axis.push('x');
             tracebackPaths.push('-x');
-        } else {
+    } else{
             axis.push('-x');
             tracebackPaths.push('x');
         }
-
+        
     }
     for (let i = 0; i < loopsForY; i++) {
-        if (position[1] > playerCharacterPosition.posY) {
-            axis.push('y');
-            tracebackPaths.push('-y');
-        } else {
-            axis.push('-y');
-            tracebackPaths.push('y');
-        }
-
+        if (position[1] > playerCharacterPosition.posY){
+        axis.push('y');
+        tracebackPaths.push('-y');
+    }
+    else{
+        axis.push('-y');
+        tracebackPaths.push('y');
+    }
+        
     }
     console.log('Axis : ', axis);
 
+    // let totalLoops = (loopsForX > loopsForY ? loopsForX : loopsForY)
+    // console.log(`Loops required : `, loopsForX, loopsForY);
+
     currentPath.push(playerCharacterPosition.lastPositionId)
 
-    if (movementScheme === 1) {
+    if (movementScheme === 2) {
+        // runMoveSequenceEfficient(elementStat.moveIteration, totalLoops, position, +playerCharacterPosition.lastPositionId)
+    } else {
+        // console.log(`Passed position : ` + position,` Last position Id passed : ` + playerCharacterPosition.lastPositionId,`Passed element stats : ` + axis, total, forth );
+
         runMoveSequenceIneffecient(axis, axis.length, 0, position, +playerCharacterPosition.lastPositionId);
     }
 }
@@ -261,8 +362,9 @@ function placePlayerCharacter(element, elementId, position) {
         let distanceX = position[0] - playerCharacterPosition.posX;
         let distanceY = position[1] - playerCharacterPosition.posY;
 
+        // console.log(`Distance crossed : (${distanceX},${distanceY})`);
         determineJourneyStats([distanceX, distanceY], position, elementId);
-
+        // console.log(`Current position : `, position);
     }
 }
 
@@ -274,6 +376,7 @@ background.addEventListener('click', function(e) {
     }
     if (elementStat.moveComplete && !binarySearch(blockades, 0, blockades.length - 1, +goingto.id) && !(goingto.className === 'playerCharacter')) {
         if (playerClickCounter > 1) elementStat.moveComplete = false;
+        elementStat.moveIteration = 1;
 
         let topPos = goingto.offsetTop - 10;
         let leftPos = goingto.offsetLeft - 14;

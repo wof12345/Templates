@@ -1,12 +1,24 @@
 const executionButton = document.querySelector(`.start_execution`);
 const resultClearButton = document.querySelector(`.clear`);
+const mainText = document.querySelector(`.main_text`);
+let selectionValue = document.getElementById(`choice`).value;
+// console.log(mainText);
+
 
 pageElements.choice.addEventListener('change', () => {
     setInfo(getInfo(pageElements.choice.value));
+    selectionValue = document.getElementById(`choice`).value;
+    mainText.textContent = 'Input for the algorithm (If array, elements should be seperated by "," or " ". Note that iterations are not balanced :)';
+    if (selectionValue === 'BFS') {
+        console.log(selectionValue);
+
+        mainText.textContent = 'Input should be seperated by space and comma. E.g. (2 3,4 5,6 7). Note that first line only represents the number of nodes and edges.'
+    }
 })
 
 executionButton.addEventListener('click', () => {
     clear();
+    mainText.textContent = 'Input for the algorithm (If array, elements should be seperated by "," or " ". Note that iterations are not balanced :)';
 
     const selectionValue = document.getElementById(`choice`).value;
     let input = document.getElementById(`input`).value;
@@ -46,6 +58,11 @@ executionButton.addEventListener('click', () => {
     }
     if (selectionValue === 'Bubble-sort') {
         bubblesort(givenArray);
+    }
+    if (selectionValue === 'BFS') {
+        console.log(selectionValue);
+
+
     }
 
     updateGraph(selectionValue, givenArray.length, backupVariables.lastTime);

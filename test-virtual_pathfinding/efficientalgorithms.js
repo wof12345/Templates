@@ -26,7 +26,7 @@ function quickSort(arr, low, high) {
         quickSort(arr, pi + 1, high);
     }
 }
-
+//3 4 5 6 8
 function binarySearch(arr, start, end, target) {
     // console.log(arr, start, end, target);
 
