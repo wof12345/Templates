@@ -128,3 +128,24 @@ function heapSort(input, n) {
     invoke_floater('left:10px;top:20px', `Iterated : ${backupVariables.globalteration-1} times. Time taken : ${timeTaken} seconds`, 2000);
     backupVariables.lastTime = timeTaken;
 }
+
+function BFS() {
+    let currentNode = currentGraphInfo.currentArrayState.pop();
+    console.log(`Adjacents of ${currentNode} : `, currentGraphInfo.graphRelations[currentNode]);
+    currentGraphInfo.graphRelations[currentNode].forEach(element => {
+        if (currentGraphInfo.visitState[element] === undefined) {
+            currentGraphInfo.visitState[element] = currentGraphInfo.visitState[currentNode] + 1;
+            currentGraphInfo.currentArrayState.push(element)
+            console.log(currentGraphInfo.visitState[element], currentGraphInfo.visitState[currentNode], currentGraphInfo.currentArrayState);
+
+            iterationPush(`Iteration: ${backupVariables.globalteration} :`, `Current Node : ${currentNode}`, ``, `Current Adjacents : ${ currentGraphInfo.graphRelations[currentNode]}`, `Iterating on adjacent : ${element}`)
+        }
+
+    });
+    if (currentGraphInfo.currentArrayState.length <= 0) {
+        invoke_floater('left:10px;top:20px', `Iterated : ${backupVariables.globalteration-1} times.`, 2000);
+        return;
+    }
+    backupVariables.globalteration++;
+    BFS();
+}

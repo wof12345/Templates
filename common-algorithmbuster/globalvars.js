@@ -40,12 +40,14 @@ let chartData = {
     algo4: [0],
     algo5: [0],
     algo6: [0],
+    algo7: [0],
     algo1labels: [0],
     algo2labels: [0],
     algo3labels: [0],
     algo4labels: [0],
     algo5labels: [0],
     algo6labels: [0],
+    algo7labels: [0],
 }
 
 let chartCurrentData = {
@@ -54,3 +56,13 @@ let chartCurrentData = {
 }
 
 let graph_cont = document.getElementById('graph_cont').getContext('2d');
+
+let currentGraphInfo = {
+    graphName: null,
+    nodes: 0,
+    edges: 0,
+    source: 0,
+    visitState: [],
+    currentArrayState: [],
+    graphRelations: [],
+}

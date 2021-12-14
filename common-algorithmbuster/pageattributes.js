@@ -1,6 +1,7 @@
 const executionButton = document.querySelector(`.start_execution`);
 const resultClearButton = document.querySelector(`.clear`);
 const mainText = document.querySelector(`.main_text`);
+const generatorCont = document.querySelector(`.input_gen_cont`);
 let selectionValue = document.getElementById(`choice`).value;
 // console.log(mainText);
 
@@ -8,25 +9,30 @@ let selectionValue = document.getElementById(`choice`).value;
 pageElements.choice.addEventListener('change', () => {
     setInfo(getInfo(pageElements.choice.value));
     selectionValue = document.getElementById(`choice`).value;
-    mainText.textContent = 'Input for the algorithm (If array, elements should be seperated by "," or " ". Note that iterations are not balanced :)';
+    mainText.textContent = 'Input for the algorithm (If array, elements should be seperated by ",". Note that iterations are not balanced :)';
     if (selectionValue === 'BFS') {
         console.log(selectionValue);
-
-        mainText.textContent = 'Input should be seperated by space and comma. E.g. (2 3,4 5,6 7). Note that first line only represents the number of nodes and edges.'
+        generatorCont.style.display = 'none';
+        mainText.textContent = 'Input should be seperated by space and comma. E.g. (2 3,4 5,6 7). Note that first line only represents the number of nodes and edges. Eliminating input should be a single  node denoting the source.'
+    } else {
+        generatorCont.style.display = '';
+        mainText.textContent = 'Input for the algorithm (If array, elements should be seperated by ",". Note that iterations are not balanced :)';
     }
 })
 
 executionButton.addEventListener('click', () => {
     clear();
-    mainText.textContent = 'Input for the algorithm (If array, elements should be seperated by "," or " ". Note that iterations are not balanced :)';
+    mainText.textContent = 'Input for the algorithm (If array, elements should be seperated by ",". Note that iterations are not balanced :)';
 
     const selectionValue = document.getElementById(`choice`).value;
     let input = document.getElementById(`input`).value;
-    let givenArray = input.split(/,| /);
+    let givenArray = input.split(',');
     // console.log(givenArray);
 
 
-    givenarray = numberify(givenArray);
+    if (selectionValue !== 'BFS') {
+        givenarray = numberify(givenArray);
+    }
     if (selectionValue === 'Selection-sort') {
         selectionSort(givenArray);
     }
@@ -60,14 +66,21 @@ executionButton.addEventListener('click', () => {
         bubblesort(givenArray);
     }
     if (selectionValue === 'BFS') {
-        console.log(selectionValue);
+        // console.log(givenArray);
+        processGraph(givenArray);
+
+        timer('start');
+        BFS();
+        backupVariables.lastTime = timer('stop');
+        console.log(currentGraphInfo.visitState);
+        // console.log('Nodes and edges : ', currentGraphInfoEN);
 
 
     }
 
     updateGraph(selectionValue, givenArray.length, backupVariables.lastTime);
     // console.log(lastIterationQueries.iterations.length, lastIterationQueries.iterations);
-    console.log(givenArray);
+    // console.log(givenArray);
 
     givenArray = [];
 

@@ -26,15 +26,15 @@ function numberify(array) {
 
 function timer(command) {
     if (command === `start`) {
-        let dateob = new Date().getTime();
+        let dateob = performance.now();
         lastTimerValue = dateob;
-        console.log(dateob, lastTimerValue);
-
+        console.log('(Start)');
+        // console.log(dateob, lastTimerValue);
     }
 
     if (command === `stop`) {
-        let dateob = new Date().getTime();
-        console.log(dateob, dateob - lastTimerValue);
+        let dateob = performance.now();
+        console.log('Time taken to execute :(Stop) ', dateob - lastTimerValue);
         return Math.abs(dateob - lastTimerValue) / 1000;
     }
 }
@@ -170,8 +170,54 @@ function updateGraph(algorithm, label, time) {
         // console.log(chartCurrentData.labels, chartCurrentData.data);
 
         updateChartNecessity(algorithm);
+    } else if (algorithm === 'Insertion-sort') {
+        // console.log(algorithm, label, time);
+
+        chartData.algo6.push(time);
+        chartData.algo6labels.push(label);
+
+        assignTemp(chartData.algo6, chartData.algo6labels);
+        // console.log(chartCurrentData.labels, chartCurrentData.data);
+
+        updateChartNecessity(algorithm);
+
+        // console.log(chartCurrentData.labels, chartCurrentData.data);
+    } else if (algorithm === 'BFS') {
+        // console.log(algorithm, label, time);
+
+        chartData.algo7.push(time);
+        chartData.algo7labels.push(label);
+
+        assignTemp(chartData.algo7, chartData.algo7labels);
+        // console.log(chartCurrentData.labels, chartCurrentData.data);
+
+        updateChartNecessity(algorithm);
+    }
+    emptyCurrentStorageSafe();
+}
+
+function processGraph(relations) {
+
+    let currentGraphInfoTemp = relations.shift();
+    let currentGraphInfoEN = currentGraphInfoTemp.split(' ');
+    currentGraphInfo.nodes = currentGraphInfoEN[0];
+    currentGraphInfo.edges = currentGraphInfoEN[1];
+    currentGraphInfo.source = relations.pop();
+    currentGraphInfo.visitState[currentGraphInfo.source] = 0;
+    currentGraphInfo.currentArrayState.push(currentGraphInfo.source);
+
+    for (let i = 0; i < currentGraphInfoEN[1]; i++) {
+        currentGraphInfo.graphRelations[i + 1] = [];
     }
 
-    emptyCurrentStorageSafe();
-    // console.log(chartCurrentData.labels, chartCurrentData.data);
+    for (let i = 0; i < currentGraphInfoEN[1]; i++) {
+        let localArr = relations[i].split(' ');
+        // console.log(currentGraphInfo.graphRelations[0]);
+
+        currentGraphInfo.graphRelations[localArr[0]].push(localArr[1]);
+        currentGraphInfo.graphRelations[localArr[1]].push(localArr[0]);
+
+    }
+    console.log('Graph relations', currentGraphInfo.graphRelations);
+    console.log('Graph source and it\'s level', currentGraphInfo.source, currentGraphInfo.visitState);
 }
