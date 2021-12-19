@@ -79,9 +79,23 @@ function getInfo(name) {
             return `Breadth-First Traversal (or Search) for a graph is similar to Breadth-First Traversal of a tree (See method 2 of this post).<br>
             The only catch here is, unlike trees, graphs may contain cycles, so we may come to the same node again.<br>
             To avoid processing a node more than once, we use a boolean visited array. <br>
-            For simplicity, it is assumed that all vertices are reachable from the starting vertex. <br>
-
-            For example, in the following graph, we start traversal from vertex 2. When we come to vertex 0, we look for all adjacent vertices of it.<br>
-             2 is also an adjacent vertex of 0. If we don’t mark visited vertices, then 2 will be processed again and it will become a non-terminating process. A Breadth-First Traversal of the following graph is 2, 0, 3, 1.`
+            For simplicity, it is assumed that all vertices are reachable from the starting vertex. <br>`
+        case 'DFS':
+            return `Depth First Traversal (or Search) for a graph is similar to Depth First Traversal of a tree.<br>
+            The only catch here is, unlike trees, graphs may contain cycles (a node may be visited twice). <br>
+            To avoid processing a node more than once, use a boolean visited array. `
+        case 'Dijkstra':
+            return `Given a graph and a source vertex in the graph, find the shortest paths from the source to all vertices in the given graph.<br>
+        Dijkstra’s algorithm is very similar to Prim’s algorithm for minimum spanning tree. Like Prim’s MST, we generate a SPT (shortest path tree) with a given source as a root.<br>
+         We maintain two sets, one set contains vertices included in the shortest-path tree, other set includes vertices not yet included in the shortest-path tree. At every step of the algorithm, we find a vertex that is in the other set (set of not yet included) and has a minimum distance from the source.<br>
+        Below are the detailed steps used in Dijkstra’s algorithm to find the shortest path from a single source vertex to all other vertices in the given graph. <br>
+        
+        Algorithm 
+        1) Create a set sptSet (shortest path tree set) that keeps track of vertices included in the shortest-path tree, i.e., whose minimum distance from the source is calculated and finalized. Initially, this set is empty. <br>
+        2) Assign a distance value to all vertices in the input graph. Initialize all distance values as INFINITE. Assign distance value as 0 for the source vertex so that it is picked first. <br>
+        3) While sptSet doesn’t include all vertices <br>
+        ….a) Pick a vertex u which is not there in sptSet and has a minimum distance value. <br>
+        ….b) Include u to sptSet. <br>
+        ….c) Update distance value of all adjacent vertices of u. To update the distance values, iterate through all adjacent vertices. For every adjacent vertex v, if the sum of distance value of u (from source) and weight of edge u-v, is less than the distance value of v, then update the distance value of v. `
     }
 }

@@ -192,8 +192,34 @@ function updateGraph(algorithm, label, time) {
         // console.log(chartCurrentData.labels, chartCurrentData.data);
 
         updateChartNecessity(algorithm);
+    } else if (algorithm === 'DFS') {
+        // console.log(algorithm, label, time);
+
+        chartData.algo8.push(time);
+        chartData.algo8labels.push(label);
+
+        assignTemp(chartData.algo8, chartData.algo8labels);
+        // console.log(chartCurrentData.labels, chartCurrentData.data);
+
+        updateChartNecessity(algorithm);
     }
     emptyCurrentStorageSafe();
+}
+
+function resetGraphInfo() {
+    currentGraphInfo.graphName = null
+    currentGraphInfo.nodes = 0;
+    currentGraphInfo.edges = 0;
+    currentGraphInfo.source = 0;
+    currentGraphInfo.visitState = [];
+    currentGraphInfo.currentArrayState = [];
+    currentGraphInfo.graphRelations = [];
+    currentGraphInfo.cycles = 0;
+    givenArray = [];
+    currentGraphInfo.tsSortstartTime = [];
+    currentGraphInfo.tsSortendTime = [];
+    currentGraphInfo.iterationSerial = [];
+    currentGraphInfo.timeVar = 1;
 }
 
 function processGraph(relations) {
@@ -205,19 +231,21 @@ function processGraph(relations) {
     currentGraphInfo.source = relations.pop();
     currentGraphInfo.visitState[currentGraphInfo.source] = 0;
     currentGraphInfo.currentArrayState.push(currentGraphInfo.source);
+    currentGraphInfo.iterationSerial.push(currentGraphInfo.source)
 
-    for (let i = 0; i < currentGraphInfoEN[1]; i++) {
+    for (let i = 0; i < currentGraphInfoEN[0]; i++) {
         currentGraphInfo.graphRelations[i + 1] = [];
     }
+    console.log("debug : ", currentGraphInfo.graphRelations);
 
     for (let i = 0; i < currentGraphInfoEN[1]; i++) {
         let localArr = relations[i].split(' ');
-        // console.log(currentGraphInfo.graphRelations[0]);
+        // console.log("iteration : ", i, localArr[1], );
 
         currentGraphInfo.graphRelations[localArr[0]].push(localArr[1]);
         currentGraphInfo.graphRelations[localArr[1]].push(localArr[0]);
 
     }
-    console.log('Graph relations', currentGraphInfo.graphRelations);
-    console.log('Graph source and it\'s level', currentGraphInfo.source, currentGraphInfo.visitState);
+    // console.log('Graph relations', currentGraphInfo.graphRelations);
+    // console.log('Graph source and it\'s level', currentGraphInfo.source, currentGraphInfo.visitState);
 }

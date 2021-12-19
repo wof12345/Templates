@@ -41,6 +41,8 @@ let chartData = {
     algo5: [0],
     algo6: [0],
     algo7: [0],
+    algo8: [0],
+    algo9: [0],
     algo1labels: [0],
     algo2labels: [0],
     algo3labels: [0],
@@ -48,6 +50,8 @@ let chartData = {
     algo5labels: [0],
     algo6labels: [0],
     algo7labels: [0],
+    algo8labels: [0],
+    algo9labels: [0],
 }
 
 let chartCurrentData = {
@@ -65,4 +69,9 @@ let currentGraphInfo = {
     visitState: [],
     currentArrayState: [],
     graphRelations: [],
+    cycles: 0,
+    tsSortstartTime: [],
+    tsSortendTime: [],
+    timeVar: 1,
+    iterationSerial: [],
 }

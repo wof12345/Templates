@@ -10,7 +10,7 @@ pageElements.choice.addEventListener('change', () => {
     setInfo(getInfo(pageElements.choice.value));
     selectionValue = document.getElementById(`choice`).value;
     mainText.textContent = 'Input for the algorithm (If array, elements should be seperated by ",". Note that iterations are not balanced :)';
-    if (selectionValue === 'BFS') {
+    if (selectionValue === 'BFS' || selectionValue === 'DFS' || selectionValue === 'Dijkstra') {
         console.log(selectionValue);
         generatorCont.style.display = 'none';
         mainText.textContent = 'Input should be seperated by space and comma. E.g. (2 3,4 5,6 7). Note that first line only represents the number of nodes and edges. Eliminating input should be a single  node denoting the source.'
@@ -30,7 +30,7 @@ executionButton.addEventListener('click', () => {
     // console.log(givenArray);
 
 
-    if (selectionValue !== 'BFS') {
+    if (selectionValue !== 'BFS' && selectionValue !== 'DFS' && selectionValue !== 'Dijkstra') {
         givenarray = numberify(givenArray);
     }
     if (selectionValue === 'Selection-sort') {
@@ -72,17 +72,32 @@ executionButton.addEventListener('click', () => {
         timer('start');
         BFS();
         backupVariables.lastTime = timer('stop');
+        currentGraphInfo.visitState.sort((a, b) => a - b);
+        console.log(currentGraphInfo.iterationSerial);
+
         console.log(currentGraphInfo.visitState);
         // console.log('Nodes and edges : ', currentGraphInfoEN);
+    }
+    if (selectionValue === 'DFS') {
+        console.log(selectionValue);
+        processGraph(givenArray);
+
+        timer('start');
+        DFS(currentGraphInfo.source, -1);
+        backupVariables.lastTime = timer('stop');
+        console.log(currentGraphInfo.tsSortstartTime);
+        console.log(currentGraphInfo.tsSortendTime);
+        // console.log('Nodes and edges : ', currentGraphInfoEN);
+        invoke_floater('left:10px;top:20px', `Iterated : ${backupVariables.globalteration-1} times. There are ${currentGraphInfo.cycles} cycles in this graph.`, 2000);
 
 
     }
 
+    resetGraphInfo();
     updateGraph(selectionValue, givenArray.length, backupVariables.lastTime);
     // console.log(lastIterationQueries.iterations.length, lastIterationQueries.iterations);
     // console.log(givenArray);
 
-    givenArray = [];
 
 
 })

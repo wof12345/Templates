@@ -131,14 +131,18 @@ function heapSort(input, n) {
 
 function BFS() {
     let currentNode = currentGraphInfo.currentArrayState.pop();
-    console.log(`Adjacents of ${currentNode} : `, currentGraphInfo.graphRelations[currentNode]);
+    // console.log(`Adjacents of ${currentNode} : `, currentGraphInfo.graphRelations[currentNode]);
     currentGraphInfo.graphRelations[currentNode].forEach(element => {
         if (currentGraphInfo.visitState[element] === undefined) {
             currentGraphInfo.visitState[element] = currentGraphInfo.visitState[currentNode] + 1;
             currentGraphInfo.currentArrayState.push(element)
-            console.log(currentGraphInfo.visitState[element], currentGraphInfo.visitState[currentNode], currentGraphInfo.currentArrayState);
+            currentGraphInfo.iterationSerial.push(element)
+
+            // console.log(currentGraphInfo.visitState[element], currentGraphInfo.visitState[currentNode], currentGraphInfo.currentArrayState);
 
             iterationPush(`Iteration: ${backupVariables.globalteration} :`, `Current Node : ${currentNode}`, ``, `Current Adjacents : ${ currentGraphInfo.graphRelations[currentNode]}`, `Iterating on adjacent : ${element}`)
+        } else {
+            iterationPush(`Iteration: ${backupVariables.globalteration} :`, `Current Node : ${currentNode}`, ``, `Current Adjacents : ${ currentGraphInfo.graphRelations[currentNode]}`, `Tried to visit already visited : ${element}`)
         }
 
     });
@@ -148,4 +152,27 @@ function BFS() {
     }
     backupVariables.globalteration++;
     BFS();
+}
+
+function DFS(currentSource, parent) {
+    currentGraphInfo.visitState[currentSource] = 1;
+    iterationPush(`Iteration: ${backupVariables.globalteration} :`, `Current Node : ${currentSource}`, ``, `Current Adjacents : ${ currentGraphInfo.graphRelations[currentSource]}`, ``)
+    console.log('Visited : ', currentSource);
+    currentGraphInfo.iterationSerial.push(currentSource)
+    currentGraphInfo.tsSortstartTime[currentSource] = currentGraphInfo.timeVar++;
+    backupVariables.globalteration++;
+
+    for (let i = 0; i < currentGraphInfo.graphRelations[currentSource].length; i++) {
+        let currentAdjacent = currentGraphInfo.graphRelations[currentSource][i];
+        if (currentGraphInfo.visitState[currentAdjacent] === undefined) {
+            currentGraphInfo.visitState[currentAdjacent] = 1;
+
+            DFS(currentAdjacent, currentSource);
+        } else if (currentAdjacent !== parent && currentGraphInfo.visitState[currentAdjacent] !== 2) {
+            currentGraphInfo.cycles++;
+            iterationPush(`Iteration: ${backupVariables.globalteration} :`, `Current Node : ${currentSource}`, ``, `Current Adjacents : ${ currentGraphInfo.graphRelations[currentSource]}`, `Tried to visit already visited : ${currentAdjacent}`)
+        }
+    }
+    currentGraphInfo.visitState[currentSource] = 2;
+    currentGraphInfo.tsSortendTime[currentSource] = currentGraphInfo.timeVar++;
 }
