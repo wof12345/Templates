@@ -13,7 +13,7 @@ pageElements.choice.addEventListener('change', () => {
     if (selectionValue === 'BFS' || selectionValue === 'DFS' || selectionValue === 'Dijkstra') {
         console.log(selectionValue);
         generatorCont.style.display = 'none';
-        mainText.textContent = 'Input should be seperated by space and comma. E.g. (2 3,4 5,6 7). Note that first line only represents the number of nodes and edges. Eliminating input should be a single  node denoting the source.'
+        mainText.textContent = 'Input should be seperated by space and comma. E.g. (2 3,4 5,6 7). Note that first line only represents the number of nodes and edges. If there is no weight then the third input followed by space should be 0, Eliminating input should be a single  node denoting the source. If there is a target it should be followed by the source.'
     } else {
         generatorCont.style.display = '';
         mainText.textContent = 'Input for the algorithm (If array, elements should be seperated by ",". Note that iterations are not balanced :)';
@@ -67,31 +67,35 @@ executionButton.addEventListener('click', () => {
     }
     if (selectionValue === 'BFS') {
         // console.log(givenArray);
-        processGraph(givenArray);
+        processGraph(givenArray, selectionValue);
 
         timer('start');
         BFS();
         backupVariables.lastTime = timer('stop');
         currentGraphInfo.visitState.sort((a, b) => a - b);
-        console.log(currentGraphInfo.iterationSerial);
-
-        console.log(currentGraphInfo.visitState);
         // console.log('Nodes and edges : ', currentGraphInfoEN);
     }
     if (selectionValue === 'DFS') {
         console.log(selectionValue);
-        processGraph(givenArray);
+        processGraph(givenArray, selectionValue);
 
         timer('start');
         DFS(currentGraphInfo.source, -1);
         backupVariables.lastTime = timer('stop');
+        // currentGraphInfo.iterationSerial.shift();
         console.log(currentGraphInfo.tsSortstartTime);
         console.log(currentGraphInfo.tsSortendTime);
         // console.log('Nodes and edges : ', currentGraphInfoEN);
         invoke_floater('left:10px;top:20px', `Iterated : ${backupVariables.globalteration-1} times. There are ${currentGraphInfo.cycles} cycles in this graph.`, 2000);
-
-
     }
+    if (selectionValue === 'Dijkstra') {
+        processGraph(givenArray, selectionValue);
+        timer('start');
+        Dijkstra(currentGraphInfo.target);
+        backupVariables.lastTime = timer('stop');
+    }
+    console.log(currentGraphInfo.iterationSerial);
+    console.log(currentGraphInfo.visitState);
 
     resetGraphInfo();
     updateGraph(selectionValue, givenArray.length, backupVariables.lastTime);
@@ -132,3 +136,13 @@ pageElements.generationButton.addEventListener('click', () => {
     }
     document.getElementById(`input`).value = tempString;
 })
+
+// currentGraphInfo.priorityQueue.push('23', 1);
+// currentGraphInfo.priorityQueue.push('25', 1);
+// currentGraphInfo.priorityQueue.push('24', 2);
+// currentGraphInfo.priorityQueue.front();
+// console.log(currentGraphInfo.priorityQueue.printPQueue());
+
+// currentGraphInfo.priorityQueue.removeAll();
+
+// console.log(currentGraphInfo.priorityQueue.printPQueue());

@@ -133,7 +133,7 @@ function BFS() {
     let currentNode = currentGraphInfo.currentArrayState.pop();
     // console.log(`Adjacents of ${currentNode} : `, currentGraphInfo.graphRelations[currentNode]);
     currentGraphInfo.graphRelations[currentNode].forEach(element => {
-        if (currentGraphInfo.visitState[element] === undefined) {
+        if (currentGraphInfo.visitState[element] === -1) {
             currentGraphInfo.visitState[element] = currentGraphInfo.visitState[currentNode] + 1;
             currentGraphInfo.currentArrayState.push(element)
             currentGraphInfo.iterationSerial.push(element)
@@ -155,24 +155,55 @@ function BFS() {
 }
 
 function DFS(currentSource, parent) {
-    currentGraphInfo.visitState[currentSource] = 1;
     iterationPush(`Iteration: ${backupVariables.globalteration} :`, `Current Node : ${currentSource}`, ``, `Current Adjacents : ${ currentGraphInfo.graphRelations[currentSource]}`, ``)
     console.log('Visited : ', currentSource);
-    currentGraphInfo.iterationSerial.push(currentSource)
     currentGraphInfo.tsSortstartTime[currentSource] = currentGraphInfo.timeVar++;
     backupVariables.globalteration++;
 
     for (let i = 0; i < currentGraphInfo.graphRelations[currentSource].length; i++) {
         let currentAdjacent = currentGraphInfo.graphRelations[currentSource][i];
-        if (currentGraphInfo.visitState[currentAdjacent] === undefined) {
+        if (currentGraphInfo.visitState[currentAdjacent] === -1) {
             currentGraphInfo.visitState[currentAdjacent] = 1;
-
+            currentGraphInfo.iterationSerial.push(currentSource)
             DFS(currentAdjacent, currentSource);
         } else if (currentAdjacent !== parent && currentGraphInfo.visitState[currentAdjacent] !== 2) {
             currentGraphInfo.cycles++;
             iterationPush(`Iteration: ${backupVariables.globalteration} :`, `Current Node : ${currentSource}`, ``, `Current Adjacents : ${ currentGraphInfo.graphRelations[currentSource]}`, `Tried to visit already visited : ${currentAdjacent}`)
         }
     }
+
     currentGraphInfo.visitState[currentSource] = 2;
     currentGraphInfo.tsSortendTime[currentSource] = currentGraphInfo.timeVar++;
+}
+
+function Dijkstra(target) {
+
+    while (!currentGraphInfo.priorityQueue.isEmpty()) {
+        console.log(`PQ elements : `, currentGraphInfo.priorityQueue.printPQueue());
+        let currentNode = +currentGraphInfo.priorityQueue.front().element;
+
+        currentGraphInfo.priorityQueue.remove();
+        if (currentNode === target) break;
+        for (let i = 0; i < currentGraphInfo.graphRelations[currentNode].length; i++) {
+            let neighborNode = +currentGraphInfo.graphRelations[currentNode][i];
+            let weightToNode = +currentGraphInfo.weights[currentNode][i];
+            // console.log('Current Node:', currentNode);
+            // console.log('neighbor and weight : ', neighborNode, weightToNode);
+            // console.log('visitstate : ', currentGraphInfo.visitState[currentNode], weightToNode, currentGraphInfo.visitState[neighborNode]);
+            if (currentGraphInfo.visitState[currentNode] + weightToNode < currentGraphInfo.visitState[neighborNode]) {
+                // console.log(`Visitstate of ${neighborNode} before sum : ${currentGraphInfo.visitState[neighborNode]}`);
+                currentGraphInfo.visitState[neighborNode] = currentGraphInfo.visitState[currentNode] + weightToNode;
+                currentGraphInfo.priorityQueue.push(neighborNode, currentGraphInfo.visitState[neighborNode]);
+                iterationPush(`Iteration: ${backupVariables.globalteration++} :`, `Current Node : ${currentNode}`, ``, `Current Adjacents : ${ currentGraphInfo.graphRelations[currentNode]}`, `Final distance of neighbor ${neighborNode} from source is ${ currentGraphInfo.visitState[neighborNode]}`)
+                    // console.log(`Visitstate of ${neighborNode} after sum : ${currentGraphInfo.visitState[neighborNode]}`);
+                    // console.log(`node ${currentNode}th process : `, currentGraphInfo.visitState[neighborNode]);
+            } else {
+                iterationPush(`Iteration: ${backupVariables.globalteration++} :`, `Current Node : ${currentNode}`, ``, `Current Adjacents : ${ currentGraphInfo.graphRelations[currentNode]}`, `Tried to visit already visited ${neighborNode}`)
+                    // console.log(`Visitstate of ${neighborNode} after sum : ${currentGraphInfo.visitState[neighborNode]}`);
+                    // console.log(`Tried to visit ${currentNode}, neighbor ${neighborNode}`);
+
+            }
+        }
+    }
+    invoke_floater('left:10px;top:20px', `Iterated : ${backupVariables.globalteration-1} times. Shortest distance from ${currentGraphInfo.source} to ${target} is ${currentGraphInfo.visitState[target]}`, 2000);
 }

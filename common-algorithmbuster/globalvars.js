@@ -66,6 +66,7 @@ let currentGraphInfo = {
     nodes: 0,
     edges: 0,
     source: 0,
+    target: 0,
     visitState: [],
     currentArrayState: [],
     graphRelations: [],
@@ -74,4 +75,6 @@ let currentGraphInfo = {
     tsSortendTime: [],
     timeVar: 1,
     iterationSerial: [],
+    weights: [],
+    priorityQueue: new PriorityQueue(),
 }

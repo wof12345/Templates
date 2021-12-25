@@ -1,6 +1,6 @@
 let background = document.querySelector(`.background`)
 let floatingMsg = document.querySelector(`.floating_message`)
-let playerCharacter;
+let playerCharacter = document.querySelector(`.playerCharacter`)
 let currentPath = [];
 let playerClickCounter = 0;
 let blockades = [];
@@ -22,9 +22,12 @@ let playerCharacterPosition = {
 }
 let elementStat = {
     moveComplete: true,
-
 }
-let neighborParams = [-97, -96, -95, -1, 1, 95, 96, 97];
+let neighborParams = {
+    left: [-96, -95, 1, 97, 96],
+    middle: [-97, -96, -95, -1, 1, 95, 96, 97],
+    right: [-97, -96, -1, 96, 95],
+}
 let totalPathCost = 0;
 
 function generateRandomNumber(limit) {
@@ -215,69 +218,48 @@ let tempi = 0;
 
 function driverFunction(currentNode, target) {
     let currentNeighbors = [];
+    let neighNodeCount = 8;
+    let arrayToFollow = neighborParams.middle;
+    currentNode = +currentNode;
 
-    if (currentNode == target[0]) return;
-    let min = 1000000;
-    let current = 0;
-    let nextPreferredNode = 0;
-    console.log('Passed node and target node : ', currentNode, target);
-    console.log(`target\'s coord : ${target[1]}`);
-
-    for (let i = 0; i < 8; i++) {
-        let neighTemNode = +currentNode + +neighborParams[i];
-        let tempCoord = getPosition('' + neighTemNode);
-        console.log(`Target : `, target[1]);
-        let distanceXDiff = target[1][0] - tempCoord[0];
-        let distanceYDiff = target[1][1] - tempCoord[1];
-
-        if (distanceXDiff !== 0 && distanceYDiff !== 0) {
-            current = distanceXDiff > distanceYDiff ? distanceXDiff : distanceYDiff;
-            console.error(current);
-            if (min > current) {
-                min = current;
-                nextPreferredNode = neighTemNode;
-            }
-
-        } else {
-            return;
-        }
-       
-
-
-        console.log(`Neighbor node : ${i+1} :: ${neighTemNode}, Distance from node ${target[0]};${target[0][1]},${target[0][1]}, Coord of current Negh : ${tempCoord},Distance : ${distanceXDiff},${distanceYDiff}`);
-
-        // console.log('Passed element : ', neighTemNode);
-        // let tempCoord = getPosition('' + neighTemNode);
-        // let temp = tempCoord[0] + tempCoord[1];
-
-        // let distance = Math.abs(temp - target[1]);
-        // if (min > distance) {
-        //     min = distance;
-        //     nextPreferredNode = neighTemNode;
-        // }
-        // console.log((`${getPosition(''+neighTemNode)}::${neighTemNode} : ${distance}`));
-        // currentNeighbors.push(neighTemNode);
+    // console.log('Passed node and target node : ', currentNode, target);
+    // console.log(`target\'s coord : ${target[1]}`);
+    if (currentNode % 96 === 0) {
+        arrayToFollow = neighborParams.right;
+    }
+    if ((currentNode - 1) % 96 === 0) {
+        arrayToFollow = neighborParams.left;
     }
 
-    console.log('End of current  : ', min, nextPreferredNode, target);
-    // illuminatePath('', currentNeighbors, 'red')
-    // tempi++;
+
+   
+
+    for (let i = 0; i < arrayToFollow.length; i++) {
+        // console.log(arrayToFollow);
+        let neighTemNode = currentNode + +arrayToFollow[i];
+        let parentPosition,position ,distance;
+        // console.log(neighTemNode);
+        
+        if (neighTemNode <= 12192 && neighTemNode > 0) {
+            currentNeighbors.push(neighTemNode)
+            position = getPosition(neighTemNode);
+            parentPosition = getPosition(currentNode)
+            distance = Math.pow((position[0]-parentPosition[0]),2)+Math.pow((position[1]-parentPosition[1]),2)
+
+            console.log(`Neighbor node : ${i+1} :: ${neighTemNode} :: position : ${position} :: distance from parents : ${distance}`);
+        }
+    }
+
+    illuminatePath('', currentNeighbors, 'red')
+    tempi++;
     // driverFunction(nextPreferredNode, target);
 }
 
 function determineJourneyStats(destinationCoordinates, position, elementId) {
-    totalPathCost = 0;
-    let axis = [],
-        tracebackPaths = [];
-
-    // console.log('positioon/destination : ', destinationCoordinates, playerCharacterPosition.posX, playerCharacterPosition.posY);
 
     console.log(elementId);
-    console.log(`Neighbors of ${playerCharacterPosition.lastPositionId} : `);
+    console.log(`Neighbors of ${playerCharacterPosition.lastPositionId} : position : ${getPosition(playerCharacterPosition.lastPositionId)}`);
     driverFunction(playerCharacterPosition.lastPositionId, [elementId, position])
-
-
-    // currentPath.push(playerCharacterPosition.lastPositionId)
 
     if (movementScheme === 1) {
         // runMoveSequenceIneffecient(axis, axis.length, 0, position, +playerCharacterPosition.lastPositionId);
@@ -285,17 +267,20 @@ function determineJourneyStats(destinationCoordinates, position, elementId) {
 }
 
 function placePlayerCharacter(element, elementId, position) {
+    console.log(element, elementId, position);
+
 
     if (element.lastChild ?.className !== 'playerCharacter' && !playerCharacterPosition.placed) {
         element.insertAdjacentHTML('beforeend', '<div class="playerCharacter"></div>')
         playerCharacterPosition.placed = true;
         playerCharacter = document.querySelector(`.playerCharacter`)
-            // playerCharacterPosition.posX = position[0];
-            // playerCharacterPosition.posY = position[1];
+        playerCharacterPosition.posX = position[0];
+        playerCharacterPosition.posY = position[1];
         playerCharacterPosition.currentPositionId = elementId;
         playerCharacterPosition.lastPositionId = elementId;
 
         generalAnimation(position);
+        // testFunction(20);
         endSequence(playerCharacterPosition.currentPositionId);
     } else {
         let distanceX = position[0] - playerCharacterPosition.posX;
@@ -304,6 +289,8 @@ function placePlayerCharacter(element, elementId, position) {
         determineJourneyStats([distanceX, distanceY], position, elementId);
 
     }
+    console.log('Pos : ', playerCharacterPosition.currentPositionId);
+
 }
 
 background.addEventListener('click', function(e) {
@@ -342,3 +329,33 @@ document.body.addEventListener('keydown', function(e) {
     }
     showFloatingMsg('Movement scheme changed');
 })
+
+function testFunction(value) {
+    if (value <= 0) return;
+
+    let temppos1, temppos2;
+    if (generateRandomNumber(100) < 20) {
+        temppos1 = 10;
+        temppos2 = 10;
+    } else if (generateRandomNumber(100) < 40) {
+        temppos1 = 10;
+        temppos2 = -10;
+    } else if (generateRandomNumber(100) < 60) {
+        temppos1 = -10;
+        temppos2 = 10;
+    } else if (generateRandomNumber(100) < 80) {
+        temppos1 = -10;
+        temppos2 = -10;
+    }
+
+    playerCharacterPosition.posX += temppos1;
+    playerCharacterPosition.posY += temppos2;
+
+    console.log(temppos1, temppos2);
+
+
+    generalAnimation([playerCharacterPosition.posX, playerCharacterPosition.posY])
+    setTimeout(() => {
+        testFunction(--value)
+    }, 2000)
+}

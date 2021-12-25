@@ -211,6 +211,7 @@ function resetGraphInfo() {
     currentGraphInfo.nodes = 0;
     currentGraphInfo.edges = 0;
     currentGraphInfo.source = 0;
+    currentGraphInfo.target = 0;
     currentGraphInfo.visitState = [];
     currentGraphInfo.currentArrayState = [];
     currentGraphInfo.graphRelations = [];
@@ -219,33 +220,53 @@ function resetGraphInfo() {
     currentGraphInfo.tsSortstartTime = [];
     currentGraphInfo.tsSortendTime = [];
     currentGraphInfo.iterationSerial = [];
+    currentGraphInfo.weights = [];
     currentGraphInfo.timeVar = 1;
+    currentGraphInfo.priorityQueue.removeAll();
 }
 
-function processGraph(relations) {
+function processGraph(relations, algorithm) {
 
     let currentGraphInfoTemp = relations.shift();
     let currentGraphInfoEN = currentGraphInfoTemp.split(' ');
     currentGraphInfo.nodes = currentGraphInfoEN[0];
     currentGraphInfo.edges = currentGraphInfoEN[1];
-    currentGraphInfo.source = relations.pop();
-    currentGraphInfo.visitState[currentGraphInfo.source] = 0;
+    let userConstants = relations.pop();
+    if (userConstants.length > 1) {
+        userConstants = userConstants.split(' ');
+        currentGraphInfo.target = userConstants[1];
+        currentGraphInfo.source = userConstants[0];
+    } else
+        currentGraphInfo.source = userConstants;
+
+    console.log(userConstants);
+
+    currentGraphInfo.priorityQueue.push(currentGraphInfo.source, 0);
     currentGraphInfo.currentArrayState.push(currentGraphInfo.source);
-    currentGraphInfo.iterationSerial.push(currentGraphInfo.source)
+    currentGraphInfo.iterationSerial.push(currentGraphInfo.source);
+
 
     for (let i = 0; i < currentGraphInfoEN[0]; i++) {
         currentGraphInfo.graphRelations[i + 1] = [];
+        currentGraphInfo.weights[i + 1] = [];
+        if (algorithm === 'Dijkstra') {
+            currentGraphInfo.visitState[i + 1] = Infinity;
+        } else
+            currentGraphInfo.visitState[i + 1] = -1;
     }
-    console.log("debug : ", currentGraphInfo.graphRelations);
+    currentGraphInfo.visitState[currentGraphInfo.source] = 0;
 
     for (let i = 0; i < currentGraphInfoEN[1]; i++) {
         let localArr = relations[i].split(' ');
         // console.log("iteration : ", i, localArr[1], );
 
         currentGraphInfo.graphRelations[localArr[0]].push(localArr[1]);
+        currentGraphInfo.weights[localArr[0]].push(localArr[2]);
         currentGraphInfo.graphRelations[localArr[1]].push(localArr[0]);
+        currentGraphInfo.weights[localArr[1]].push(localArr[2]);
 
     }
-    // console.log('Graph relations', currentGraphInfo.graphRelations);
+    console.log("Graph rels : ", currentGraphInfo.graphRelations);
+    console.log('Graph weights', currentGraphInfo.weights);
     // console.log('Graph source and it\'s level', currentGraphInfo.source, currentGraphInfo.visitState);
 }
