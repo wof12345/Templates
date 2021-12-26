@@ -1,7 +1,7 @@
 let background = document.querySelector(`.background`)
 let floatingMsg = document.querySelector(`.floating_message`)
 let playerCharacter = document.querySelector(`.playerCharacter`)
-let currentPath = [];
+let numOfGrid = 12192;
 let playerClickCounter = 0;
 let blockades = [];
 let movementScheme = 1;
@@ -28,7 +28,19 @@ let neighborParams = {
     middle: [-97, -96, -95, -1, 1, 95, 96, 97],
     right: [-97, -96, -1, 96, 95],
 }
-let totalPathCost = 0;
+
+let currentGridInfo = {
+    gridToNodeRelations: [],
+    gridToNodeDistanceFromSource: [],
+    gridToNodeWeights: [],
+    gridToNodeLevel: [],
+    pqForPathfinding: new PriorityQueue(),
+    parentNode: [],
+    closedNode: [],
+    allCheckedNodes: [],
+    currentSource:0,
+}
+
 
 function generateRandomNumber(limit) {
     return Math.random() * limit + 1;
@@ -44,17 +56,11 @@ function generateBlockades(count) {
         let seed = Math.round(generateRandomNumber(7000));
         blockades.push(seed);
     }
-    paintBlockades(blockades);
+    illuminatePath('override',blockades,'rgb(0, 0, 0)');
 }
 
-function paintBlockades(array) {
-    for (let counter = 0; counter < array.length; counter++) {
-        document.getElementById(array[counter]).style = 'background-color:black'
-    }
-}
-
-generateBackground(12192); //24384
-generateBlockades(0);
+generateBackground(numOfGrid); //24384
+generateBlockades(500);
 quickSort(blockades, 0, blockades.length - 1);
 
 function showFloatingMsg(string) {
@@ -67,80 +73,7 @@ function showFloatingMsg(string) {
     }, 1000)
 }
 
-function generalAnimation(position) {
-    playerCharacter.style = `transform :translate(${position[0]}px,${position[1]}px)`
-}
 
-// function executeFirst(id, coordinate) {
-//     if (coordinate === 'x') {
-//         playerCharacterPosition.posX += playerCharacterPosition.xDistanceConstant;
-//         id += 1;
-//     } else {
-//         playerCharacterPosition.posX -= playerCharacterPosition.xDistanceConstant;
-//         id -= 1;
-//     }
-
-
-//     generalAnimation([playerCharacterPosition.posX, playerCharacterPosition.posY]);
-//     return id;
-// }
-
-// function executeSecond(id, coordinate) {
-
-//     if (coordinate === 'y') {
-//         playerCharacterPosition.posY += playerCharacterPosition.yDistanceConstant;
-//         id += playerCharacterPosition.yChangeConstant;
-
-//     } else {
-//         playerCharacterPosition.posY -= playerCharacterPosition.yDistanceConstant;
-//         id -= playerCharacterPosition.yChangeConstant;
-//     }
-
-//     console.log(id);
-
-
-//     generalAnimation([playerCharacterPosition.posX, playerCharacterPosition.posY]);
-//     return id;
-// }
-
-// function executeGeneral(id, destinationCoordinates) {
-//     if (destinationCoordinates[0] > playerCharacterPosition.posX) {
-//         playerCharacterPosition.posX += playerCharacterPosition.xDistanceConstant;
-//         id += 1;
-//     } else if (destinationCoordinates[0] < playerCharacterPosition.posX) {
-//         playerCharacterPosition.posX -= playerCharacterPosition.xDistanceConstant;
-//         id -= 1;
-//     }
-
-//     if (destinationCoordinates[1] > playerCharacterPosition.posY) {
-//         playerCharacterPosition.posY += playerCharacterPosition.yDistanceConstant;
-//         id += playerCharacterPosition.yChangeConstant;
-//     } else if (destinationCoordinates[1] < playerCharacterPosition.posY) {
-//         playerCharacterPosition.posY -= playerCharacterPosition.yDistanceConstant;
-//         id -= playerCharacterPosition.yChangeConstant;
-//     }
-
-//     // console.log(`General : `, playerCharacterPosition.posX, playerCharacterPosition.posY);
-
-//     generalAnimation([playerCharacterPosition.posX, playerCharacterPosition.posY]);
-
-//     return id;
-// }
-
-function illuminatePath(command, currentPath, color) {
-    for (let iteration = 0; iteration < currentPath.length; iteration++) {
-        // console.log(currentPath[iteration]);
-
-        if (currentPath[iteration] && +currentPath[iteration] > 0 && +currentPath[iteration] < 12192)
-            document.getElementById(currentPath[iteration]).style = `background-color:${color};`
-    }
-    if (command === "erase") {
-        for (let iteration = 0; iteration < currentPath.length; iteration++) {
-            if (currentPath[iteration])
-                document.getElementById(currentPath[iteration]).style = '';
-        }
-    }
-}
 
 function endSequence(currentPositionId) {
     elementStat.moveComplete = true;
@@ -148,67 +81,9 @@ function endSequence(currentPositionId) {
     document.getElementById(playerCharacterPosition.currentPositionId).style = ``;
 }
 
-// function runMoveSequenceIneffecient(axis, length, moveIteration, position, id) {
-
-//     let res = binarySearch(blockades, 0, blockades.length - 1, id)
-//     if (res) {
-
-
-//         // console.log(id);
-//         return;
-//     } else {
-
-
-//         if (moveIteration < length) {
-//             console.log('Iteration : ', moveIteration);
-
-//             if (axis[moveIteration] === 'x' || axis[moveIteration] === '-x') {
-//                 id = executeFirst(id, axis[moveIteration])
-//                 currentPath.push(id);
-//                 totalPathCost += 10;
-//             } else if (axis[moveIteration] === 'y' || axis[moveIteration] === '-y') {
-//                 id = executeSecond(id, axis[moveIteration])
-//                 currentPath.push(id);
-//                 totalPathCost += 10;
-//             }
-//         }
-
-
-//         illuminatePath();
-//         if (moveIteration >= length) {
-//             endSequence(playerCharacterPosition.currentPositionId);
-//             return;
-//         }
-//     }
-
-//     setTimeout(() => {
-//         console.log(totalPathCost + " : Pathcost");
-//         runMoveSequenceIneffecient(axis, length, ++moveIteration, position, id);
-//     }, timeConst)
-
-
-// }
-
-// function runMoveSequenceEfficient(it, total, position, id) {
-//     id = executeGeneral(id, position)
-//     currentPath.push(id);
-
-
-//     illuminatePath();
-
-//     if (it >= total) {
-//         endSequence(playerCharacterPosition.currentPositionId);
-//         return;
-//     }
-
-
-//     setTimeout(() => {
-//         runMoveSequenceEfficient(++elementStat.moveIteration, total, position, id);
-//     }, timeConst)
-// }
 function getPosition(elm2) {
     let elm = document.getElementById(elm2);
-    console.log(elm2)
+    // console.log(elm2)
     let xpos = elm.offsetLeft - 14;
     let ypos = elm.offsetTop - 10;
     return [xpos, ypos];
@@ -216,14 +91,10 @@ function getPosition(elm2) {
 
 let tempi = 0;
 
-function driverFunction(currentNode, target) {
+function driverFunction(currentNode) {
     let currentNeighbors = [];
-    let neighNodeCount = 8;
     let arrayToFollow = neighborParams.middle;
-    currentNode = +currentNode;
 
-    // console.log('Passed node and target node : ', currentNode, target);
-    // console.log(`target\'s coord : ${target[1]}`);
     if (currentNode % 96 === 0) {
         arrayToFollow = neighborParams.right;
     }
@@ -231,43 +102,45 @@ function driverFunction(currentNode, target) {
         arrayToFollow = neighborParams.left;
     }
 
-
-   
-
     for (let i = 0; i < arrayToFollow.length; i++) {
         // console.log(arrayToFollow);
         let neighTemNode = currentNode + +arrayToFollow[i];
-        let parentPosition,position ,distance;
+        let parentPosition, position, distance;
         // console.log(neighTemNode);
-        
+
         if (neighTemNode <= 12192 && neighTemNode > 0) {
             currentNeighbors.push(neighTemNode)
+                // console.log( currentGridInfo.allCheckedNodes.find((value)=>{value===neighTemNode}));
+
+            // console.log(`Driver function node : `,currentNode, currentGridInfo.gridToNodeRelations[currentNode]);
+
+            currentGridInfo.gridToNodeRelations[currentNode].push(neighTemNode);
+            currentGridInfo.gridToNodeRelations[neighTemNode].push(currentNode);
+
             position = getPosition(neighTemNode);
             parentPosition = getPosition(currentNode)
-            distance = Math.pow((position[0]-parentPosition[0]),2)+Math.pow((position[1]-parentPosition[1]),2)
+            distance = Math.pow((position[0] - parentPosition[0]), 2) + Math.pow((position[1] - parentPosition[1]), 2);
+            currentGridInfo.gridToNodeWeights[currentNode].push(distance);
+            currentGridInfo.gridToNodeWeights[neighTemNode].push(distance);
 
-            console.log(`Neighbor node : ${i+1} :: ${neighTemNode} :: position : ${position} :: distance from parents : ${distance}`);
+            // console.log(`Neighbor node : ${i+1} :: ${neighTemNode} :: position : ${position} :: distance from parents : ${distance}`);
         }
     }
 
-    illuminatePath('', currentNeighbors, 'red')
+    illuminatePath('', currentNeighbors, 'rgb(255, 0, 0)')
     tempi++;
     // driverFunction(nextPreferredNode, target);
 }
 
-function determineJourneyStats(destinationCoordinates, position, elementId) {
-
+function determineJourneyStats(elementId) {
     console.log(elementId);
-    console.log(`Neighbors of ${playerCharacterPosition.lastPositionId} : position : ${getPosition(playerCharacterPosition.lastPositionId)}`);
-    driverFunction(playerCharacterPosition.lastPositionId, [elementId, position])
 
-    if (movementScheme === 1) {
-        // runMoveSequenceIneffecient(axis, axis.length, 0, position, +playerCharacterPosition.lastPositionId);
-    }
+    initiateGridInfo(playerCharacterPosition.lastPositionId);
+    Dijkstra(elementId);
 }
 
 function placePlayerCharacter(element, elementId, position) {
-    console.log(element, elementId, position);
+    // console.log(element, elementId, position);
 
 
     if (element.lastChild ?.className !== 'playerCharacter' && !playerCharacterPosition.placed) {
@@ -283,13 +156,9 @@ function placePlayerCharacter(element, elementId, position) {
         // testFunction(20);
         endSequence(playerCharacterPosition.currentPositionId);
     } else {
-        let distanceX = position[0] - playerCharacterPosition.posX;
-        let distanceY = position[1] - playerCharacterPosition.posY;
-
-        determineJourneyStats([distanceX, distanceY], position, elementId);
-
+        determineJourneyStats(elementId);
     }
-    console.log('Pos : ', playerCharacterPosition.currentPositionId);
+    // console.log('Pos : ', playerCharacterPosition.currentPositionId);
 
 }
 
@@ -298,19 +167,17 @@ background.addEventListener('click', function(e) {
     let topPos = goingto.offsetTop - 10;
     let leftPos = goingto.offsetLeft - 14;
     if (goingto.className === 'playerCharacter') {
-        console.log('current position : ', leftPos, topPos);
+        // console.log('current position : ', leftPos, topPos);
 
     }
     if (elementStat.moveComplete && !binarySearch(blockades, 0, blockades.length - 1, +goingto.id) && !(goingto.className === 'playerCharacter')) {
-        if (playerClickCounter > 1) elementStat.moveComplete = false;
+        elementStat.moveComplete = false;
         playerCharacterPosition.currentPositionId = goingto.id;
         playerClickCounter++;
-        illuminatePath('erase', currentPath, 'black');
-        currentPath = [];
+        resetGridInfo();
+        console.log(currentGridInfo);
+        
 
-        console.log('Element position : ', leftPos, topPos, playerCharacterPosition.currentPositionId);
-
-        paintBlockades(blockades);
         if (e.target.className !== 'playerCharacter') {
             if (!playerCharacterPosition.placed)
                 goingto = document.querySelector(`.seed_1`);
@@ -330,32 +197,32 @@ document.body.addEventListener('keydown', function(e) {
     showFloatingMsg('Movement scheme changed');
 })
 
-function testFunction(value) {
-    if (value <= 0) return;
+// function testFunction(value) {
+//     if (value <= 0) return;
 
-    let temppos1, temppos2;
-    if (generateRandomNumber(100) < 20) {
-        temppos1 = 10;
-        temppos2 = 10;
-    } else if (generateRandomNumber(100) < 40) {
-        temppos1 = 10;
-        temppos2 = -10;
-    } else if (generateRandomNumber(100) < 60) {
-        temppos1 = -10;
-        temppos2 = 10;
-    } else if (generateRandomNumber(100) < 80) {
-        temppos1 = -10;
-        temppos2 = -10;
-    }
+//     let temppos1, temppos2;
+//     if (generateRandomNumber(100) < 20) {
+//         temppos1 = 10;
+//         temppos2 = 10;
+//     } else if (generateRandomNumber(100) < 40) {
+//         temppos1 = 10;
+//         temppos2 = -10;
+//     } else if (generateRandomNumber(100) < 60) {
+//         temppos1 = -10;
+//         temppos2 = 10;
+//     } else if (generateRandomNumber(100) < 80) {
+//         temppos1 = -10;
+//         temppos2 = -10;
+//     }
 
-    playerCharacterPosition.posX += temppos1;
-    playerCharacterPosition.posY += temppos2;
+//     playerCharacterPosition.posX += temppos1;
+//     playerCharacterPosition.posY += temppos2;
 
-    console.log(temppos1, temppos2);
+//     console.log(temppos1, temppos2);
 
 
-    generalAnimation([playerCharacterPosition.posX, playerCharacterPosition.posY])
-    setTimeout(() => {
-        testFunction(--value)
-    }, 2000)
-}
+//     generalAnimation([playerCharacterPosition.posX, playerCharacterPosition.posY])
+//     setTimeout(() => {
+//         testFunction(--value)
+//     }, 2000)
+// }

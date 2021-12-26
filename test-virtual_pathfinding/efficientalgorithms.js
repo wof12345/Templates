@@ -41,3 +41,44 @@ function binarySearch(arr, start, end, target) {
     }
     return false;
 }
+
+function Dijkstra(target) {
+
+    if (currentGridInfo.pqForPathfinding.isEmpty()) {
+        return;
+    }
+    // console.log(`PQ elements : `, currentGridInfo.pqForPathfinding.printPQueue());
+    let currentNode = +currentGridInfo.pqForPathfinding.front().element;
+    driverFunction(currentNode);
+    currentGridInfo.pqForPathfinding.remove();
+    if (currentNode == target) {
+        algorithmEndingAction(target);
+        return;
+    }
+    for (let i = 0; i < currentGridInfo.gridToNodeRelations[currentNode].length; i++) {
+        let neighborNode = +currentGridInfo.gridToNodeRelations[currentNode][i];
+        let weightToNode = +currentGridInfo.gridToNodeWeights[currentNode][i];
+        illuminatePath('', [currentNode], 'rgb(255, 255, 255)')
+            // console.log('Current Node:', currentNode);
+            // console.log('neighbor and weight : ', neighborNode, weightToNode);
+            // console.log('visitstate : ', currentGridInfo.gridToNodeDistanceFromSource[currentNode], weightToNode, currentGridInfo.gridToNodeDistanceFromSource[neighborNode]);
+        if (currentGridInfo.gridToNodeDistanceFromSource[currentNode] + weightToNode < currentGridInfo.gridToNodeDistanceFromSource[neighborNode] && !binarySearch(blockades, 0, blockades.length - 1, neighborNode)) {
+            // console.log(`Visitstate of ${neighborNode} before sum : ${currentGridInfo.gridToNodeDistanceFromSource[neighborNode]}`);
+            currentGridInfo.gridToNodeDistanceFromSource[neighborNode] = currentGridInfo.gridToNodeDistanceFromSource[currentNode] + weightToNode;
+            currentGridInfo.pqForPathfinding.push(neighborNode, currentGridInfo.gridToNodeDistanceFromSource[neighborNode]);
+            currentGridInfo.parentNode[neighborNode] = currentNode;
+            // console.log(`Visitstate of ${neighborNode} after sum : ${currentGridInfo.gridToNodeDistanceFromSource[neighborNode]}`);
+            // console.log(`node ${currentNode}th process : `, currentGridInfo.gridToNodeDistanceFromSource[neighborNode]);
+        } else {
+            // console.log(`Visitstate of ${neighborNode} after sum : ${currentGridInfo.gridToNodeDistanceFromSource[neighborNode]}`);
+            // console.log(`Tried to visit ${currentNode}, neighbor ${neighborNode}`);
+
+        }
+    }
+    // return;
+    setTimeout(() => {
+        currentGridInfo.gridToNodeLevel[currentNode] = currentGridInfo.gridToNodeLevel[currentNode]++;
+        currentGridInfo.closedNode.push(currentNode);
+        Dijkstra(target);
+    }, 30)
+}
