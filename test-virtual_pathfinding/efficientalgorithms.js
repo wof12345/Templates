@@ -80,5 +80,5 @@ function Dijkstra(target) {
         currentGridInfo.gridToNodeLevel[currentNode] = currentGridInfo.gridToNodeLevel[currentNode]++;
         currentGridInfo.closedNode.push(currentNode);
         Dijkstra(target);
-    }, 1)
+    }, 0.1)
 }

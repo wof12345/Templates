@@ -65,7 +65,7 @@ function illuminatePath(command, currentPath, color) {
 
             if (color !== 'rgb(0, 0, 0)') {
                 currentGridInfo.allCheckedNodes.push(currentPath[iteration]);
-                console.log(currentPath[iteration], elementColor, color);
+                // console.log(currentPath[iteration], elementColor, color);
             }
             // console.log(element, elementColor);
 
@@ -102,7 +102,7 @@ function resetGridInfo() {
     currentGridInfo.pqForPathfinding.removeAll();
     currentPath = [];
     currentGridInfo.closedNodes = [];
-    console.log(currentGridInfo.allCheckedNodes);
+    // console.log(currentGridInfo.allCheckedNodes);
     illuminatePath('override', currentGridInfo.allCheckedNodes, 'rgb(0, 255, 0)');
     currentGridInfo.allCheckedNodes = [];
 }
@@ -122,7 +122,7 @@ function printShortestPath(parents, node) {
 }
 
 function algorithmEndingAction(target) {
-    illuminatePath('', currentGridInfo.closedNode, 'rgb(255, 255, 255)');
+    // illuminatePath('', currentGridInfo.closedNode, 'rgb(255, 255, 255)');
     illuminatePath('override', [currentGridInfo.currentSource], 'yellow');
     // console.log(currentGridInfo.gridToNodeRelations[target]);
     // console.log(currentGridInfo.gridToNodeWeights[target]);
