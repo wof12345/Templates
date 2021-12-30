@@ -3,10 +3,16 @@ let currentPath = [];
 let background = document.querySelector(`.background`)
 let floatingMsg = document.querySelector(`.floating_message`)
 let playerCharacter = document.querySelector(`.playerCharacter`)
-let numOfGrid = 12192;
+
+let numOfGrid = 20000;
+let gridStats = {
+    columns: 100,
+    rows: 0,
+    fixerVarTop: background.offsetTop,
+    fixerVarLeft: background.offsetLeft,
+}
 let playerClickCounter = 0;
 let blockades = [];
-let movementScheme = 1;
 let moveLogic = {
     triedYpos: false,
     triedXpos: false,
@@ -18,7 +24,7 @@ let playerCharacterPosition = {
     currentPositionId: 1,
     posX: 0,
     posY: 0,
-    yChangeConstant: 96,
+    yChangeConstant: gridStats.columns,
     xDistanceConstant: 10,
     yDistanceConstant: 10,
 }
@@ -27,17 +33,17 @@ let elementStat = {
     currentAlgorithm: 'Dijkstra',
 }
 let neighborParams = {
-    left: [-96, -95, 1, 97, 96],
-    middle: [-97, -96, -95, -1, 1, 95, 96, 97],
-    right: [-97, -96, -1, 96, 95],
+    left: [-gridStats.columns, -(gridStats.columns - 1), 1, (gridStats.columns + 1), gridStats.columns],
+    middle: [-(gridStats.columns + 1), -gridStats.columns, -(gridStats.columns - 1), -1, 1, (gridStats.columns - 1), gridStats.columns, (gridStats.columns + 1)],
+    right: [-(gridStats.columns + 1), -gridStats.columns, -1, gridStats.columns, (gridStats.columns - 1)],
     singleLeft: -1,
     singleRight: 1,
-    singleTop: -96,
-    singleBottom: 96,
-    singleCrossLeftBottom: 95,
-    singleCrossRightBottom: 97,
-    singleCrossRightTop: -95,
-    singleCrossLeftTop: -97,
+    singleTop: -gridStats.columns,
+    singleBottom: gridStats.columns,
+    singleCrossLeftBottom: (gridStats.columns - 1),
+    singleCrossRightBottom: (gridStats.columns + 1),
+    singleCrossRightTop: -(gridStats.columns - 1),
+    singleCrossLeftTop: -(gridStats.columns + 1),
 }
 
 let currentGridInfo = {

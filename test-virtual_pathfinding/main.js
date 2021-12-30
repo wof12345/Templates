@@ -1,15 +1,16 @@
 generateBackground(numOfGrid); //24384
-generateBlockades(11000);
+setGrid();
+generateBlockades(3000);
 quickSort(blockades, 0, blockades.length - 1);
 
 function driverFunction(currentNode) {
     let currentNeighbors = [];
     let arrayToFollow = neighborParams.middle;
 
-    if (currentNode % 96 === 0) {
+    if (currentNode % gridStats.columns === 0) {
         arrayToFollow = neighborParams.right;
     }
-    if ((currentNode - 1) % 96 === 0) {
+    if ((currentNode - 1) % gridStats.columns === 0) {
         arrayToFollow = neighborParams.left;
     }
 
@@ -55,19 +56,21 @@ function placePlayerCharacter(element, elementId, position) {
         generalAnimation(position);
         endSequence(playerCharacterPosition.currentPositionId);
     } else {
+        illuminatePath('', [elementId], 'rgba(255, 0, 0, 0.5)')
         determineJourneyStats(elementId);
     }
 
 }
 
 background.addEventListener('click', function(e) {
-    let goingto = e.target;
-    let topPos = goingto.offsetTop - 10;
-    let leftPos = goingto.offsetLeft - 14;
+    let goingto = e.target.id;
+    let pos = getPosition(goingto)
+    let topPos = pos[1];
+    let leftPos = pos[0];
     if (goingto.className === 'playerCharacter') {}
-    if (elementStat.moveComplete && !binarySearch(blockades, 0, blockades.length - 1, +goingto.id) && !(goingto.className === 'playerCharacter')) {
+    if (elementStat.moveComplete && !binarySearch(blockades, 0, blockades.length - 1, +goingto) && !(goingto.className === 'playerCharacter')) {
         elementStat.moveComplete = false;
-        playerCharacterPosition.currentPositionId = goingto.id;
+        playerCharacterPosition.currentPositionId = goingto;
         playerClickCounter++;
         resetGridInfo();
 
@@ -88,6 +91,6 @@ document.body.addEventListener('keydown', function(e) {
         else
             elementStat.currentAlgorithm = 'Dijkstra';
 
-        showFloatingMsg(`Algorithm changed to ${elementStat.currentAlgorithm}`);
+        showFloatingMsg(`Algorithm changed to ${elementStat.currentAlgorithm}`, 1000);
     }
 })

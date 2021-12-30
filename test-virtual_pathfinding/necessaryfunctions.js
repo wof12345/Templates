@@ -5,8 +5,13 @@ function generateRandomNumber(limit) {
 function fixPath(collection) {
     let temp = collection.shift();
     collection.push(temp);
-    // console.log(collection);
+}
 
+function setGrid() {
+    gridStats.rows = numOfGrid / gridStats.columns;
+    background.style = ` grid-template-columns: repeat(${gridStats.columns}, 10px); grid-template-rows: repeat(${gridStats.rows}, 10px);`
+    background.style.width = `${gridStats.columns*10}px`
+    background.style.height = `${gridStats.rows*10}px`
 }
 
 function generateBackground(count) {
@@ -22,14 +27,14 @@ function generateBlockades(count) {
     illuminatePath('override', blockades, 'rgb(0, 0, 0)');
 }
 
-function showFloatingMsg(string) {
+function showFloatingMsg(string, time) {
     floatingMsg.textContent = string;
     floatingMsg.style = `padding:20px;width:max-content`
 
     setTimeout(() => {
         floatingMsg.textContent = ``;
         floatingMsg.style = null;
-    }, 1000)
+    }, time)
 }
 
 function endSequence(currentPositionId) {
@@ -40,14 +45,14 @@ function endSequence(currentPositionId) {
 
 function getPosition(elm2) {
     let elm = document.getElementById(elm2);
-    let xpos = elm.offsetLeft - 14;
-    let ypos = elm.offsetTop - 10;
+    let xpos = elm.offsetLeft - gridStats.fixerVarLeft;
+    let ypos = elm.offsetTop - gridStats.fixerVarTop;
     return [xpos, ypos];
 }
 
 function resetPlayerChar() {
     playerCharacterPosition.placed = false;
-    let playerChar = document.getElementById(`1`).lastChild.remove();
+    document.getElementById(`1`).lastChild.remove();
     elementStat.moveComplete = true;
 }
 
@@ -135,7 +140,7 @@ function algorithmEndingAction(target, command) {
         illuminatePath('override', currentPath, 'yellow');
         console.log(currentPath);
     } else {
-        showFloatingMsg(`No path valid! `);
+        showFloatingMsg(`No path valid!`, 3000);
         resetPlayerChar();
     }
 }
