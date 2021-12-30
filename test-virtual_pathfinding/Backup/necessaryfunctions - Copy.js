@@ -5,7 +5,7 @@ function generateRandomNumber(limit) {
 function fixPath(collection) {
     let temp = collection.shift();
     collection.push(temp);
-    // console.log(collection);
+    console.log(collection);
 
 }
 
@@ -40,34 +40,37 @@ function endSequence(currentPositionId) {
 
 function getPosition(elm2) {
     let elm = document.getElementById(elm2);
+    // console.log(elm2)
     let xpos = elm.offsetLeft - 14;
     let ypos = elm.offsetTop - 10;
     return [xpos, ypos];
 }
 
-function resetPlayerChar() {
-    playerCharacterPosition.placed = false;
-    let playerChar = document.getElementById(`1`).lastChild.remove();
-    elementStat.moveComplete = true;
-}
-
 function illuminatePath(command, currentPath, color) {
+    // console.log(currentGridInfo.allCheckedNodes);
     for (let iteration = 0; iteration < currentPath.length; iteration++) {
-        if (currentPath[iteration] && +currentPath[iteration] > 0 && +currentPath[iteration] <= numOfGrid) {
+        if (currentPath[iteration] && +currentPath[iteration] > 0 && +currentPath[iteration] < numOfGrid) {
+            // console.log(currentPath[iteration]);
             let element = document.getElementById(currentPath[iteration]);
             let elementColor = element.style.backgroundColor + '';
+
+            // console.log(elementColor, elementColor !== 'rgb(255, 255, 255)');
 
             if (command === "override") {
                 element.style = `background-color:${color};`
             }
 
 
+            // console.log(elementColor,color,elementColor !== color);
+
             if (elementColor !== 'rgb(255, 255, 255)' && elementColor !== color && elementColor != 'rgb(0, 0, 0)') {
                 element.style = `background-color:${color};`
 
                 if (color !== 'rgb(0, 0, 0)') {
                     currentGridInfo.allCheckedNodes.push(currentPath[iteration]);
+                    // console.log(currentPath[iteration], elementColor, color);
                 }
+                // console.log(element, elementColor);
 
             }
         }
@@ -90,6 +93,7 @@ function initiateGridInfo(elementId) {
     currentGridInfo.gridToNodeDistanceFromSource[elementId] = 0;
     currentGridInfo.gridToNodeLevel[elementId] = -1;
     currentGridInfo.parentNode[elementId] = -1;
+    // currentGridInfo.closedNode.push(elementId);
     currentGridInfo.allCheckedNodes.push(elementId);
     currentGridInfo.currentSource = elementId;
 }
@@ -106,11 +110,14 @@ function resetGridInfo() {
     currentGridInfo.closedNode = [];
     currentGridInfo.currentSmallestfCost = Infinity;
     tempi = 0;
+    // console.log(currentGridInfo.allCheckedNodes);
     illuminatePath('override', currentGridInfo.allCheckedNodes, 'rgb(0, 255, 0)');
     currentGridInfo.allCheckedNodes = [];
+    heuristicDetails.boolean = [false, false, false, false, false, false, false, false];
 }
 
 function printShortestPath(parents, node) {
+    // console.log(`Parents and node`, parents, node + "");
 
     if (parents[node] === -1) {
         currentPath.push(node + "");
@@ -120,24 +127,51 @@ function printShortestPath(parents, node) {
     printShortestPath(parents, parents[node]);
 
 
+    // console.log(node + " ");
     currentPath.push(node + "");
 
 }
 
+function printShortestPathAstar(parents, node) {
 
-function algorithmEndingAction(target, command) {
-    if (command !== "nopath") {
-        illuminatePath('override', [currentGridInfo.currentSource], 'yellow');
+    if (parents[node] === -1 || debugVars.currentIteration > 10) {
+        currentPath.push(node + "");
+        return;
+    }
+    // debugVars.currentIteration++;
 
+
+    printShortestPathAstar(parents, parents[node]);
+    currentPath.push(node + "");
+    // console.log(node + " ");
+
+
+}
+
+function algorithmEndingAction(target) {
+    // illuminatePath('', currentGridInfo.closedNode, 'rgb(255, 255, 255)');
+    illuminatePath('override', [currentGridInfo.currentSource], 'yellow');
+    // console.log(currentGridInfo.gridToNodeRelations[target]);
+    // console.log(currentGridInfo.gridToNodeWeights[target]);
+    // console.log(currentGridInfo.gridToNodeDistanceFromSource[target]);
+    // console.log(currentGridInfo.parentNode);
+    if (elementStat.currentAlgorithm === "Dijkstra")
         printShortestPath(currentGridInfo.parentNode, target)
-
+    else {
+        printShortestPathAstar(currentGridInfo.parentNode, target);
+        // fixPath(currentPath)
+    }
+    if (currentPath.length <= 0) {
+        showFloatingMsg(`No path valid! `);
+    } else {
         placePlayerCharacterGrid(target);
         illuminatePath('override', currentPath, 'yellow');
-        console.log(currentPath);
-    } else {
-        showFloatingMsg(`No path valid! `);
-        resetPlayerChar();
+
     }
+    console.log(currentPath);
+
+    // console.log(currentPath);
+
 }
 
 function placePlayerCharacterGrid(target) {
@@ -147,6 +181,8 @@ function placePlayerCharacterGrid(target) {
         return;
     }
     let position = getPosition(currentPath.shift());
+    // console.log(currentPath)
+
 
     generalAnimation(position);
 
@@ -156,11 +192,14 @@ function placePlayerCharacterGrid(target) {
     }, 200)
 }
 
-function calculateDistance(source, target) {
+function soCalledHeuristic(source, target) {
     let sourcePos = getPosition(source);
     let targetPos = getPosition(target);
 
     let distance = Math.pow((sourcePos[0] - targetPos[0]), 2) + Math.pow((sourcePos[1] - targetPos[1]), 2);
+
+    //  console.log(`distance : ` , distance);
+
 
     return distance;
 }

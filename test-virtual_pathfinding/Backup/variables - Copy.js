@@ -59,3 +59,19 @@ let debugVars = {
     maxIteration: 20,
     currentIteration: 0,
 }
+
+let heuristicDetails = {
+    boolean: [false, false, false, false, false, false, false, false],
+    heuristicNextClosest: [
+        [0, 0, 0],
+        [1, 5, 6],
+        [2, 7, 8],
+        [3, 6, 7],
+        [4, 5, 8],
+        [5, 1, 4],
+        [6, 1, 3],
+        [7, 2, 3],
+        [8, 2, 4]
+    ],
+    initiated: false,
+}

@@ -145,7 +145,7 @@ function executeSecond(id, coordinate) {
     //     return id;
     // }
     console.log(id);
-    
+
 
     generalAnimation([playerCharacterPosition.posX, playerCharacterPosition.posY]);
     return id;
@@ -306,28 +306,27 @@ function determineJourneyStats(destinationCoordinates, position, elementId) {
     // }
 
     console.log('posion/destiation : ', destinationCoordinates, playerCharacterPosition.posX, playerCharacterPosition.posY);
-    
+
     // let total = loopsForX + loopsForY;
     for (let i = 0; i < loopsForX; i++) {
-        if (position[0] > playerCharacterPosition.posX){
+        if (position[0] > playerCharacterPosition.posX) {
             axis.push('x');
             tracebackPaths.push('-x');
-    } else{
+        } else {
             axis.push('-x');
             tracebackPaths.push('x');
         }
-        
+
     }
     for (let i = 0; i < loopsForY; i++) {
-        if (position[1] > playerCharacterPosition.posY){
-        axis.push('y');
-        tracebackPaths.push('-y');
-    }
-    else{
-        axis.push('-y');
-        tracebackPaths.push('y');
-    }
-        
+        if (position[1] > playerCharacterPosition.posY) {
+            axis.push('y');
+            tracebackPaths.push('-y');
+        } else {
+            axis.push('-y');
+            tracebackPaths.push('y');
+        }
+
     }
     console.log('Axis : ', axis);
 
@@ -406,3 +405,66 @@ document.body.addEventListener('keydown', function(e) {
     }
     showFloatingMsg('Movement scheme changed');
 })
+
+function soCalledHeuristic(source, target, nextInOrder, iterator, currentQuery) {
+    let sourcePos = getPosition(source);
+    let targetPos = getPosition(target);
+    let finalnode = source;
+    let distance = Math.pow((sourcePos[0] - targetPos[0]), 2) + Math.pow((sourcePos[1] - targetPos[1]), 2);
+
+    console.log(source, sourcePos, target, targetPos, nextInOrder[currentQuery], iterator, distance);
+
+    if ((sourcePos[0] > targetPos[0] && sourcePos[1] === targetPos[1] && !heuristicDetails.boolean[0]) || nextInOrder[currentQuery][iterator] === 1) {
+        finalnode = source + neighborParams.singleLeft;
+        heuristicDetails.boolean[0] = true;
+        currentQuery = 0;
+        console.log('Inted : 1');
+    } else if ((sourcePos[0] < targetPos[0] && sourcePos[1] === targetPos[1] && !heuristicDetails.boolean[1]) || nextInOrder[currentQuery][iterator] === 2) {
+        finalnode = source + neighborParams.singleRight;
+        heuristicDetails.boolean[1] = true;
+        currentQuery = 1;
+        console.log('Inted : 2');
+    } else if ((sourcePos[0] === targetPos[0] && sourcePos[1] < targetPos[1] && !heuristicDetails.boolean[2]) || nextInOrder[currentQuery][iterator] === 3) {
+        finalnode = source + neighborParams.singleBottom;
+        heuristicDetails.boolean[2] = true;
+        currentQuery = 2;
+        console.log('Inted : 3');
+    } else if ((sourcePos[0] === targetPos[0] && sourcePos[1] > targetPos[1] && !heuristicDetails.boolean[3]) || nextInOrder[currentQuery][iterator] === 4) {
+        finalnode = source + neighborParams.singleTop;
+        heuristicDetails.boolean[3] = true;
+        currentQuery = 3;
+        console.log('Inted : 4');
+    } else if ((sourcePos[0] > targetPos[0] && sourcePos[1] > targetPos[1] && !heuristicDetails.boolean[4]) || nextInOrder[currentQuery][iterator] === 5) {
+        finalnode = source + neighborParams.singleCrossLeftTop;
+        heuristicDetails.boolean[4] = true;
+        currentQuery = 4;
+        console.log('Inted : 5');
+    } else if ((sourcePos[0] > targetPos[0] && sourcePos[1] < targetPos[1] && !heuristicDetails.boolean[5]) || nextInOrder[currentQuery][iterator] === 6) {
+        finalnode = source + neighborParams.singleCrossLeftBottom;
+        heuristicDetails.boolean[5] = true;
+        currentQuery = 5;
+        console.log('Inted : 6');
+    } else if ((sourcePos[0] < targetPos[0] && sourcePos[1] < targetPos[1] && !heuristicDetails.boolean[6]) || nextInOrder[currentQuery][iterator] === 7) {
+        finalnode = source + neighborParams.singleCrossRightBottom;
+        heuristicDetails.boolean[6] = true;
+        currentQuery = 6;
+        console.log('Inted : 7');
+    } else if ((sourcePos[0] < targetPos[0] && sourcePos[1] > targetPos[1] && !heuristicDetails.boolean[7]) || nextInOrder[currentQuery][iterator] === 8) {
+        finalnode = source + neighborParams.singleCrossRightTop;
+        heuristicDetails.boolean[7] = true;
+        currentQuery = 7;
+        console.log('Inted : 8');
+    }
+    console.log(`LastQ : `, currentQuery);
+    console.log('Node checked : ', finalnode);
+
+
+
+    heuristicDetails.initiated = true;
+
+
+    if (!binarySearch(blockades, 0, blockades.length - 1, finalnode) || finalnode === source)
+        return finalnode;
+    else
+        soCalledHeuristic(source, target, nextInOrder, ++iterator, currentQuery);
+}
