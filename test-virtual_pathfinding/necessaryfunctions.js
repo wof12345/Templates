@@ -28,13 +28,19 @@ function generateBlockades(count) {
 }
 
 function showFloatingMsg(string, time) {
-    floatingMsg.textContent = string;
+    floatingMsg.value = string;
     floatingMsg.style = `padding:20px;width:max-content`
 
     setTimeout(() => {
-        floatingMsg.textContent = ``;
+        floatingMsg.value = ``;
         floatingMsg.style = null;
     }, time)
+}
+
+function updateViews(current) {
+    sourceView.value = currentGridInfo.currentSource;
+    currentView.value = current;
+    targetView.value = currentGridInfo.currentTarget;
 }
 
 function endSequence(currentPositionId) {

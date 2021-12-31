@@ -1,10 +1,16 @@
 let tempi = 0;
 let currentPath = [];
+let algo_select = document.getElementById(`algo`);
+let sourceView = document.getElementById(`source`)
+let currentView = document.getElementById(`current`)
+let targetView = document.getElementById(`target`)
+let algorithmView = document.querySelector(`.header`)
 let background = document.querySelector(`.background`)
 let floatingMsg = document.querySelector(`.floating_message`)
 let playerCharacter = document.querySelector(`.playerCharacter`)
 
-let numOfGrid = 20000;
+let numOfGrid = 7000;
+let numOfBlockades = 4000;
 let gridStats = {
     columns: 100,
     rows: 0,

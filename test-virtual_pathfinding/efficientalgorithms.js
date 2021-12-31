@@ -57,6 +57,7 @@ function Dijkstra(target) {
         let weightToNode = +currentGridInfo.gridToNodeWeights[currentNode][i];
         illuminatePath('', [currentNode], 'rgb(255, 255, 255)')
         if (currentGridInfo.gridToNodeDistanceFromSource[currentNode] + weightToNode < currentGridInfo.gridToNodeDistanceFromSource[neighborNode] && !binarySearch(blockades, 0, blockades.length - 1, neighborNode)) {
+            updateViews(neighborNode);
             currentGridInfo.gridToNodeDistanceFromSource[neighborNode] = currentGridInfo.gridToNodeDistanceFromSource[currentNode] + weightToNode;
             currentGridInfo.pqForPathfinding.push(neighborNode, currentGridInfo.gridToNodeDistanceFromSource[neighborNode]);
             currentGridInfo.parentNode[neighborNode] = currentNode;
@@ -93,6 +94,7 @@ function Astar(target) {
         let fCost = gCost + hCost;
 
         if (fCost < currentGridInfo.gridToNodeDistanceFromSource[neighborNode] && !binarySearch(blockades, 0, blockades.length - 1, neighborNode) && !binarySearch(currentGridInfo.closedNode, 0, currentGridInfo.closedNode.length - 1, neighborNode)) {
+            updateViews(neighborNode);
             currentGridInfo.gridToNodeDistanceFromSource[neighborNode] = fCost;
             currentGridInfo.pqForPathfinding.push(neighborNode, hCost);
             currentGridInfo.parentNode[neighborNode] = currentNode;

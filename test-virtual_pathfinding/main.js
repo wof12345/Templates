@@ -1,6 +1,6 @@
 generateBackground(numOfGrid); //24384
 setGrid();
-generateBlockades(3000);
+generateBlockades(numOfBlockades);
 quickSort(blockades, 0, blockades.length - 1);
 
 function driverFunction(currentNode) {
@@ -83,14 +83,10 @@ background.addEventListener('click', function(e) {
     }
 })
 
-document.body.addEventListener('keydown', function(e) {
+algo_select.addEventListener('change', function(e) {
+    let algorithm = algo_select.value;
+    algorithmView.textContent = `Movement algorithm is ${algorithm}.`;
+    elementStat.currentAlgorithm = algorithm;
 
-    if (e.key === 't') {
-        if (elementStat.currentAlgorithm === 'Dijkstra')
-            elementStat.currentAlgorithm = 'A*';
-        else
-            elementStat.currentAlgorithm = 'Dijkstra';
-
-        showFloatingMsg(`Algorithm changed to ${elementStat.currentAlgorithm}`, 1000);
-    }
+    showFloatingMsg(`Algorithm changed to ${elementStat.currentAlgorithm}`, 1000);
 })
