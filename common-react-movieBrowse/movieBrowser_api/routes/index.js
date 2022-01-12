@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
+import express from "express";
+import getMovieData from "../controllers/getMovieData.js";
+
+const indexRouter = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+indexRouter.get('/', getMovieData)
 
-module.exports = router;
+export default indexRouter;
