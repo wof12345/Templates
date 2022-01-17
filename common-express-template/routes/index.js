@@ -1,25 +1,21 @@
-import express from 'express';
-import hello from '../controllers/main.js';
-import hello1 from '../controllers/data.js';
-import hello2 from '../controllers/activeConnections.js';
-import hello4 from '../controllers/uploaddata.js';
-import hello5 from '../controllers/updatedata.js';
-import deleteForm from '../controllers/delete.js';
-'../controllers/delete.js';
+import express from "express";
+import { generateBackendUI } from "../controllers/main.js";
+import { getAllData } from "../controllers/indexController.js";
+import { getSpecificData } from "../controllers/indexController.js";
+import { deleteForm } from "../controllers/indexController.js";
+import { updateData } from "../controllers/indexController.js";
+import { uploadData } from "../controllers/indexController.js";
 
 const indexRouter = express.Router();
 
-indexRouter.get('/', hello);
+indexRouter.route("/").get(generateBackendUI);
 
-indexRouter.get('/data', hello1);
+indexRouter
+  .route("/data")
+  .get(getSpecificData)
+  .post(updateData)
+  .delete(deleteForm);
 
-indexRouter.get('/activeConnections', hello2);
-
-indexRouter.post('/uploaddata', hello4);
-
-indexRouter.post('/updatedata', hello5);
-
-indexRouter.post('/delete', deleteForm);
-
+indexRouter.route("/getAllData").get(getAllData).post(uploadData);
 
 export default indexRouter;
