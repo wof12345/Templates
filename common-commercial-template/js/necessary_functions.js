@@ -168,6 +168,50 @@ function APPLYSTYLES(elements, styles) {
   });
 }
 
+function TIMEOUT(passedFunction, delay) {
+  return setTimeout(() => {
+    passedFunction();
+  }, delay);
+}
+
+function INTERVAL(passedFunction, delay) {
+  return setInterval(() => {
+    passedFunction();
+  }, delay);
+}
+
+function CLEARALLTIMEOUT(array) {
+  for (let i = 0; i < array.length; i++) {
+    clearTimeout(array[i]);
+  }
+}
+
+function TIMEDANIMATION(
+  passedCollection,
+  passedStyles,
+  interval,
+  iteration,
+  timeOutArray
+) {
+  if (iteration >= passedCollection.length) return;
+
+  APPLYSTYLES([passedCollection[iteration]], [passedStyles[iteration]]);
+
+  timeOutArray.TimeOutFunctions.push(
+    TIMEOUT(
+      TIMEDANIMATION.bind(
+        this,
+        passedCollection,
+        passedStyles,
+        interval,
+        ++iteration,
+        timeOutArray
+      ),
+      interval
+    )
+  );
+}
+
 // export {
 //   Log,
 //   BINARYSEARCH,

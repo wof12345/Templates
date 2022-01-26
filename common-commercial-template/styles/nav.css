@@ -1,0 +1,163 @@
+.head_section {
+  z-index: 5;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10rem;
+  right: 0;
+  padding: 0 4rem;
+  background-color: #000000;
+  z-index: 100;
+}
+
+.nav:hover {
+  height: 13rem;
+}
+
+.nav_aside_links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  height: 0;
+  top: 90px;
+  right: 0;
+  padding: 0.2rem;
+  background-color: #000000;
+  z-index: 100;
+  font-size: 1.4rem;
+  font-weight: 400;
+  text-align: center;
+  list-style: none;
+  opacity: 0;
+}
+
+.nav_aside_links > * {
+  margin: 0.2rem;
+}
+
+.nav.sticky {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.nav__logo {
+  position: relative;
+  font-size: 15px;
+  transition: all 0.3s;
+  color: white;
+  text-align: center;
+}
+
+.nav__logo_text {
+  font-family: "Ubuntu Mono", monospace;
+  padding: 8px;
+}
+
+.before,
+.after,
+.left,
+.right {
+  z-index: 0;
+}
+
+.before,
+.after {
+  position: absolute;
+  width: 100%;
+  height: 6px;
+  background-color: white;
+}
+
+.left,
+.right {
+  position: absolute;
+  height: 100%;
+  background-color: white;
+  width: 6px;
+}
+
+.left {
+  left: 0;
+  top: 0;
+  clip-path: polygon(5% 55%, 50% 0, 37% 56%, 100% 100%);
+  transform: rotate(-16deg);
+}
+
+.right {
+  right: 0;
+  top: 0;
+  clip-path: polygon(90% 48%, 50% 0, 55% 51%, 28% 99%);
+  transform: rotate(20deg);
+}
+
+.before {
+  clip-path: polygon(49% 8%, 0 16%, 100% 16%);
+  top: 0;
+}
+
+.after {
+  clip-path: polygon(50% 30%, 0 16%, 100% 16%);
+  bottom: 0;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  list-style: none;
+  height: 100%;
+  font-weight: 400;
+  text-align: center;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  margin: 50px 0;
+  font-size: 1.7rem;
+  background-color: rgba(0, 0, 0, 0);
+  display: block;
+  text-align: center;
+  z-index: 0;
+}
+
+.nav__item {
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.nav__item:hover {
+  cursor: pointer;
+}
+
+.nav_img {
+  width: 25px;
+  aspect-ratio: 1/1;
+  margin: 20px auto;
+}
+
+.menu_img {
+  padding: 2px;
+  display: none;
+  transition: 0.5s;
+  position: relative;
+}
+
+.menu_img:hover {
+  background-color: #3b3a3a7a;
+  cursor: pointer;
+}
+
+.menu_item {
+  background-color: white;
+  width: 20px;
+  height: 2px;
+  margin: 3px;
+}

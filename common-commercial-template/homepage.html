@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/globalstyle.css" />
+    <title>Home</title>
+
+    <script defer src="./js/necessary_functions.js"></script>
+    <script defer src="./js/variables.js"></script>
+    <script defer src="./js/datamanager.js"></script>
+    <script defer src="./js/animationabstraction.js"></script>
+    <script defer src="./js/animation.js"></script>
+    <script defer src="./js/pagefunctions.js"></script>
+    <script defer src="./js/basicpagecode.js"></script>
+  </head>
+
+  <body>
+    <header class="head_section">
+      <nav class="nav">
+        <div class="nav__logo" id="logo" desginer="atif">
+          <div class="cover"></div>
+          <div class="before"></div>
+          <div class="left"></div>
+          <p class="nav__logo_text">
+            <span class="logo__text_letter">D</span
+            ><span class="logo__text_letter">r</span
+            ><span class="logo__text_letter">o</span
+            ><span class="logo__text_letter">p</span>
+
+            <span class="logo__text_letter">N</span>
+
+            <span class="logo__text_letter">S</span
+            ><span class="logo__text_letter">h</span
+            ><span class="logo__text_letter">o</span
+            ><span class="logo__text_letter">p</span>
+          </p>
+
+          <div class="after"></div>
+          <div class="right"></div>
+        </div>
+
+        <ul class="nav__links">
+          <li class="nav__item">
+            <div class="cover_nav"></div>
+            <button class="nav__link">Home</button>
+            <img src="./public/images/homeicon.svg" alt="" class="nav_img" />
+          </li>
+          <li class="nav__item">
+            <div class="cover_nav categorymain"></div>
+            <button class="nav__link">Categories</button>
+            <img
+              src="./public/images/collapseicon.svg"
+              alt=""
+              class="nav_img"
+            />
+          </li>
+          <li class="nav__item">
+            <div class="cover_nav"></div>
+            <button class="nav__link">About</button>
+            <img src="./public/images/infoicon.svg" alt="" class="nav_img" />
+          </li>
+          <li class="nav__item">
+            <div class="cover_nav"></div>
+            <button class="nav__link">Login/Register</button>
+            <img src="./public/images/login.svg" alt="" class="nav_img" />
+          </li>
+        </ul>
+
+        <div class="menu_img nav_bar">
+          <div class="img_cover nav_bar"></div>
+          <div class="menu_item mi_1"></div>
+          <div class="menu_item mi_2"></div>
+          <div class="menu_item mi_3"></div>
+        </div>
+
+        <ul class="nav_aside_links">
+          <li class="nav__item">
+            <div class="cover_nav"></div>
+            <button class="nav__link">Home</button>
+            <img src="./public/images/homeicon.svg" alt="" class="nav_img" />
+          </li>
+          <li class="nav__item">
+            <div class="cover_nav catag"></div>
+            <button class="nav__link">Categories</button>
+            <img
+              src="./public/images/collapseicon.svg"
+              alt=""
+              class="nav_img"
+            />
+          </li>
+          <li class="nav__item">
+            <div class="cover_nav"></div>
+            <button class="nav__link">About</button>
+            <img src="./public/images/infoicon.svg" alt="" class="nav_img" />
+          </li>
+          <li class="nav__item">
+            <div class="cover_nav"></div>
+            <button class="nav__link">Login/Register</button>
+            <img src="./public/images/login.svg" alt="" class="nav_img" />
+          </li>
+        </ul>
+      </nav>
+
+      <div class="search_bar nav_bar">
+        <div class="searchbar_inner nav_bar">
+          <img
+            class="search_img nav_bar"
+            src="./public/images/search_icon.svg"
+            alt=""
+          />
+          <input
+            type="text"
+            class="nav_bar"
+            name="search_bar"
+            id="search_input"
+            placeholder="Search here"
+          />
+          <button class="search_btn nav_bar">Search</button>
+        </div>
+      </div>
+
+      <div class="categories"></div>
+
+      <div class="headline_cont"><article class="headlines"></article></div>
+    </header>
+
+    <section class="body_section">
+      <section class="featured_cont">
+        <div class="featured_cont_left">
+          <div class="left_feature_cover"></div>
+        </div>
+        <div class="featured">
+          <div class="featured_item" id="fi1">
+            <div class="feature_detail"></div>
+            <img class="featured_img" src="" alt="" />
+            <div class="details"></div>
+          </div>
+          <div class="featured_item" id="fi2">
+            <div class="feature_detail"></div>
+            <img class="featured_img" src="" alt="" />
+            <div class="details"></div>
+          </div>
+          <div class="featured_item" id="fi3">
+            <div class="feature_detail"></div>
+            <img class="featured_img" src="" alt="" />
+            <div class="details"></div>
+          </div>
+          <div class="featured_item" id="fi4">
+            <div class="feature_detail"></div>
+            <img class="featured_img" src="" alt="" />
+            <div class="details"></div>
+          </div>
+        </div>
+        <div class="page_no">
+          <div class="circle" id="fc1"></div>
+          <div class="circle" id="fc2"></div>
+          <div class="circle" id="fc3"></div>
+          <div class="circle" id="fc4"></div>
+        </div>
+        <div class="featured_cont_right">
+          <div class="right_feature_cover"></div>
+        </div>
+      </section>
+
+      <section class="main_container"></section>
+    </section>
+  </body>
+</html>
