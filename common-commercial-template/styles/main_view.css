@@ -1,0 +1,95 @@
+.main_container {
+  position: relative;
+  height: 700px;
+  margin-top: 10px;
+  padding: 0 80px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.feature_detail {
+  background-color: rgba(253, 253, 253, 0.795);
+  font-size: 14px;
+  min-width: 100px;
+  width: 100%;
+}
+
+.details {
+  min-width: 100px;
+  z-index: 100;
+}
+
+.item_controllers,
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+h1 {
+  font-size: 14px;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  padding: 2px;
+}
+
+select {
+  min-width: 90px;
+  font-size: 12px;
+  padding: 2px;
+  text-align: center;
+}
+
+.utility_cont {
+  padding: 5px;
+}
+
+.item_controllers {
+  height: 90px;
+}
+
+.items_view {
+  padding: 2px;
+  height: 650px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+
+  overflow-y: auto;
+  gap: 8px;
+}
+
+.view_item {
+  max-height: 300px;
+  max-width: 300px;
+}
+
+.view_items_cont {
+  display: flex;
+  justify-content: center;
+}
+
+.advertisement_box {
+  position: absolute;
+  background-color: rgba(124, 121, 121, 0.425);
+  height: 100%;
+  top: 0;
+  width: 80px;
+  z-index: 0;
+}
+
+.box_left {
+  left: 0;
+}
+
+.box_right {
+  right: 0;
+}

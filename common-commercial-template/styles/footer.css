@@ -1,0 +1,7 @@
+.footer_section {
+  width: 100vw;
+  height: 100px;
+  background-color: black;
+  margin-top: 10px;
+  z-index: 11;
+}

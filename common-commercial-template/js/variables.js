@@ -30,6 +30,10 @@ let pageBasicElements = {
   featureCircle: GETDOMQUERY(".circle"),
   featureFeatures: GETDOMQUERY(".featured_item"),
   featureConts: GETDOMQUERY(".featured"),
+  featureDetails: GETDOMQUERY(".feature_detail"),
+  featureCards: GETDOMQUERY(".feature_feature_card"),
+  featureInnerCont: GETDOMQUERY(".inner_cont"),
+  featurePageNo: GETDOMQUERY(".page_no"),
 };
 
 let pageLogics = {
@@ -39,10 +43,105 @@ let pageLogics = {
   searchBarCollapsed: false,
   searchFocused: false,
   lastFeatureItem: -1,
+  lastFeatureContainer: 0,
+  iteration: 1,
 };
 
 let pageData = {
   categories: [],
+  features: [
+    {
+      stock: "In stock",
+      itemLeft: 28,
+      id: "fi1",
+      img: "./public/images/test.jpg",
+      name: "Deer marker 290",
+      date: "28/09/2019",
+      dateUnformatted: 200000988,
+      price: "28tk",
+      description:
+        "orem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos autem voluptates veniam esse quas totam aliquam architecto, officia ullam, earum, deleniti reprehenderit beatae mollitia. Amet, nesciunt praesentium perspiciatis fugit quam omnis in rem dignissimos? Esse, aut quos. Pariatur",
+      featureDetail: "orem ipsum dolor sit amet consectetur.",
+    },
+    {
+      stock: "In stock",
+      itemLeft: 28,
+      id: "fi2",
+      img: "./public/images/test.jpg",
+      name: "Deer marker 290",
+      date: "28/09/2019",
+      dateUnformatted: 200000988,
+      price: "28tk",
+      description:
+        "orem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos autem voluptates veniam esse quas totam aliquam architecto, officia ullam, earum, deleniti reprehenderit beatae mollitia. Amet, nesciunt praesentium perspiciatis fugit quam omnis in rem dignissimos? Esse, aut quos. Pariatur",
+      featureDetail: "orem ipsum dolor sit amet consectetur.",
+    },
+    {
+      stock: "In stock",
+      itemLeft: 28,
+      id: "fi3",
+      img: "./public/images/test.jpg",
+      name: "Deer marker 290",
+      date: "28/09/2019",
+      dateUnformatted: 200000988,
+      price: "28tk",
+      description:
+        "orem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos autem voluptates veniam esse quas totam aliquam architecto, officia ullam, earum, deleniti reprehenderit beatae mollitia. Amet, nesciunt praesentium perspiciatis fugit quam omnis in rem dignissimos? Esse, aut quos. Pariatur",
+      featureDetail: "orem ipsum dolor sit amet consectetur.",
+    },
+    {
+      stock: "In stock",
+      itemLeft: 28,
+      id: "fi4",
+      img: "./public/images/test.jpg",
+      name: "Deer marker 290",
+      date: "28/09/2019",
+      dateUnformatted: 200000988,
+      price: "28tk",
+      description:
+        "orem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos autem voluptates veniam esse quas totam aliquam architecto, officia ullam, earum, deleniti reprehenderit beatae mollitia. Amet, nesciunt praesentium perspiciatis fugit quam omnis in rem dignissimos? Esse, aut quos. Pariatur",
+      featureDetail: "orem ipsum dolor sit amet consectetur.",
+    },
+    {
+      stock: "In stock",
+      itemLeft: 28,
+      id: "fi5",
+      img: "./public/images/test.jpg",
+      name: "Deer marker 290",
+      date: "28/09/2019",
+      dateUnformatted: 200000988,
+      price: "28tk",
+      description:
+        "orem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos autem voluptates veniam esse quas totam aliquam architecto, officia ullam, earum, deleniti reprehenderit beatae mollitia. Amet, nesciunt praesentium perspiciatis fugit quam omnis in rem dignissimos? Esse, aut quos. Pariatur",
+      featureDetail: "orem ipsum dolor sit amet consectetur.",
+    },
+    {
+      stock: "In stock",
+      itemLeft: 28,
+      id: "fi6",
+      img: "./public/images/test.jpg",
+      name: "Deer marker 290",
+      date: "28/09/2019",
+      dateUnformatted: 200000988,
+      price: "28tk",
+      description:
+        "orem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos autem voluptates veniam esse quas totam aliquam architecto, officia ullam, earum, deleniti reprehenderit beatae mollitia. Amet, nesciunt praesentium perspiciatis fugit quam omnis in rem dignissimos? Esse, aut quos. Pariatur",
+      featureDetail: "orem ipsum dolor sit amet consectetur.",
+    },
+    {
+      stock: "In stock",
+      itemLeft: 28,
+      id: "fi7",
+      img: "./public/images/test.jpg",
+      name: "Deer marker 290",
+      date: "28/09/2019",
+      dateUnformatted: 200000988,
+      price: "28tk",
+      description:
+        "orem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos autem voluptates veniam esse quas totam aliquam architecto, officia ullam, earum, deleniti reprehenderit beatae mollitia. Amet, nesciunt praesentium perspiciatis fugit quam omnis in rem dignissimos? Esse, aut quos. Pariatur",
+      featureDetail: "orem ipsum dolor sit amet consectetur.",
+    },
+  ],
 };
 
 let temporaryVariables = {

@@ -1,3 +1,6 @@
+populateFeature();
+updateVariables();
+
 document.addEventListener("mouseover", (e) => {
   let target = e.target;
 
@@ -42,6 +45,18 @@ document.addEventListener("mouseover", (e) => {
         right.add("rotation_animation_inv");
       }
     }
+
+    if (target.className.includes("feature_card")) {
+      let id = target.getAttribute("id").match(/(\d+)/)[0];
+
+      APPLYSTYLES(
+        [
+          pageBasicElements.featureDetails[id - 1],
+          pageBasicElements.featureCards[id - 1],
+        ],
+        ["top:0;", "bottom:0;top:70px;"]
+      );
+    }
   }
 });
 
@@ -76,6 +91,17 @@ document.addEventListener("mouseout", (e) => {
         right.remove("rotation_animation_inv");
       }
     }
+
+    if (target.className.includes("feature_card")) {
+      let id = target.getAttribute("id").match(/(\d+)/)[0];
+      APPLYSTYLES(
+        [
+          pageBasicElements.featureDetails[id - 1],
+          pageBasicElements.featureCards[id - 1],
+        ],
+        ["", ""]
+      );
+    }
   }
 });
 
@@ -96,12 +122,12 @@ document.addEventListener("click", (e) => {
   }
 
   if (
-    target.className.includes("featured_item") ||
+    target.className.includes("feature_card") ||
     target.className.includes("circle")
   ) {
-    let num = target.getAttribute("id").match(/(\d+)/)[0];
+    let id = target.getAttribute("id").match(/(\d+)/)[0];
 
-    featuredAnimation(num - 1);
+    featuredAnimation(id - 1);
   }
 
   if (target.className.includes("left_feature_cover")) {

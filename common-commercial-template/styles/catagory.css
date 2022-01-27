@@ -32,3 +32,9 @@
 .categories::-webkit-scrollbar-track {
   background: rgb(255, 255, 255);
 }
+
+.categories::-webkit-scrollbar-thumb {
+  background-color: rgba(131, 127, 127, 0.733);
+  border-radius: 20px;
+  border: 1px solid rgba(233, 238, 236, 0.849);
+}

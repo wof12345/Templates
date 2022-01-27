@@ -9,10 +9,10 @@
 
     <script defer src="./js/necessary_functions.js"></script>
     <script defer src="./js/variables.js"></script>
+    <script defer src="./js/pagefunctions.js"></script>
     <script defer src="./js/datamanager.js"></script>
     <script defer src="./js/animationabstraction.js"></script>
     <script defer src="./js/animation.js"></script>
-    <script defer src="./js/pagefunctions.js"></script>
     <script defer src="./js/basicpagecode.js"></script>
   </head>
 
@@ -128,43 +128,103 @@
 
     <section class="body_section">
       <section class="featured_cont">
+        <div class="page_no"></div>
+
         <div class="featured_cont_left">
           <div class="left_feature_cover"></div>
         </div>
-        <div class="featured">
-          <div class="featured_item" id="fi1">
-            <div class="feature_detail"></div>
-            <img class="featured_img" src="" alt="" />
-            <div class="details"></div>
-          </div>
-          <div class="featured_item" id="fi2">
-            <div class="feature_detail"></div>
-            <img class="featured_img" src="" alt="" />
-            <div class="details"></div>
-          </div>
-          <div class="featured_item" id="fi3">
-            <div class="feature_detail"></div>
-            <img class="featured_img" src="" alt="" />
-            <div class="details"></div>
-          </div>
-          <div class="featured_item" id="fi4">
-            <div class="feature_detail"></div>
-            <img class="featured_img" src="" alt="" />
-            <div class="details"></div>
-          </div>
-        </div>
-        <div class="page_no">
-          <div class="circle" id="fc1"></div>
-          <div class="circle" id="fc2"></div>
-          <div class="circle" id="fc3"></div>
-          <div class="circle" id="fc4"></div>
-        </div>
+
+        <div class="inner_cont"></div>
+
         <div class="featured_cont_right">
           <div class="right_feature_cover"></div>
         </div>
       </section>
 
-      <section class="main_container"></section>
+      <section class="main_container">
+        <div class="item_controllers">
+          <h1 class="label_text">Latest items</h1>
+
+          <div class="controls">
+            <div class="sort utility_cont">
+              <p>Sort by</p>
+              <select name="sort" id="sort">
+                <option value="Date">Date added</option>
+                <option value="Name">Name</option>
+                <option value="Price">Price</option>
+              </select>
+
+              <select name="sort_type" id="sort_type">
+                <option value="Ascending">Ascending</option>
+                <option value="Descending">Descending</option>
+              </select>
+            </div>
+
+            <div class="filter utility_cont">
+              <p>Filter by</p>
+              <div class="radio">
+                <input type="checkbox" name="Available" id="Available" /><label
+                  for="Available"
+                  >Availability</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="advertisement_box box_left"></div>
+        <div class="item_cont">
+          <div class="items_view">
+            <div class="view_items_cont">
+              <div class="featured_item view_item" id="fi1">
+                <img
+                  class="featured_img"
+                  src="./public/images/test.jpg"
+                  alt=""
+                />
+                <div class="feature_detail feature_card"></div>
+                <div class="details">
+                  <div class="detail_inner_cont">
+                    <p class="item_name">Deer matker 290</p>
+                    <p class="available">In stock</p>
+                  </div>
+                  <div class="detail_inner_cont">
+                    <p>Date added :</p>
+                    <p class="date_added">28/09/2019</p>
+                  </div>
+                  <div class="detail_inner_cont">
+                    <p>Price :</p>
+                    <p class="item_price">28tk</p>
+                  </div>
+                  <div class="description">
+                    <p class="item_desc">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Dignissimos autem voluptates veniam esse quas totam
+                      aliquam architecto, officia ullam, earum, deleniti
+                      reprehenderit beatae mollitia. Amet, nesciunt praesentium
+                      perspiciatis fugit quam omnis in rem dignissimos? Esse,
+                      aut quos. Pariatur architecto nam alias praesentium!
+                      Dolore fugit, laborum expedita officia ipsam fugiat
+                      similique molestiae vitae perspiciatis doloremque quas
+                      obcaecati, qui nam aliquam aut eveniet quidem temporibus
+                      cumque. Perferendis porro quibusdam, provident excepturi
+                      vitae aliquam possimus dolore, beatae quos error tempore
+                      enim ut explicabo et repudiandae labore consectetur quam
+                      laudantium. Quibusdam odit ab sapiente, nostrum
+                      perferendis earum? Doloremque, pariatur reprehenderit
+                      placeat ad eaque ex id, adipisci, animi modi consequatur
+                      fugiat nam! Quis veniam, et mollitia error necessitatibus
+                      est porro corporis consequatur veritatis ea tenetur!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="advertisement_box box_right"></div>
+      </section>
     </section>
+
+    <footer class="footer_section"></footer>
   </body>
 </html>

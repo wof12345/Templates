@@ -103,8 +103,31 @@ function featuredAnimation(command) {
     pageLogics.lastFeatureItem = last = length - 1;
   }
 
+  pageBasicElements.featureConts.style = "height:380px";
+
+  if (pageBasicElements.featureConts.length > 1) {
+    if (last >= 0 && last < 4) {
+      pageLogics.lastFeatureContainer = 0;
+    } else if (last > 3 && last < 8) {
+      pageLogics.lastFeatureContainer = 1;
+    } else if (last > 7 && last < 12) {
+      pageLogics.lastFeatureContainer = 2;
+    } else if (last > 11 && last < 15) {
+      pageLogics.lastFeatureContainer = 3;
+    }
+
+    pageBasicElements.featureConts[pageLogics.lastFeatureContainer].style =
+      "height:380px";
+
+    pageBasicElements.featureConts.forEach((elm, ind) => {
+      if (ind !== pageLogics.lastFeatureContainer) {
+        elm.style = "height:0px";
+      }
+    });
+  }
+
   referenceArr[last].style = `background-color: rgba(102, 102, 102, 0.897);`;
-  followerArr[last].style = `background-color: rgba(102, 102, 102, 0.897);`;
+  followerArr[last].style = `filter: blur(0px);`;
 
   for (let i = 0; i < length; i++) {
     if (i !== last) {
