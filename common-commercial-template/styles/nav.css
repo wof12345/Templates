@@ -1,5 +1,5 @@
 .head_section {
-  z-index: 5;
+  z-index: 10;
 }
 
 .nav {
@@ -10,7 +10,6 @@
   right: 0;
   padding: 0 4rem;
   background-color: #000000;
-  z-index: 100;
 }
 
 .nav:hover {
@@ -27,7 +26,6 @@
   right: 0;
   padding: 0.2rem;
   background-color: #000000;
-  z-index: 100;
   font-size: 1.4rem;
   font-weight: 400;
   text-align: center;
@@ -61,7 +59,7 @@
 .after,
 .left,
 .right {
-  z-index: 0;
+  z-index:2;
 }
 
 .before,
@@ -123,13 +121,11 @@
   background-color: rgba(0, 0, 0, 0);
   display: block;
   text-align: center;
-  z-index: 0;
 }
 
 .nav__item {
   height: 100%;
   position: relative;
-  z-index: 1;
   overflow: hidden;
 }
 

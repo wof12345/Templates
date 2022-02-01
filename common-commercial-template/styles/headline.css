@@ -4,7 +4,7 @@
   padding: 3px;
   transform: translateY(-71px);
   background-color: rgba(146, 143, 143, 0.253);
-  z-index: 1;
+  z-index: 50;
 }
 
 .headlines {

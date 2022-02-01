@@ -38,7 +38,7 @@ export const generateBackendUI = (req, res) => {
 
       const db = client.db("database1");
 
-      const items = await db.collection("admin info").find({}).toArray();
+      const items = await db.collection("admins").find({}).toArray();
       console.log(items);
 
       items.forEach((elm) => {

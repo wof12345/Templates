@@ -21,32 +21,32 @@ function updateVariables() {
   pageBasicElements.featurePageNo = GETDOMQUERY(".page_no");
 }
 
-function prepeareFeature(elm) {
-  return ` <div class="featured_item feature_item" id="${elm.id}">
+function prepeareFeature(elm, extraClass, extraClass1, extraClass2) {
+  return ` <div class="featured_item ${extraClass}" id="${elm.id}">
     <img
-      class="featured_img feature_img feature_card"
+      class="featured_img ${extraClass2} ${extraClass1}"
       id="${elm.id}"
       src="${elm.img}"
       alt=""
     />
-    <div class="feature_detail feature_card" id="${elm.id}">
+    <div class="feature_detail ${extraClass1}" id="${elm.id}">
       ${elm.featureDetail}
     </div>
-    <div class="details feature_feature_card feature_card" id="${elm.id}">
-      <div class="detail_inner_cont feature_card" id="${elm.id}">
-        <p class="item_name feature_card" id="${elm.id}">Deer matker 290</p>
-        <p class="available feature_card" id="${elm.id}">${elm.stock}</p>
+    <div class="details feature_${extraClass1} ${extraClass1}" id="${elm.id}">
+      <div class="detail_inner_cont ${extraClass1}" id="${elm.id}">
+        <p class="item_name ${extraClass1}" id="${elm.id}">${elm.name}</p>
+        <p class="available ${extraClass1}" id="${elm.id}">${elm.stock}</p>
       </div>
-      <div class="detail_inner_cont feature_card" id="${elm.id}">
-        <p class="feature_card" id="${elm.id}">Date added :</p>
-        <p class="date_added feature_card" id="${elm.id}">${elm.date}</p>
+      <div class="detail_inner_cont ${extraClass1}" id="${elm.id}">
+        <p class="${extraClass1}" id="${elm.id}">Date added :</p>
+        <p class="date_added ${extraClass1}" id="${elm.id}">${elm.date}</p>
       </div>
-      <div class="detail_inner_cont feature_card" id="${elm.id}">
-        <p class="feature_card" id="${elm.id}">Price :</p>
-        <p class="item_price feature_card" id="${elm.id}">${elm.price}</p>
+      <div class="detail_inner_cont ${extraClass1}" id="${elm.id}">
+        <p class="${extraClass1}" id="${elm.id}">Price :</p>
+        <p class="item_price ${extraClass1}" id="${elm.id}">${elm.price}</p>
       </div>
-      <div class="description feature_desc feature_card" id="${elm.id}">
-        <p class="item_desc feature_card" id="${elm.id}">
+      <div class="description feature_desc ${extraClass1}" id="${elm.id}">
+        <p class="item_desc ${extraClass1}" id="${elm.id}">
          ${elm.description}
         </p>
       </div>

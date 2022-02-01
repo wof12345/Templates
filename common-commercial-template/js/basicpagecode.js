@@ -1,4 +1,5 @@
 populateFeature();
+populateItems();
 updateVariables();
 
 document.addEventListener("mouseover", (e) => {

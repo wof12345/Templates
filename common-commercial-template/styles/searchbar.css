@@ -2,7 +2,6 @@
   background-color: rgba(24, 24, 24, 0.911);
   padding: 20px 10px;
   transform: translateY(-100px);
-  z-index: 0;
   pointer-events: none;
   opacity: 0;
 }
