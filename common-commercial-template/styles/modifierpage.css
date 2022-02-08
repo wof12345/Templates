@@ -1,0 +1,39 @@
+h3,
+h4 {
+  font-size: 18px;
+  margin-bottom: 40px;
+  width: 100%;
+  margin: 10px 0px;
+}
+
+.main_container_modify {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  text-align: center;
+}
+
+.sidebar_nav {
+  height: 100%;
+  max-width: 200px;
+  border-right: 1px solid rgba(0, 0, 0, 0.541);
+}
+
+.sidebar_links_modifier {
+  display: flex;
+  flex-direction: column;
+  padding: 0 30px;
+}
+
+.sidebar_link {
+  padding: 9px 0px;
+}
+
+.main_view {
+  width: 100%;
+  overflow: auto;
+}
+
+.container {
+  height: max-content;
+}

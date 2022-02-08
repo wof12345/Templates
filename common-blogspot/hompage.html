@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/global.css" />
+    <title>Document</title>
+
+    <script defer src="./scripts/necessary_functions.js"></script>
+    <script defer src="./scripts/variables.js"></script>
+    <script defer src="./scripts/scripts.js"></script>
+    <script defer src="./scripts/index.js"></script>
+    <script defer src="./scripts/datamanager.js"></script>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="./node_modules/jqueryui/jquery-ui.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1 class="page_head">Your Blogspot</h1>
+    </header>
+
+    <div class="floating_settings trigger_setings">
+      <img
+        src="./images/settingIcon.svg"
+        class="trigger_setings"
+        alt="settings"
+      />
+    </div>
+
+    <div class="drop_down_settings settings">
+      <div class="drop_down_inner settings">
+        <button class="drop_down logout settings">Logout</button>
+        <button class="drop_down logout settings">Logout</button>
+        <button class="drop_down logout settings">Logout</button>
+        <button class="drop_down logout settings">Logout</button>
+        <button class="drop_down logout settings">Logout</button>
+      </div>
+    </div>
+
+    <div class="links"></div>
+
+    <div class="body_section">
+      <div class="back_container"></div>
+
+      <div class="main_outer-cont">
+        <div class="main_container_body">
+          <div class="blogs_signed_out" id="">
+            <h1>Welcome to your blogpage.</h1>
+            <p>Please login to continue</p>
+
+            <div class="create_new">
+              <a class="create_new_trigger" href="./creationpage.html"
+                >Create new</a
+              >
+              <a class="create_new_trigger" href="./creationpage.html"
+                >Create new</a
+              >
+              <a class="create_new_trigger" href="./creationpage.html"
+                >Create new</a
+              >
+            </div>
+          </div>
+
+          <div class="blogs id01" id="">
+            <div class="blog_description id01">
+              <div class="server_side_details blog_detail_cont id01">
+                <p class="views blog_detail id01">Views : 23</p>
+                <p class="likes blog_detail id01">Likes : 2</p>
+              </div>
+
+              <div class="blog_name_desc blog_detail_cont id01">
+                <h1 class="blog_head id01">Blog headline</h1>
+                <p class="blog_small_desc id01">Blog small Description</p>
+              </div>
+
+              <div class="date_created blog_detail_cont id01">
+                <p class="date blog_detail id01">23th september, 2001</p>
+              </div>
+            </div>
+
+            <div class="partial_blog_view_cont id01">
+              <article class="partial_blog_view id01">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil
+                facilis accusantium dolor doloremque! Architecto iste aliquid
+                sint nulla, quasi cupiditate?Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Aut a eaque, nihil iure, obcaecati
+                quo, alias debitis perspiciatis quis molestiae odit hic
+                consequuntur quas eum nam corporis tempore eligendi aliquid sed.
+                Voluptatem, rem molestias, magnam earum reprehenderit nisi aut
+                veritatis fuga excepturi atque similique! Corporis natus
+                perspiciatis deserunt iste. Velit rerum quasi, harum non
+                accusamus, facilis molestiae culpa quam numquam dicta at.
+                Repudiandae sit, corporis commodi vero ipsum, aperiam deserunt
+                velit tempore a voluptatem, explicabo quia ex minus praesentium
+                minima deleniti reprehenderit modi delectus. Eveniet voluptates
+                ipsam dolore dolor soluta architecto aspernatur veniam. Modi
+                culpa mollitia ex, sit fugit tempore sunt reiciendis sequi vero
+                officia dolorem aut cupiditate odit repellendus obcaecati porro
+                fugiat, beatae voluptate incidunt. Quis reprehenderit,
+                consequuntur, rem impedit ipsam amet sapiente ipsa obcaecati,
+                incidunt quasi sit qui dolorem magni similique nisi! Maxime
+                consectetur quisquam exercitationem quos reprehenderit
+                voluptates voluptatum quia sed obcaecati tenetur sequi
+                consequuntur pariatur, laudantium magni illo eos ullam
+                perferendis recusandae officia aut. Cumque ad praesentium
+                repudiandae neque non architecto ex, iste excepturi laboriosam
+                pariatur nam, quisquam dolorum omnis atque maiores nesciunt
+                quidem itaque dolore doloribus. Laudantium explicabo quasi
+                molestias aperiam ipsum vero expedita ad reiciendis mollitia?
+                Qui eos recusandae ex incidunt excepturi nesciunt voluptas.
+              </article>
+            </div>
+
+            <div class="effect id01"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="singin_container">
+      <main class="main_container_sr">
+        <section class="header_animated_text">
+          <div class="head_cont">
+            <div class="before"></div>
+            <h1 class="header">Welcome to your Blogspot!</h1>
+            <div class="after"></div>
+          </div>
+          <p class="subtitle">Please login to continue ></p>
+        </section>
+
+        <section class="user_query_container">
+          <div class="outer_query_container">
+            <div class="inner_query_container">
+              <div class="input_identifier query_box">
+                <label for="identifier">Username/E-mail :</label>
+                <input type="text" name="identifier" id="identifier" />
+              </div>
+
+              <div class="input_password query_box">
+                <label for="password">Password :</label>
+                <input type="text" name="password" id="password" />
+              </div>
+
+              <div class="navigation query_box">
+                <button class="login">Login</button>
+                <button class="register">
+                  Register
+                  <img class="btn_img" src="./images/rightarrow.svg" alt="" />
+                </button>
+              </div>
+            </div>
+
+            <div class="inner_query_container--register">
+              <div class="input_identifier query_box">
+                <label for="register_identifier">Username/E-mail :</label>
+                <input
+                  type="text"
+                  name="register_identifier"
+                  id="register_identifier"
+                />
+              </div>
+
+              <div class="input_mobile_no query_box">
+                <label for="mobile_no">Mobile no :</label>
+                <input type="text" name="mobile_no" id="mobile_no" />
+              </div>
+
+              <div class="input_select_birthdate query_box">
+                <label for="select_birthdate">Birth-date : </label>
+                <input
+                  type="text"
+                  name="select_birthdate"
+                  id="select_birthdate"
+                />
+              </div>
+
+              <div class="input_password query_box">
+                <label for="register_password">Password :</label>
+                <input
+                  type="text"
+                  name="register_password"
+                  id="register_password"
+                />
+              </div>
+
+              <div class="input_password query_box">
+                <label for="reenter_password">Re-enter password :</label>
+                <input
+                  type="text"
+                  name="reenter_password"
+                  id="reenter_password"
+                />
+              </div>
+
+              <div class="navigation_register query_box">
+                <button class="register_login">
+                  <img
+                    class="btn_img_register"
+                    src="./images/arrow-left.svg"
+                    alt=""
+                  />
+                  Login
+                </button>
+                <button class="register_register">Register</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="forgot_password">
+            Forgot password ? <a href="/">Click here</a>
+          </div>
+        </section>
+      </main>
+    </section>
+
+    <footer><h3>Demo project by @Atif and @Saikat</h3></footer>
+  </body>
+</html>
