@@ -147,7 +147,7 @@ function LOG(data, color, backgroundcolor, type) {
   }
 }
 
-function CPAPITALIZE(string) {
+function CPAPITALIZEFIRST(string) {
   string = string.charAt(0).toUpperCase() + string.slice(1);
 }
 
