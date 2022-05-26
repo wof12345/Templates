@@ -21,7 +21,9 @@ function populateFeature() {
       elm,
       "feature_item",
       "feature_card",
-      "feature_img"
+      "feature_img",
+      "feature_detail",
+      "feature"
     );
     pageHTML += `<div class="circle" id="fc${ind + 1}"></div>`;
     if ((ind + 1) % 4 === 0)
@@ -36,7 +38,14 @@ function populateFeature() {
 function populateItems() {
   let finalHTML = ``;
   pageData.pageItems.forEach((elm, ind) => {
-    finalHTML += prepeareFeature(elm, "view_item", "", "feature_card");
+    finalHTML += prepeareFeature(
+      elm,
+      "view_item",
+      "",
+      "feature_card",
+      "feature_details",
+      "item"
+    );
   });
   console.log(finalHTML);
 

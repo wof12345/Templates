@@ -32,7 +32,7 @@ function animateMenu(command) {
         `transform:rotate(90deg)`,
         `transform:rotate(1deg)`,
         `transform:rotate(-90deg)`,
-        `height:50%;opacity:1;`,
+        `height:500px;opacity:1;`,
       ]
     );
     pageLogics.menu_open = true;

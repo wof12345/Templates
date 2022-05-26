@@ -1,5 +1,8 @@
 .head_section {
   z-index: 10;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .nav {
@@ -31,6 +34,7 @@
   text-align: center;
   list-style: none;
   opacity: 0;
+  z-index: 100;
 }
 
 .nav_aside_links > * {
@@ -59,7 +63,7 @@
 .after,
 .left,
 .right {
-  z-index:2;
+  z-index: 2;
 }
 
 .before,

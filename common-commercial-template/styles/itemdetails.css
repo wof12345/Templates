@@ -42,9 +42,16 @@
 }
 
 .feature_feature_card,
-.feature_detail {
+.feature_detail,
+.feature_details {
   position: absolute;
   top: 100%;
+}
+
+.feature_detail,
+.feature_details {
+  top: 0;
+  opacity: 0;
 }
 
 .description::-webkit-scrollbar-thumb {

@@ -6,13 +6,16 @@
   overflow: hidden;
 }
 
-.feature_detail {
+.feature_detail,
+.feature_details {
   background-color: rgba(56, 241, 31, 0.61);
   color: black;
   font-weight: bold;
   font-size: 14px;
   min-width: 100px;
+  /* padding: 3px; */
   width: 100%;
+  text-align: center;
 }
 
 .details {
@@ -75,6 +78,7 @@ select {
   max-height: 600px;
   min-height: 410px;
   max-width: 500px;
+  height: max-content;
 }
 
 .view_items_cont {
@@ -96,6 +100,10 @@ select {
 
 .box_right {
   right: 0;
+}
+
+.featured_item {
+  position: relative;
 }
 
 .featured_item:hover {

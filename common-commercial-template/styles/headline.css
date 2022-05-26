@@ -1,16 +1,16 @@
 .headline_cont {
-  width: 100vw;
+  /* width: 100vw; */
   overflow: hidden;
   padding: 3px;
   transform: translateY(-71px);
-  background-color: rgba(146, 143, 143, 0.253);
-  z-index: 50;
+  background-color: rgba(171, 169, 169, 0.334);
+  z-index: 70;
 }
 
 .headlines {
   font-size: 14px;
   animation: infinite headline_animation 18s linear;
-  color: rgba(0, 0, 0, 0.705);
+  color: rgba(0, 0, 0, 0.841);
 }
 
 @keyframes headline_animation {

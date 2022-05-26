@@ -31,6 +31,7 @@ let pageBasicElements = {
   featureFeatures: GETDOMQUERY(".featured_item"),
   featureConts: GETDOMQUERY(".featured"),
   featureDetails: GETDOMQUERY(".feature_detail"),
+  featureDetailsItems: GETDOMQUERY(".feature_details"),
   featureCards: GETDOMQUERY(".feature_feature_card"),
   featureInnerCont: GETDOMQUERY(".inner_cont"),
   featurePageNo: GETDOMQUERY(".page_no"),
@@ -87,7 +88,7 @@ let pageData = {
       dateUnformatted: 200000988,
       price: "28tk",
       description:
-        "orem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos autem voluptates veniam esse quas totam aliquam architecto, officia ullam, earum, deleniti reprehenderit beatae mollitia. Amet, nesciunt praesentium perspiciatis fugit quam omnis in rem dignissimos? Esse, aut quos. Pariatur",
+        "orem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos autem voluptates veniam esse quas totam aliquam architecto, officia ullam, earum, deleniti reprehenderit beatae mollitia. Amet, nesciunt praesentium perspiciatis fugit quam omnis in rem dignissimos? Esse, aut quos. Pariatur im orem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos autem voluptates veniam  orem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos autem voluptates veniam  orem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos autem voluptates veniam ",
       featureDetail: "orem ipsum dolor sit amet consectetur.",
     },
     {

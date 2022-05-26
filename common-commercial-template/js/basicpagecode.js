@@ -49,13 +49,15 @@ document.addEventListener("mouseover", (e) => {
 
     if (target.className.includes("feature_card")) {
       let id = target.getAttribute("id").match(/(\d+)/)[0];
+      console.log(id);
 
       APPLYSTYLES(
         [
           pageBasicElements.featureDetails[id - 1],
           pageBasicElements.featureCards[id - 1],
+          pageBasicElements.featureDetailsItems[id - 1],
         ],
-        ["top:0;", "bottom:0;top:70px;"]
+        ["opacity:1;", "bottom:0;top:70px;", "opacity:1;"]
       );
     }
   }
@@ -99,8 +101,9 @@ document.addEventListener("mouseout", (e) => {
         [
           pageBasicElements.featureDetails[id - 1],
           pageBasicElements.featureCards[id - 1],
+          pageBasicElements.featureDetailsItems[id - 1],
         ],
-        ["", ""]
+        ["", "", ""]
       );
     }
   }
