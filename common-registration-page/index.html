@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Document</title>
+
+    <script defer src="./index.js"></script>
+    <script defer src="./database_njs.js"></script>
+  </head>
+  <body>
+    <section class="page_introduction_details">
+      <h1>Login/Registration page</h1>
+    </section>
+
+    <section class="main_container">
+      <div class="inner_container_login parent_container">
+        <div class="input_identifier query_box">
+          <label for="identifier">Username/E-mail :</label>
+          <input
+            type="text"
+            name="identifier"
+            id="identifier"
+            placeholder="Username/Email"
+          />
+          <div class="indicator">
+            <div class="upper_q"></div>
+            <div class="lower_q"></div>
+          </div>
+        </div>
+
+        <div class="input_password query_box">
+          <label for="password">Password :</label>
+          <input
+            type="text"
+            name="password"
+            id="password"
+            placeholder="User password"
+          />
+          <div class="indicator">
+            <div class="upper_q"></div>
+            <div class="lower_q"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="inner_container_register parent_container">
+        <div class="input_identifier query_box">
+          <label for="register_identifier">Username/E-mail :</label>
+          <input
+            type="text"
+            name="register_identifier"
+            id="register_identifier"
+            placeholder="Username/E-mail "
+          />
+          <div class="indicator">
+            <div class="upper_q"></div>
+            <div class="lower_q"></div>
+          </div>
+        </div>
+
+        <div class="input_mobile_no query_box">
+          <label for="mobile_no">Mobile no :</label>
+          <input
+            type="text"
+            name="mobile_no"
+            id="mobile_no"
+            placeholder="eg : 01XXXXXXXXX"
+          />
+          <div class="indicator">
+            <div class="upper_q"></div>
+            <div class="lower_q"></div>
+          </div>
+        </div>
+
+        <div class="input_select_birthdate query_box">
+          <label for="select_birthdate">Birth-date : </label>
+          <input type="date" name="select_birthdate" id="select_birthdate" />
+          <div class="indicator">
+            <div class="upper_q"></div>
+            <div class="lower_q"></div>
+          </div>
+        </div>
+
+        <div class="input_password query_box">
+          <label for="register_password">Password :</label>
+          <input
+            type="text"
+            name="register_password"
+            id="register_password"
+            placeholder="Within 12 characters"
+          />
+          <div class="indicator">
+            <div class="upper_q"></div>
+            <div class="lower_q"></div>
+          </div>
+        </div>
+
+        <div class="input_password query_box">
+          <label for="reenter_password">Re-enter password :</label>
+          <input
+            type="text"
+            name="reenter_password"
+            id="reenter_password"
+            placeholder="Re-write password"
+          />
+          <div class="indicator">
+            <div class="upper_q"></div>
+            <div class="lower_q"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="navigation query_box">
+        <button class="login">Login</button>
+        <button class="register">Register</button>
+      </div>
+    </section>
+  </body>
+</html>
