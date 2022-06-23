@@ -11,38 +11,42 @@
     <script defer src="./database_njs.js"></script>
   </head>
   <body>
-    <section class="page_introduction_details">
+    <section class="page_inthoduction_details">
       <h1>Login/Registration page</h1>
     </section>
 
     <section class="main_container">
       <div class="inner_container_login parent_container">
         <div class="input_identifier query_box">
-          <label for="identifier">Username/E-mail :</label>
+          <label for="identifier">Mobile No:</label>
           <input
-            type="text"
-            name="identifier"
-            id="identifier"
-            placeholder="Username/Email"
+            type="tel"
+            name="text"
+            id="Mobile_login"
+            placeholder="Mobile No"
+            class="input"
           />
           <div class="indicator">
             <div class="upper_q"></div>
             <div class="lower_q"></div>
           </div>
+          <div class="floating_indicator_message">Can't be empty.</div>
         </div>
 
         <div class="input_password query_box">
           <label for="password">Password :</label>
           <input
-            type="text"
+            type="password"
             name="password"
             id="password"
             placeholder="User password"
+            class="input"
           />
           <div class="indicator">
             <div class="upper_q"></div>
             <div class="lower_q"></div>
           </div>
+          <div class="floating_indicator_message">Can't be empty.</div>
         </div>
       </div>
 
@@ -50,72 +54,217 @@
         <div class="input_identifier query_box">
           <label for="register_identifier">Username/E-mail :</label>
           <input
-            type="text"
+            type="email"
             name="register_identifier"
             id="register_identifier"
-            placeholder="Username/E-mail "
+            placeholder="Username/E-mail"
+            class="input"
           />
           <div class="indicator">
             <div class="upper_q"></div>
             <div class="lower_q"></div>
           </div>
+          <div class="floating_indicator_message">Can't be empty.</div>
         </div>
 
         <div class="input_mobile_no query_box">
           <label for="mobile_no">Mobile no :</label>
           <input
-            type="text"
+            type="tel"
             name="mobile_no"
             id="mobile_no"
             placeholder="eg : 01XXXXXXXXX"
+            class="input"
           />
           <div class="indicator">
             <div class="upper_q"></div>
             <div class="lower_q"></div>
           </div>
+          <div class="floating_indicator_message">Can't be empty.</div>
         </div>
 
         <div class="input_select_birthdate query_box">
           <label for="select_birthdate">Birth-date : </label>
-          <input type="date" name="select_birthdate" id="select_birthdate" />
+          <input
+            type="date"
+            name="select_birthdate"
+            id="select_birthdate"
+            class="input"
+          />
           <div class="indicator">
             <div class="upper_q"></div>
             <div class="lower_q"></div>
           </div>
+          <div class="floating_indicator_message">Can't be empty.</div>
         </div>
 
         <div class="input_password query_box">
           <label for="register_password">Password :</label>
           <input
-            type="text"
+            type="password"
             name="register_password"
             id="register_password"
             placeholder="Within 12 characters"
+            class="input"
           />
           <div class="indicator">
             <div class="upper_q"></div>
             <div class="lower_q"></div>
           </div>
+          <div class="floating_indicator_message">Can't be empty.</div>
         </div>
 
         <div class="input_password query_box">
           <label for="reenter_password">Re-enter password :</label>
           <input
-            type="text"
+            type="password"
             name="reenter_password"
             id="reenter_password"
             placeholder="Re-write password"
+            class="input"
           />
           <div class="indicator">
             <div class="upper_q"></div>
             <div class="lower_q"></div>
           </div>
+          <div class="floating_indicator_message">Can't be empty.</div>
+        </div>
+
+        <div class="input_password query_box">
+          <label for="reenter_password">Register as :</label>
+          <select name="catagory" id="catag" class="input">
+            <option value="Admin">Admin</option>
+            <option value="Teacher">Teacher</option>
+            <option value="Student">Student</option>
+          </select>
+          <div class="indicator">
+            <div class="upper_q"></div>
+            <div class="lower_q"></div>
+          </div>
+          <div class="floating_indicator_message">Can't be empty.</div>
         </div>
       </div>
 
       <div class="navigation query_box">
         <button class="login">Login</button>
         <button class="register">Register</button>
+      </div>
+    </section>
+
+    <section class="info_box"><p>please login to continue.</p></section>
+
+    <section class="user_page">
+      <div class="user_header">
+        <h2>Welcome user</h2>
+        <button class="logout">Logout</button>
+      </div>
+
+      <div class="user_content_container">
+        <div class="db_1 user_page_content">
+          <h3>Admin table</h3>
+          <div class="db_1_tb table"></div>
+          <button class="add_row">Add</button>
+        </div>
+        <div class="db_2 user_page_content">
+          <h3>Student table</h3>
+          <div class="db_1_tb table"></div>
+          <button class="add_row">Add</button>
+        </div>
+        <div class="db_3 user_page_content">
+          <h3>Teacher table</h3>
+          <div class="db_1_tb table"></div>
+          <button class="add_row">Add</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="query_manipulation_box">
+      <div class="manipulation_box">
+        <div class="field_container">
+          <div class="query_box">
+            <label for="UserName/Email">UserName/Email : </label>
+            <input
+              type="email"
+              name="email"
+              id="email_manipulate"
+              placeholder="Email"
+              class="input"
+            />
+            <div class="indicator">
+              <div class="upper_q"></div>
+              <div class="lower_q"></div>
+            </div>
+            <div class="floating_indicator_message">Can't be empty.</div>
+          </div>
+
+          <div class="query_box">
+            <label for="Mobile No">Mobile No : </label>
+            <input
+              type="tel"
+              name="text"
+              id="MobileNo_manipulate"
+              placeholder="Mobile No"
+              class="input"
+            />
+            <div class="indicator">
+              <div class="upper_q"></div>
+              <div class="lower_q"></div>
+            </div>
+            <div class="floating_indicator_message">Can't be empty.</div>
+          </div>
+
+          <div class="query_box">
+            <label for="Birth-date">Birth-date : </label>
+            <input
+              type="date"
+              name="date"
+              id="date_manipulate"
+              placeholder="Birth-date"
+              class="input"
+            />
+            <div class="indicator">
+              <div class="upper_q"></div>
+              <div class="lower_q"></div>
+            </div>
+            <div class="floating_indicator_message">Can't be empty.</div>
+          </div>
+
+          <div class="query_box">
+            <label for="password">Password :</label>
+            <input
+              type="password"
+              name="password"
+              id="password_manipulate"
+              placeholder="User password"
+              class="input"
+            />
+            <div class="indicator">
+              <div class="upper_q"></div>
+              <div class="lower_q"></div>
+            </div>
+            <div class="floating_indicator_message">Can't be empty.</div>
+          </div>
+
+          <div class="query_box">
+            <label for="Role">Role : </label>
+            <select name="catagory" id="catag" class="input">
+              <option value="Admin">Admin</option>
+              <option value="Teacher">Teacher</option>
+              <option value="Student">Student</option>
+            </select>
+            <div class="indicator">
+              <div class="upper_q"></div>
+              <div class="lower_q"></div>
+            </div>
+            <div class="floating_indicator_message">Can't be empty.</div>
+          </div>
+        </div>
+
+        <div class="manipulation_btns query_box">
+          <button class="delete">Delete</button>
+          <button class="update">Update</button>
+          <button class="add">Add</button>
+        </div>
       </div>
     </section>
   </body>

@@ -9,10 +9,15 @@
   position: relative;
 }
 
+body {
+  overflow: hidden;
+}
+
 h1,
 h2,
 h3 {
   text-align: center;
+  font-weight: 400;
 }
 
 button {
@@ -21,21 +26,30 @@ button {
   padding: 5px 20px;
 }
 
-input {
+input,
+#catag {
   border-radius: 1px;
   border: 1px solid rgba(55, 55, 55, 0.399);
   padding: 4px;
   width: 200px;
+  outline: none;
 }
 
-input::placeholder {
+label {
+  font-weight: 300;
+}
+
+input::placeholder,
+#catag {
   color: rgba(54, 55, 55, 0.44);
   text-align: center;
 }
 
-input:focus {
+input:focus,
+#catag:focus {
   outline: 1px solid rgba(155, 152, 152, 0.407);
   border-radius: 5px;
+  color: black;
 }
 
 button:hover {
@@ -85,6 +99,7 @@ button:hover {
   justify-content: center;
   flex-direction: column;
   opacity: 0;
+  pointer-events: none;
 }
 
 .upper_q {
@@ -99,6 +114,24 @@ button:hover {
   width: 2px;
   border-radius: 5px;
   background-color: white;
+}
+
+.floating_indicator_message {
+  max-width: 200px;
+  width: max-content;
+  height: max-content;
+  position: absolute;
+  background-color: rgba(240, 76, 76, 0.495);
+  right: -129px;
+  font-size: 13px;
+  font-weight: 300;
+  opacity: 0;
+  border-radius: 5px;
+  padding: 4px;
+}
+
+.indicator:hover ~ .floating_indicator_message {
+  opacity: 1;
 }
 
 .query_box:hover {
@@ -135,6 +168,93 @@ button:hover {
   opacity: 0;
 }
 
+.info_box {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+  text-align: center;
+  z-index: 100;
+  font-weight: 300;
+  opacity: 0;
+}
+
+.user_page {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgb(215, 218, 218);
+  transform: translateX(100%);
+  top: 0;
+  text-align: center;
+}
+
+.user_page_content {
+  background-color: rgb(206, 213, 213);
+  /* border: 1px solid; */
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2px;
+  background-color: rgb(255, 255, 255);
+}
+
+.user_content_container {
+  overflow: auto;
+  display: grid;
+  height: 90%;
+  margin: 1px;
+  gap: 2px;
+  grid-template-columns: auto auto auto;
+}
+
+.table,
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+}
+
+table,
+th,
+td {
+  border-bottom: 1px solid black;
+  padding: 5px;
+  font-size: 8px;
+}
+
+tr:hover {
+  background-color: rgb(185, 182, 182);
+  cursor: pointer;
+}
+
+.manipulation_box {
+  background-color: white;
+  padding: 10px;
+}
+
+.query_manipulation_box {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.212);
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-100%);
+}
+
+.add {
+  display: none;
+}
+
+.add_row {
+  display: none;
+}
+
 @media screen and (max-width: 613px) {
   .query_box {
     flex-direction: column;
@@ -142,11 +262,18 @@ button:hover {
     justify-content: center;
   }
 
-  input {
+  input,
+  #catag {
     width: 100%;
   }
 
   .indicator {
     top: 32px;
+    right: 8px;
+  }
+
+  .floating_indicator_message {
+    right: 0;
+    bottom: 60%;
   }
 }
