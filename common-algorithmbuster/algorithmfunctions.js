@@ -25,7 +25,6 @@ function merge(array, left, mid, right, originalInput) {
             indexOfSubArrayTwo++;
         }
         indexOfMergedArray++;
-        backupVariables.globalteration++;
     }
 
     while (indexOfSubArrayOne < subArrayOne) {

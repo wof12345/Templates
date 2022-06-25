@@ -5,6 +5,7 @@
     font-size: 16px;
     transition: .5s;
     font-family: 'Roboto', sans-serif;
+    transform: .5s;
 }
 
 body {
@@ -117,6 +118,12 @@ button:hover {
     text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.input_gen_cont:hover,
+.input_gen_cont>label:hover {
+    cursor: pointer;
 }
 
 .input_gen_cont>label {
@@ -131,4 +138,35 @@ button:hover {
 
 .input_gen_cont>* {
     margin: 10px;
+}
+
+.arrow_shape {
+    width: 20px;
+    border-radius: 10px;
+    padding: 1px;
+    position: absolute;
+    right: 262px;
+    top: 140px;
+}
+
+.arrow_shape>* {
+    margin: 5px;
+}
+
+.arrow_shape:hover {
+    background-color: rgba(170, 177, 177, 0.541);
+}
+
+.shape_item {
+    width: 10px;
+    height: 2px;
+    background-color: black;
+}
+
+.arrow_shape>.i_1 {
+    transform: rotate(50deg);
+}
+
+.arrow_shape>.i_2 {
+    transform: rotate(-50deg);
 }

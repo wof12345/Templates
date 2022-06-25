@@ -34,6 +34,8 @@
                 <!-- <option value="Binary-sort">Binary-sort</option> -->
                 <option value="Heap-sort">Heap-sort</option>
                 <option value="Insertion-sort">Insertion-sort</option>
+                <option value="Binary-search">Binary-search</option>
+                <option value="Exponentiation by squaring">Exponentiation by squaring</option>
                 <option value="BFS">BFS</option>
                 <option value="DFS">DFS</option>
                 <option value="Dijkstra">Dijkstra</option>
@@ -62,7 +64,12 @@
         </div>
 
         <div class="input_gen_cont">
-            <label for="input_gen">Number of inputs to generate : <br>(number of inputs and input <br> range seperated by comma.)</label>
+            <div class="arrow_shape">
+                <div class="shape_item i_1"></div>
+                <div class="shape_item i_2"></div>
+            </div>
+
+            <label class='generation_guide' for="input_gen">Number of inputs to generate : <br>(number of inputs and input <br> range seperated by comma.<br>  e.g: (number of elements,range)<br>  (200,600))</label>
             <input type="text" id="input_gen">
 
             <button class="generate">Generate</button>

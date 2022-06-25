@@ -75,6 +75,10 @@ function getInfo(name) {
             How to build the heap? <br>
             Heapify procedure can be applied to a node only if its children nodes are heapified. So the heapification must be performed in the bottom-up order.<br>
             Source : GeekforGeeks</p>`
+        case 'Binary-search':
+            return ``
+        case 'Exponentiation by squaring':
+            return `Input should be given as (base, exponent): e.g :(10,10000)`
         case 'BFS':
             return `Breadth-First Traversal (or Search) for a graph is similar to Breadth-First Traversal of a tree (See method 2 of this post).<br>
             The only catch here is, unlike trees, graphs may contain cycles, so we may come to the same node again.<br>

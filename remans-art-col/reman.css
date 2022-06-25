@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100;300;500;700&display=swap");
+@import url("./remanfeature.css");
+@import url("./dedicated_art_page.css");
+@import url("./showcasepage.css");
+
+* {
+  margin: 0;
+  padding-left: 0;
+  transition: 0.5s;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-weight: 300;
+  color: #444;
+  line-height: 1.9;
+  overflow-x: hidden;
+  background-color: #ffffff;
+  font-family: "Anek Malayalam", sans-serif;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.header {
+  padding: 0 3rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 9rem;
+  right: 0;
+  padding: 0 6rem;
+  z-index: 100;
+  background-color: #ffffff;
+  z-index: 100;
+}
+
+.nav_aside_links {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  top: 0;
+  right: 0;
+  /* bottom: 0; */
+  padding: 1rem;
+  border-left: 1px solid rgba(0, 0, 0, 0.245);
+  /* background-color: #bde4c469; */
+  z-index: 100;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  list-style: none;
+}
+
+.nav_aside_links > * {
+  margin: 1rem;
+}
+
+.nav__logo {
+  height: 1.8rem;
+  transition: all 0.3s;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.nav a,
+.nav_aside a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  transition: all 0.3s ease-out;
+}
+
+.nav__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 4rem;
+}
+
+.nav__item:hover {
+  cursor: pointer;
+  box-shadow: 0px 2px 0px rgba(56, 56, 56, 0.167);
+}
+
+.nav__link--btn {
+  border: none;
+  border-radius: 3rem;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0);
+  transition: all 0.3s ease-out;
+}
+
+.nav__link--btn:hover {
+  background-color: white;
+  background-size: 100% 2px, auto;
+}
+
+.main_container {
+  margin-top: 40px;
+  width: 100vw;
+}
+
+svg {
+  fill: black;
+}
+
+svg:hover {
+  background-color: black;
+  fill: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.403);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(85, 85, 85, 0.425);
+}
+
+@media screen and (max-width: 990px) {
+  .nav__links {
+    display: none;
+  }
+
+  .nav_aside_links {
+    display: flex;
+    top: -240px;
+    right: 0;
+    position: absolute;
+    background-color: rgba(252, 252, 252, 0.819);
+  }
+
+  .nav_aside_links:hover {
+    top: 0px;
+  }
+}

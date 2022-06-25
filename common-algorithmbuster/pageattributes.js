@@ -5,137 +5,289 @@ const generatorCont = document.querySelector(`.input_gen_cont`);
 let selectionValue = document.getElementById(`choice`).value;
 // console.log(mainText);
 
+pageElements.choice.addEventListener("change", () => {
+  setInfo(getInfo(pageElements.choice.value));
+  selectionValue = document.getElementById(`choice`).value;
+  usefulVariables.currentAlgorithm = selectionValue;
+  pageElements.input_gen_cont.style = "";
 
-pageElements.choice.addEventListener('change', () => {
-    setInfo(getInfo(pageElements.choice.value));
-    selectionValue = document.getElementById(`choice`).value;
-    mainText.textContent = 'Input for the algorithm (If array, elements should be seperated by ",". Note that iterations are not balanced :)';
-    if (selectionValue === 'BFS' || selectionValue === 'DFS' || selectionValue === 'Dijkstra') {
-        console.log(selectionValue);
-        generatorCont.style.display = 'none';
-        mainText.textContent = 'Input should be seperated by space and comma. E.g. (2 3,4 5,6 7). Note that first line only represents the number of nodes and edges. If there is no weight then the third input followed by space should be 0, Eliminating input should be a single  node denoting the source. If there is a target it should be followed by the source.'
-    } else {
-        generatorCont.style.display = '';
-        mainText.textContent = 'Input for the algorithm (If array, elements should be seperated by ",". Note that iterations are not balanced :)';
-    }
-})
+  pageElements.floater_indicator.style = ` transform: rotate(180deg);`;
+  pageLogics.floater_gen_shrunk = true;
+  pageElements.input_gen_cont.style = `transform: translateX(270px);`;
 
-executionButton.addEventListener('click', () => {
-    clear();
-    mainText.textContent = 'Input for the algorithm (If array, elements should be seperated by ",". Note that iterations are not balanced :)';
+  if (
+    selectionValue === "BFS" ||
+    selectionValue === "DFS" ||
+    selectionValue === "Dijkstra"
+  ) {
+    console.log(selectionValue);
+    pageElements.generation_guide.innerHTML = preDefinedText.genTextGraph;
+    mainText.textContent = preDefinedText.inputTextGraph;
+  } else if (selectionValue === "Binary-search") {
+    pageElements.generation_guide.innerHTML = preDefinedText.genTextArray;
+    mainText.textContent = preDefinedText.inputTextSearch;
+  } else if (selectionValue === "Exponentiation by squaring") {
+    pageElements.input_gen_cont.style = "display : none;";
+    mainText.textContent = preDefinedText.inputTextSingleInput;
+  } else {
+    pageElements.generation_guide.innerHTML = preDefinedText.genTextArray;
+    generatorCont.style.display = "";
+    mainText.textContent = preDefinedText.inputTextArray;
+  }
+});
 
-    const selectionValue = document.getElementById(`choice`).value;
-    let input = document.getElementById(`input`).value;
-    let givenArray = input.split(',');
-    // console.log(givenArray);
+executionButton.addEventListener("click", () => {
+  clear();
+  mainText.textContent =
+    'Input for the algorithm (If array, elements should be seperated by ",". Note that iterations are not balanced :)';
 
+  const selectionValue = document.getElementById(`choice`).value;
+  let input = document.getElementById(`input`).value;
+  let givenArray = input.split(",");
+  let singleValueInput = +givenArray[0];
+  let singleValueInput1 = +givenArray[1];
+  let currentValue = givenArray.length;
+  let originalInput = [];
+  originalInput += givenArray;
 
-    if (selectionValue !== 'BFS' && selectionValue !== 'DFS' && selectionValue !== 'Dijkstra') {
-        givenarray = numberify(givenArray);
-    }
-    if (selectionValue === 'Selection-sort') {
-        selectionSort(givenArray);
-    }
-    if (selectionValue === 'Insertion-sort') {
-        insertionsort(givenArray);
-    }
-    if (selectionValue === 'Merge-sort') {
-        let originalInput = [];
-        originalInput += givenArray;
-        timer('start');
-        mergesort(givenArray, 0, givenArray.length - 1, originalInput);
-        const timeTaken = timer('stop');
-        iterationPush(`Iterated : ${backupVariables.globalteration-1} times.`, `Time taken : ${timeTaken} seconds`, ``, `Current collection : ${givenArray}`, `Original collection : ${originalInput}`)
-        invoke_floater('left:10px;top:20px', `Iterated : ${backupVariables.globalteration-1} times. Time taken : ${timeTaken} seconds`, 2000);
-        backupVariables.lastTime = timeTaken;
-    }
-    if (selectionValue === 'Quick-sort') {
-        let originalInput = [];
-        originalInput += givenArray;
-        timer('start');
-        quickSort(givenArray, 0, givenArray.length - 1, originalInput);
-        const timeTaken = timer('stop');
-        iterationPush(`Iterated : ${backupVariables.globalteration-1} times.`, `Time taken : ${timeTaken} seconds`, ``, `Current collection : ${givenArray}`, `Original collection : ${originalInput}`)
-        invoke_floater('left:10px;top:20px', `Iterated : ${backupVariables.globalteration-1} times. Time taken : ${timeTaken} seconds`, 2000);
-        backupVariables.lastTime = timeTaken;
-    }
-    if (selectionValue === 'Heap-sort') {
-        heapSort(givenArray, givenArray.length);
-    }
-    if (selectionValue === 'Bubble-sort') {
-        bubblesort(givenArray);
-    }
-    if (selectionValue === 'BFS') {
-        // console.log(givenArray);
-        processGraph(givenArray, selectionValue);
+  if (
+    selectionValue !== "BFS" &&
+    selectionValue !== "DFS" &&
+    selectionValue !== "Dijkstra"
+  ) {
+    givenArray = numberify(givenArray);
+  }
+  if (selectionValue === "Selection-sort") {
+    timer("start");
+    selectionSort(givenArray, originalInput);
+    backupVariables.lastTime = timer("stop");
+    invoke_floater(
+      "left:10px;top:20px",
+      `Iterated : ${backupVariables.globalteration - 1} times. Time taken : ${
+        backupVariables.lastTime
+      } seconds`,
+      2000
+    );
+  }
+  if (selectionValue === "Insertion-sort") {
+    timer("start");
+    insertionsort(givenArray, originalInput);
+    backupVariables.lastTime = timer("stop");
+    invoke_floater(
+      "left:10px;top:20px",
+      `Iterated : ${backupVariables.globalteration - 1} times. Time taken : ${
+        backupVariables.lastTime
+      } seconds`,
+      2000
+    );
+  }
+  if (selectionValue === "Merge-sort") {
+    timer("start");
+    mergesort(givenArray, 0, givenArray.length - 1, originalInput);
+    iterationPush(
+      `Iterated : ${backupVariables.globalteration - 1} times.`,
+      `Time taken : ${backupVariables.lastTime} seconds`,
+      ``,
+      `Current collection : ${givenArray}`,
+      `Original collection : ${originalInput}`
+    );
+    backupVariables.lastTime = timer("stop");
+    invoke_floater(
+      "left:10px;top:20px",
+      `Iterated : ${backupVariables.globalteration - 1} times. Time taken : ${
+        backupVariables.lastTime
+      } seconds`,
+      2000
+    );
+  }
+  if (selectionValue === "Quick-sort") {
+    timer("start");
+    quickSort(givenArray, 0, givenArray.length - 1, originalInput);
+    iterationPush(
+      `Iterated : ${backupVariables.globalteration - 1} times.`,
+      `Time taken : ${backupVariables.lastTime} seconds`,
+      ``,
+      `Current collection : ${givenArray}`,
+      `Original collection : ${originalInput}`
+    );
+    backupVariables.lastTime = timer("stop");
+    invoke_floater(
+      "left:10px;top:20px",
+      `Iterated : ${backupVariables.globalteration - 1} times. Time taken : ${
+        backupVariables.lastTime
+      } seconds`,
+      2000
+    );
+  }
+  if (selectionValue === "Heap-sort") {
+    timer(`start`);
+    heapSort(givenArray, givenArray.length, originalInput);
+    backupVariables.lastTime = timer("stop");
+    invoke_floater(
+      "left:10px;top:20px",
+      `Iterated : ${backupVariables.globalteration - 1} times. Time taken : ${
+        backupVariables.lastTime
+      } seconds`,
+      2000
+    );
+  }
+  if (selectionValue === "Bubble-sort") {
+    timer(`start`);
+    bubblesort(givenArray, originalInput);
+    backupVariables.lastTime = timer("stop");
+    invoke_floater(
+      "left:10px;top:20px",
+      `Iterated : ${backupVariables.globalteration - 1} times. Time taken : ${
+        backupVariables.lastTime
+      } seconds`,
+      2000
+    );
+  }
+  if (selectionValue === "Binary-search") {
+    timer(`start`);
+    let targetValue = givenArray.pop();
+    givenArray.sort((a, b) => a - b);
+    let foundAt = binarySearch(
+      givenArray,
+      0,
+      currentValue - 1,
+      targetValue,
+      "simulation"
+    );
+    backupVariables.lastTime = timer("stop");
+    if (foundAt !== false)
+      invoke_floater(
+        "left:10px;top:20px",
+        `Iterated : ${
+          backupVariables.globalteration - 1
+        } times. Found ${targetValue} at ${foundAt}. Time taken : ${
+          backupVariables.lastTime
+        } seconds`,
+        2000
+      );
+    else
+      invoke_floater(
+        "left:10px;top:20px",
+        `Iterated : ${
+          backupVariables.globalteration - 1
+        } times. ${targetValue} does not exist in this collection. Time taken : ${
+          backupVariables.lastTime
+        } seconds`,
+        2000
+      );
+  }
+  if (selectionValue === "Exponentiation by squaring") {
+    timer(`start`);
+    let value = exponentiationBySquaring(
+      singleValueInput,
+      singleValueInput1,
+      1000000007
+    );
+    backupVariables.lastTime = timer("stop");
+    let square = singleValueInput ** singleValueInput1;
 
-        timer('start');
-        BFS();
-        backupVariables.lastTime = timer('stop');
-        currentGraphInfo.visitState.sort((a, b) => a - b);
-        // console.log('Nodes and edges : ', currentGraphInfoEN);
-    }
-    if (selectionValue === 'DFS') {
-        console.log(selectionValue);
-        processGraph(givenArray, selectionValue);
+    if (square < Infinity) console.log(`BigInt : ${BigInt(square).toString()}`);
 
-        timer('start');
-        DFS(currentGraphInfo.source, -1);
-        backupVariables.lastTime = timer('stop');
-        // currentGraphInfo.iterationSerial.shift();
-        console.log(currentGraphInfo.tsSortstartTime);
-        console.log(currentGraphInfo.tsSortendTime);
-        // console.log('Nodes and edges : ', currentGraphInfoEN);
-        invoke_floater('left:10px;top:20px', `Iterated : ${backupVariables.globalteration-1} times. There are ${currentGraphInfo.cycles} cycles in this graph.`, 2000);
-    }
-    if (selectionValue === 'Dijkstra') {
-        processGraph(givenArray, selectionValue);
-        timer('start');
-        Dijkstra(currentGraphInfo.target);
-        backupVariables.lastTime = timer('stop');
-    }
-    console.log(currentGraphInfo.iterationSerial);
-    console.log(currentGraphInfo.visitState);
+    invoke_floater(
+      "left:10px;top:20px",
+      `Iterated : ${
+        backupVariables.globalteration - 1
+      } times. The result is ${value}. Time taken : ${
+        backupVariables.lastTime
+      } seconds`,
+      2000
+    );
+  }
+  if (selectionValue === "BFS") {
+    currentValue = processGraph(givenArray, selectionValue);
+    timer("start");
+    BFS();
+    backupVariables.lastTime = timer("stop");
+    currentGraphInfo.visitState.sort((a, b) => a - b);
+  }
+  if (selectionValue === "DFS") {
+    currentValue = processGraph(givenArray, selectionValue);
+    timer("start");
+    DFS(currentGraphInfo.source, -1);
+    backupVariables.lastTime = timer("stop");
+    invoke_floater(
+      "left:10px;top:20px",
+      `Iterated : ${backupVariables.globalteration - 1} times. There are ${
+        currentGraphInfo.cycles
+      } cycles in this graph.`,
+      2000
+    );
+  }
+  if (selectionValue === "Dijkstra") {
+    currentValue = processGraph(givenArray, selectionValue);
+    timer("start");
+    Dijkstra(currentGraphInfo.target);
+    backupVariables.lastTime = timer("stop");
+  }
+  console.log(currentGraphInfo.iterationSerial);
+  console.log(currentGraphInfo.visitState);
 
-    resetGraphInfo();
-    updateGraph(selectionValue, givenArray.length, backupVariables.lastTime);
-    // console.log(lastIterationQueries.iterations.length, lastIterationQueries.iterations);
-    // console.log(givenArray);
+  resetGraphInfo();
+  updateGraph(selectionValue, currentValue, backupVariables.lastTime);
+});
 
+resultClearButton.addEventListener("click", () => {
+  clear();
+});
 
+pageElements.floater.addEventListener("click", () => {
+  if (pageLogics.floater_inflated) deflate_floater();
+  else inflate_floater();
+});
 
-})
+pageElements.display_toggle.addEventListener("click", () => {
+  if (!backupVariables.iterationShown) {
+    iteration_toggle("show");
+  } else {
+    iteration_toggle("hide");
+  }
+});
 
-resultClearButton.addEventListener('click', () => {
-    clear();
-})
+pageElements.generationButton.addEventListener("click", () => {
+  resetGenerationInfo();
+  let number = pageElements.input_box.value;
+  number = number.split(",");
 
-pageElements.floater.addEventListener('click', () => {
-    deflate_floater();
-})
+  numberify(number);
 
-pageElements.display_toggle.addEventListener('click', () => {
-    if (!backupVariables.iterationShown) {
-        iteration_toggle('show')
-    } else {
-        iteration_toggle('hide')
-    }
-})
+  let tempString = "";
+  // console.log(number);
 
-pageElements.generationButton.addEventListener('click', () => {
-    let number = pageElements.input_box.value;
-    number = number.split(',');
-    console.log(number);
+  if (
+    usefulVariables.currentAlgorithm === "BFS" ||
+    usefulVariables.currentAlgorithm === "DFS" ||
+    usefulVariables.currentAlgorithm === "Dijkstra"
+  ) {
+    tempString = generateGraph(number);
+  } else tempString = generateInputArray(number);
 
-    let tempString = '';
-    for (let it = 0; it < number[0]; it++) {
-        tempString += generateRandomNumber(number[1]);
-        if (it + 1 != number[0]) {
-            tempString += ",";
-        }
-    }
-    document.getElementById(`input`).value = tempString;
-})
+  document.getElementById(`input`).value = tempString;
+});
+
+pageElements.floater_indicator.addEventListener("click", () => {
+  if (!pageLogics.floater_gen_shrunk) {
+    pageElements.floater_indicator.style = ` transform: rotate(180deg);`;
+    pageLogics.floater_gen_shrunk = true;
+    pageElements.input_gen_cont.style = `transform: translateX(270px);`;
+  } else {
+    pageElements.floater_indicator.style = ``;
+    pageLogics.floater_gen_shrunk = false;
+    pageElements.input_gen_cont.style = ``;
+  }
+});
+
+pageElements.input.addEventListener("focus", () => {
+  pageElements.input.style = `width:100%;`;
+});
+
+pageElements.input.addEventListener("blur", () => {
+  pageElements.input.style = ``;
+});
 
 // currentGraphInfo.priorityQueue.push('23', 1);
 // currentGraphInfo.priorityQueue.push('25', 1);
@@ -146,3 +298,7 @@ pageElements.generationButton.addEventListener('click', () => {
 // currentGraphInfo.priorityQueue.removeAll();
 
 // console.log(currentGraphInfo.priorityQueue.printPQueue());
+
+// let array = [2, 4, 45, 5, 12, 3, 10, 1]
+// array.sort((a, b) => a - b)
+// console.log(binarySearch(array, 0, array.length - 1, 11), array);

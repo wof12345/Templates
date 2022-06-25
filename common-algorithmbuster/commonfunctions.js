@@ -1,5 +1,48 @@
-function generateRandomNumber(range) {
-    return (Math.random() * range).toFixed(0);
+function generateRandomNumber(arrayToCompare, lowerrange, upperrange, numberNottoUse) {
+    if (lowerrange > upperrange) {
+        lowerrange = upperrange;
+    }
+    let generatedNumber = +((((Math.random() * (upperrange - lowerrange + 1)) + lowerrange) - 1).toFixed(0));
+    // console.log(!binarySearch(arrayToCompare, 0, arrayToCompare.length - 1, generatedNumber), generatedNumber, arrayToCompare, lowerrange, upperrange);
+
+    if (graphGenerationTracker.infiniteStackTracker > 500) {
+        graphGenerationTracker.infiniteStackTracker = 0;
+        return 1;
+    }
+    graphGenerationTracker.infiniteStackTracker++;
+    if (!binarySearch(arrayToCompare, 0, arrayToCompare.length - 1, generatedNumber, '') && generatedNumber !== numberNottoUse && generatedNumber > lowerrange) {
+        graphGenerationTracker.infiniteStackTracker = 0;
+        return generatedNumber;
+    } else {
+        return generateRandomNumber(arrayToCompare, lowerrange, upperrange, numberNottoUse);
+    }
+}
+
+function printSet(set) {
+    let srt = '';
+    set.forEach(function(value) {
+        srt += value + " ";
+    })
+    return srt;
+}
+
+function setToArray(set) {
+    let tempArr = [];
+    set.forEach(element => {
+        tempArr.push(element)
+    });
+    return tempArr;
+}
+
+function stringyfyPQ(PQ) {
+    let tempArr = new Set();
+    PQ.split(" ").forEach(elm => {
+            if (elm !== "" && elm !== " ")
+                tempArr.add(+elm);
+        })
+        // console.log(PQ, tempArr);
+
+    return setToArray(tempArr);
 }
 
 function clear() {
@@ -28,14 +71,11 @@ function timer(command) {
     if (command === `start`) {
         let dateob = performance.now();
         lastTimerValue = dateob;
-        console.log('(Start)');
-        // console.log(dateob, lastTimerValue);
     }
 
     if (command === `stop`) {
         let dateob = performance.now();
-        console.log('Time taken to execute :(Stop) ', dateob - lastTimerValue);
-        return Math.abs(dateob - lastTimerValue) / 1000;
+        return (Math.abs(dateob - lastTimerValue) / 1000).toFixed(8);
     }
 }
 
@@ -60,11 +100,18 @@ function iterationView(collection) {
 
 function deflate_floater() {
     pageElements.floater.style = `left:-400px;top:0;`;
+    pageLogics.floater_inflated = false;
+}
+
+function inflate_floater() {
+    pageElements.floater.style = `left:10px`;
+    pageLogics.floater_inflated = true;
 }
 
 function invoke_floater(style, text, duration) {
     pageElements.floater.style = style;
     pageElements.floater_text.textContent = text;
+    pageLogics.floater_inflated = true;
 
     if (duration < 2000) {
         setTimeout(() => {
@@ -170,13 +217,13 @@ function updateGraph(algorithm, label, time) {
         // console.log(chartCurrentData.labels, chartCurrentData.data);
 
         updateChartNecessity(algorithm);
-    } else if (algorithm === 'Insertion-sort') {
+    } else if (algorithm === 'Binary-search') {
         // console.log(algorithm, label, time);
 
-        chartData.algo6.push(time);
-        chartData.algo6labels.push(label);
+        chartData.algo10.push(time);
+        chartData.algo10labels.push(label);
 
-        assignTemp(chartData.algo6, chartData.algo6labels);
+        assignTemp(chartData.algo10, chartData.algo10labels);
         // console.log(chartCurrentData.labels, chartCurrentData.data);
 
         updateChartNecessity(algorithm);
@@ -199,6 +246,16 @@ function updateGraph(algorithm, label, time) {
         chartData.algo8labels.push(label);
 
         assignTemp(chartData.algo8, chartData.algo8labels);
+        // console.log(chartCurrentData.labels, chartCurrentData.data);
+
+        updateChartNecessity(algorithm);
+    } else if (algorithm === 'Dijkstra') {
+        // console.log(algorithm, label, time);
+
+        chartData.algo9.push(time);
+        chartData.algo9labels.push(label);
+
+        assignTemp(chartData.algo9, chartData.algo9labels);
         // console.log(chartCurrentData.labels, chartCurrentData.data);
 
         updateChartNecessity(algorithm);
@@ -225,6 +282,20 @@ function resetGraphInfo() {
     currentGraphInfo.priorityQueue.removeAll();
 }
 
+function resetGenerationInfo() {
+    graphGenerationTracker.nodesUsedSoFar.removeAll();
+    graphGenerationTracker.nodesArray = [];
+    graphGenerationTracker.edgesUsedSofar = new Set();
+}
+
+function initiateGraphGen(nodes) {
+    // console.log(nodes);
+    for (let i = 0; i < nodes; i++) {
+        graphGenerationTracker.edgesUsedSofar[i + 1] = new Set();
+    }
+
+}
+
 function processGraph(relations, algorithm) {
 
     let currentGraphInfoTemp = relations.shift();
@@ -239,7 +310,7 @@ function processGraph(relations, algorithm) {
     } else
         currentGraphInfo.source = userConstants;
 
-    console.log(userConstants);
+    // console.log(userConstants);
 
     currentGraphInfo.priorityQueue.push(currentGraphInfo.source, 0);
     currentGraphInfo.currentArrayState.push(currentGraphInfo.source);
@@ -247,7 +318,7 @@ function processGraph(relations, algorithm) {
 
 
     for (let i = 0; i < currentGraphInfoEN[0]; i++) {
-        currentGraphInfo.graphRelations[i + 1] = [];
+        currentGraphInfo.graphRelations[i + 1] = new Set();
         currentGraphInfo.weights[i + 1] = [];
         if (algorithm === 'Dijkstra') {
             currentGraphInfo.visitState[i + 1] = Infinity;
@@ -260,13 +331,102 @@ function processGraph(relations, algorithm) {
         let localArr = relations[i].split(' ');
         // console.log("iteration : ", i, localArr[1], );
 
-        currentGraphInfo.graphRelations[localArr[0]].push(localArr[1]);
+        currentGraphInfo.graphRelations[localArr[0]].add(localArr[1]);
         currentGraphInfo.weights[localArr[0]].push(localArr[2]);
-        currentGraphInfo.graphRelations[localArr[1]].push(localArr[0]);
+        currentGraphInfo.graphRelations[localArr[1]].add(localArr[0]);
         currentGraphInfo.weights[localArr[1]].push(localArr[2]);
 
     }
     console.log("Graph rels : ", currentGraphInfo.graphRelations);
     console.log('Graph weights', currentGraphInfo.weights);
-    // console.log('Graph source and it\'s level', currentGraphInfo.source, currentGraphInfo.visitState);
+    return 'Nodes : ' + currentGraphInfo.nodes + ', Edges : ' + currentGraphInfo.edges + '.';
+}
+
+function generateInputArray(number) {
+    let tempString = '';
+    for (let it = 0; it < number[0]; it++) {
+        tempString += generateRandomNumber([], 0, number[1], 0);
+        if (it + 1 != number[0]) {
+            tempString += ",";
+        }
+    }
+    return tempString;
+}
+
+function generateGraph(number) {
+    let tempString = '';
+
+    let edgeCount = 0;
+    let maxEdgeCount = +number[1];
+    let currentNodeMaxEdge = 0;
+
+    let infiniteStackTracker = 0;
+
+    let maxNodeCount = +number[0];
+    let maxEdgeLimit = maxNodeCount;
+    initiateGraphGen(maxNodeCount)
+
+    let maximumPredefinedEdgeCount = Math.round((maxNodeCount * (maxNodeCount - 1)) / 2);
+    if (maxEdgeCount > maximumPredefinedEdgeCount) {
+        invoke_floater('left:10px;top:20px', `Maximum edge is ${maximumPredefinedEdgeCount}.`, 2000);
+        maxEdgeCount = number[1] = maximumPredefinedEdgeCount;
+        pageElements.input_box.value = number[0] + "," + number[1] + "," + number[2];
+    }
+
+    tempString = '' + number[0] + " " + number[1] + ",";
+    for (let i = 1;; i++, infiniteStackTracker++) {
+        if (i > maxNodeCount) { i = 1 }
+
+        graphGenerationTracker.nodesArray = [];
+        graphGenerationTracker.nodesUsedSoFar.removeAll();
+
+        graphGenerationTracker.edgesUsedSofar[i].forEach(element => {
+            let node = element;
+            graphGenerationTracker.nodesUsedSoFar.push(node, node);
+            graphGenerationTracker.nodesArray = stringyfyPQ(graphGenerationTracker.nodesUsedSoFar.printPQueue());
+        });
+
+        maxEdgeLimit = (maxNodeCount) - graphGenerationTracker.edgesUsedSofar[i].size;
+
+        if (maxEdgeLimit <= 0) {
+            maxEdgeLimit = 0;
+        }
+
+        currentNodeMaxEdge = generateRandomNumber([], 0, maxEdgeLimit - 1, 0);
+        if (edgeCount + currentNodeMaxEdge > maxEdgeCount) {
+            currentNodeMaxEdge = maxEdgeCount - edgeCount;
+        }
+
+        edgeCount += +currentNodeMaxEdge;
+
+        for (let j = 0; j < currentNodeMaxEdge; j++) {
+            let nodeToUse = +generateRandomNumber(graphGenerationTracker.nodesArray, 1, maxNodeCount, i);
+            graphGenerationTracker.nodesArray = [];
+            graphGenerationTracker.nodesUsedSoFar.push(nodeToUse, nodeToUse);
+            graphGenerationTracker.nodesArray = stringyfyPQ(graphGenerationTracker.nodesUsedSoFar.printPQueue());
+            tempString += i + " " + nodeToUse + " ";
+            if (+number[2] === 1) {
+                tempString += generateRandomNumber([], 0, maxEdgeCount, 0);
+            } else {
+                tempString += 0;
+            }
+            tempString += ',';
+        }
+
+        for (let n = 0; n < graphGenerationTracker.nodesArray.length; n++) {
+            graphGenerationTracker.edgesUsedSofar[graphGenerationTracker.nodesArray[n]].add(i);
+        }
+        // console.log(`Tracker : `, graphGenerationTracker.edgesUsedSofar);
+
+        graphGenerationTracker.parentNodesUsedSoFarArray = [];
+
+        if (edgeCount >= maxEdgeCount) {
+            break;
+        }
+
+    }
+    tempString += generateRandomNumber([], 2, maxNodeCount) + " " + generateRandomNumber([], 0, maxNodeCount, 0);
+    console.log(tempString);
+
+    return tempString;
 }
