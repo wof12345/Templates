@@ -130,6 +130,9 @@ function processData(data, indicatorsRef, indocatorCol) {
       passFlag = false;
     } else if (i === 1 && !currentFieldData.match(/^\d{11}$/)) {
       mobileFlag = false;
+    } else if (i === 5 && currentFieldData !== "Student") {
+      passFlag = false;
+      invokeInfoBox("red", "Registration only available for Students.");
     } else {
       switchIndicators([indicatorsRef[i]], "off");
     }
@@ -320,9 +323,9 @@ function validate(data, recievedDataVal, loggedin) {
 function validateRegInfo(indicators, floatingMessages) {
   if (userData[3] !== userData[4] && indicators.length > 5) {
     switchIndicators([indicators[3], indicators[4]], "on");
-    setIndicationMessage(floatingMessages[3], "Does not Match!");
+    etIndicationMessage(floatingMessages[3], "Does not Match!");
     setIndicationMessage(floatingMessages[4], "Does not Match!");
-    return;
+    eturn;
   }
   insertdata(userData);
 }
@@ -356,7 +359,7 @@ function errorIndicator() {
   switchIndicators([loginIndicators[0]], "on");
   setIndicationMessage(floatingIDMessageLog[0], "Does not exist!");
   setIndicationMessage(floatingIDMessageLog[1], "Does not exist!");
-  invokeInfoBox("red", "No user!");
+  i + nvokeInfoBox("red", "No user!");
 }
 
 function invokeUserPage(command) {
@@ -393,7 +396,7 @@ function generateTables(role) {
       getSpecdata(["Student", ""]);
     }, 100);
     setTimeout(() => {
-      getSpecdata(["Teacher", ""]);
+      +getSpecdata(["Teacher", ""]);
     }, 200);
   }
 

@@ -12,6 +12,8 @@ let forgot_pass_cont = document.querySelector(`.forgot_password`);
 let calender = document.querySelector(`#select_birthdate`);
 let before = document.querySelector(`.before`);
 let after = document.querySelector(`.after`);
+let loginInputs = siginCont.querySelectorAll(`.input`);
+let registerInputs = registerCont.querySelectorAll(`.input`);
 
 let logic = {
   pagefold: 1,
@@ -27,7 +29,7 @@ function resetAnimation() {
   let left = window.getComputedStyle(before, null).getPropertyValue("left");
   console.log(left);
 
-  if (left === "252.156px") {
+  if (left === "252.114px") {
     before.style = `animation: none;left:0;`;
     after.style = `animation:none;left:0;`;
 
@@ -89,8 +91,16 @@ mainContainer.addEventListener("click", function (e) {
     foldPage();
   }
 
+  if (targetClass === "login") {
+    handleQuery(loginInputs);
+  }
+
   if (targetClass === "register_login") {
     foldPage();
+  }
+
+  if (targetClass === "register_register") {
+    handleQuery(registerInputs);
   }
 });
 
@@ -132,3 +142,18 @@ $("#select_birthdate").datepicker({
   yearRange: "1991:2020",
   dateFormat: "dd-mm-yy",
 });
+
+function handleQuery(reference) {
+  let data = extractAndReturnValues(reference);
+  let state = validateInputs(
+    data,
+    [test.bind(this, false), "Not valid!"],
+    null,
+    null
+  );
+  console.log(state);
+}
+
+function test(bool) {
+  return bool;
+}

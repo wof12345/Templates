@@ -14,37 +14,34 @@
     <title>Document</title>
 
     <script defer src="./index.js"></script>
-    <script src="./node_modules/jquery/dist/jquery.js"></script>
-    <script src="./node_modules/jqueryui/jquery-ui.js"></script>
+    <script src="../common_value_extraction_and_validation_code.js"></script>
   </head>
 
   <body>
     <main class="main_container">
-      <section class="header_animated_text">
-        <div class="head_cont">
-          <div class="before"></div>
-          <h1 class="header">Welcome to this website!</h1>
-          <div class="after"></div>
-        </div>
-        <p class="subtitle">Please login to continue ></p>
-      </section>
+      <section class="header_page_tracker"></section>
 
       <section class="user_query_container">
         <div class="outer_query_container">
           <div class="inner_query_container">
             <div class="input_identifier query_box">
-              <label for="identifier">Username/E-mail :</label>
-              <input type="text" name="identifier" id="identifier" />
+              <label for="username">Username/E-mail :</label>
+              <input
+                type="text"
+                name="username"
+                id="identifier"
+                class="input"
+              />
             </div>
 
             <div class="input_password query_box">
               <label for="password">Password :</label>
-              <input type="text" name="password" id="password" />
+              <input type="text" name="password" id="password" class="input" />
             </div>
 
             <div class="navigation query_box">
-              <button class="login">Login</button>
-              <button class="register">
+              <button type="button" class="login">Login</button>
+              <button type="button" class="register">
                 Register <img class="btn_img" src="./rightarrow.svg" alt="" />
               </button>
             </div>
@@ -52,34 +49,42 @@
 
           <div class="inner_query_container--register">
             <div class="input_identifier query_box">
-              <label for="register_identifier">Username/E-mail :</label>
+              <label for="username">Username/E-mail :</label>
               <input
                 type="text"
-                name="register_identifier"
+                name="username"
                 id="register_identifier"
+                class="input"
               />
             </div>
 
             <div class="input_mobile_no query_box">
               <label for="mobile_no">Mobile no :</label>
-              <input type="text" name="mobile_no" id="mobile_no" />
+              <input
+                type="text"
+                name="mobile_no"
+                id="mobile_no"
+                class="input"
+              />
             </div>
 
             <div class="input_select_birthdate query_box">
-              <label for="select_birthdate">Birth-date : </label>
+              <label for="birthdate">Birth-date : </label>
               <input
                 type="text"
-                name="select_birthdate"
+                name="birthdate"
                 id="select_birthdate"
+                class="input"
               />
             </div>
 
             <div class="input_password query_box">
-              <label for="register_password">Password :</label>
+              <label for="password">Password :</label>
               <input
                 type="text"
-                name="register_password"
+                name="password"
                 id="register_password"
+                class="input"
               />
             </div>
 
@@ -89,15 +94,16 @@
                 type="text"
                 name="reenter_password"
                 id="reenter_password"
+                class="input"
               />
             </div>
 
             <div class="navigation_register query_box">
-              <button class="register_login">
+              <button type="button" class="register_login">
                 <img class="btn_img_register" src="./arrow-left.svg" alt="" />
                 Login
               </button>
-              <button class="register_register">Register</button>
+              <button type="button" class="register_register">Register</button>
             </div>
           </div>
         </div>

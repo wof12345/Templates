@@ -1,0 +1,62 @@
+* {
+  transition: 0.5s;
+  font-family: "Ubuntu", sans-serif;
+  box-sizing: border-box;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+button,
+input[type="button"] {
+  padding: 10px 20px;
+  border: none;
+  background: var(--bg-color);
+  max-height: 95px;
+  box-sizing: border-box;
+}
+
+input {
+  padding: 5px;
+  border: 1px solid rgba(160, 157, 157, 0.432);
+}
+
+button,
+input,
+.main_container,
+.inner_query_container,
+.inner_query_container--register,
+.ui-datepicker-trigger,
+.ui-datepicker-year,
+.ui-icon,
+input[type="button"] {
+  outline: none;
+  border-radius: 5px;
+  font-size: 16px;
+  overflow: hidden;
+}
+
+button,
+input[type="button"] {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+button:hover,
+input[type="button"]:hover,
+a:hover,
+input:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
+
+input:hover {
+  cursor: text;
+}
