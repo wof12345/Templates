@@ -145,6 +145,8 @@ $("#select_birthdate").datepicker({
 
 function handleQuery(reference) {
   let data = extractAndReturnValues(reference);
+  console.log(data);
+
   let state = validateInputs(
     data,
     [test.bind(this, false), "Not valid!"],

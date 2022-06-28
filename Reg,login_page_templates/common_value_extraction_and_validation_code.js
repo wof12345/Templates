@@ -27,8 +27,10 @@ function extractAndReturnValues(inputs) {
 }
 
 function validateInputs(inputs, case_0, case_1, case_2) {
-  if (!inputs.mobile_no.match(/^\d{11}$/)) {
-    return "Mobile nunmber not correct!";
+  if (inputs.mobile_no) {
+    if (!inputs.mobile_no.match(/^\d{11}$/)) {
+      return "Mobile nunmber not correct!";
+    }
   }
 
   if (case_0) {

@@ -19,97 +19,286 @@
 
   <body>
     <main class="main_container">
-      <section class="header_page_tracker"></section>
+      <section class="left_side">
+        <deiv class="header_page_tracker">
+          <div class="page_indicator"></div>
+          <div class="page_indicator"></div>
+          <div class="page_indicator"></div>
 
-      <section class="user_query_container">
-        <div class="outer_query_container">
-          <div class="inner_query_container">
-            <div class="input_identifier query_box">
-              <label for="username">Username/E-mail :</label>
-              <input
-                type="text"
-                name="username"
-                id="identifier"
-                class="input"
-              />
-            </div>
+          <div class="end_marker"></div>
+        </deiv>
 
-            <div class="input_password query_box">
-              <label for="password">Password :</label>
-              <input type="text" name="password" id="password" class="input" />
-            </div>
-
-            <div class="navigation query_box">
-              <button type="button" class="login">Login</button>
-              <button type="button" class="register">
-                Register <img class="btn_img" src="./rightarrow.svg" alt="" />
-              </button>
-            </div>
+        <div class="master_container_inner">
+          <div class="extra_sec">
+            <div class="box"></div>
           </div>
 
-          <div class="inner_query_container--register">
-            <div class="input_identifier query_box">
-              <label for="username">Username/E-mail :</label>
-              <input
-                type="text"
-                name="username"
-                id="register_identifier"
-                class="input"
-              />
+          <div class="user_query_container">
+            <h1>Login or Register :</h1>
+
+            <div class="type_select">
+              <div class="type t1">
+                <input name="tc" type="radio" /> <label for="tc">Login</label>
+              </div>
+              <div class="type t2">
+                <input name="tc" type="radio" />
+                <label for="tc">Register</label>
+              </div>
+              <div class="type t3">
+                <input name="tc" type="radio" /> <label for="tc">Guest</label>
+              </div>
             </div>
 
-            <div class="input_mobile_no query_box">
-              <label for="mobile_no">Mobile no :</label>
-              <input
-                type="text"
-                name="mobile_no"
-                id="mobile_no"
-                class="input"
-              />
+            <div class="outer_query_container">
+              <h2>Your personal details</h2>
+
+              <div class="inner_query_container--register">
+                <div class="input_firstname query_box">
+                  <input
+                    type="text"
+                    name="firstname"
+                    id="register_identifier"
+                    class="input"
+                    placeholder="First Name *"
+                    required
+                  />
+                </div>
+
+                <div class="input_lastname query_box">
+                  <input
+                    type="text"
+                    name="lastname"
+                    id="lastname"
+                    class="input"
+                    placeholder="Last Name *"
+                    required
+                  />
+                </div>
+
+                <div class="input_email query_box">
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    class="input"
+                    placeholder="Email *"
+                    required
+                  />
+                </div>
+
+                <div class="input_password query_box">
+                  <input
+                    type="password"
+                    name="password"
+                    id="register_password"
+                    class="input"
+                    placeholder="Enter Password *"
+                    required
+                  />
+                </div>
+
+                <div class="input_password query_box">
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    class="input"
+                    placeholder="Confirm Password *"
+                    required
+                  />
+                </div>
+
+                <p class="terms">
+                  By clicking "Confirm payment" I agree to the company's Terms
+                  and services.
+                </p>
+
+                <button type="button" class="back">Back</button>
+                <button type="button" class="register">Next</button>
+              </div>
             </div>
 
-            <div class="input_select_birthdate query_box">
-              <label for="birthdate">Birth-date : </label>
-              <input
-                type="text"
-                name="birthdate"
-                id="select_birthdate"
-                class="input"
-              />
-            </div>
-
-            <div class="input_password query_box">
-              <label for="password">Password :</label>
-              <input
-                type="text"
-                name="password"
-                id="register_password"
-                class="input"
-              />
-            </div>
-
-            <div class="input_password query_box">
-              <label for="reenter_password">Re-enter password :</label>
-              <input
-                type="text"
-                name="reenter_password"
-                id="reenter_password"
-                class="input"
-              />
-            </div>
-
-            <div class="navigation_register query_box">
-              <button type="button" class="register_login">
-                <img class="btn_img_register" src="./arrow-left.svg" alt="" />
-                Login
-              </button>
-              <button type="button" class="register_register">Register</button>
+            <div class="forgot_password">
+              Forgot password ? <a href="/">Click here</a>
             </div>
           </div>
         </div>
 
-        <div class="forgot_password">
-          Forgot password ? <a href="/">Click here</a>
+        <div class="master_container_inner">
+          <div class="user_query_container">
+            <div class="outer_query_container">
+              <h2>Billing Address</h2>
+              <div class="inner_query_container--register cont_1">
+                <div class="input_shopaddress query_box">
+                  <input
+                    type="text"
+                    name="shopaddress"
+                    id="shopaddress"
+                    class="input"
+                    placeholder="Shopping Address *"
+                    required
+                  />
+                </div>
+
+                <div class="input_country query_box">
+                  <input
+                    type="text"
+                    name="country"
+                    id="country"
+                    class="input"
+                    placeholder="Country *"
+                    required
+                  />
+                </div>
+
+                <div class="input_state query_box">
+                  <input
+                    type="text"
+                    name="state"
+                    id="state"
+                    class="input"
+                    placeholder="State/Province *"
+                    required
+                  />
+                </div>
+
+                <div class="input_city query_box">
+                  <input
+                    type="text"
+                    name="city"
+                    id="city"
+                    class="input"
+                    placeholder="City *"
+                    required
+                  />
+                </div>
+
+                <div class="input_zipcode query_box">
+                  <input
+                    type="text"
+                    name="zipcode"
+                    id="zipcode"
+                    class="input"
+                    placeholder="Zip code *"
+                    required
+                  />
+                </div>
+
+                <div class="type t4">
+                  <input name="tc" type="checkbox" />
+                  <label for="tc"
+                    >My delivery and billing address are the same.</label
+                  >
+                </div>
+
+                <p class="terms">
+                  By clicking "Confirm payment" I agree to the company's Terms
+                  and services.
+                </p>
+
+                <button type="button" class="back">Back</button>
+                <button type="button" class="register">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="master_container_inner">
+          <div class="user_query_container">
+            <h1>Payment Method :</h1>
+
+            <div class="type_select">
+              <div class="type t5">
+                <input name="tc" type="radio" />
+                <label class="pm" for="tc"
+                  ><img src="./Vector.png" alt=""
+                /></label>
+              </div>
+              <div class="type t6">
+                <input name="tc" type="radio" />
+                <label class="pm" for="tc"
+                  ><img src="./Vector (1).png" alt=""
+                /></label>
+              </div>
+            </div>
+
+            <div class="outer_query_container">
+              <h2>Payment Details</h2>
+              <div class="inner_query_container--register cont_2">
+                <div class="input_enternameoncard query_box">
+                  <input
+                    type="text"
+                    name="enternameoncard"
+                    id="enternameoncard"
+                    class="input"
+                    placeholder="Enter name on card *"
+                    required
+                  />
+                </div>
+
+                <div class="input_cartnumber query_box">
+                  <input
+                    type="text"
+                    name="cartnumber"
+                    id="cartnumber"
+                    class="input"
+                    placeholder="Cart Number *"
+                    required
+                  />
+                </div>
+
+                <div class="input_expirationquery_box">
+                  <input
+                    type="text"
+                    name="expiration"
+                    id="expiration"
+                    class="input"
+                    placeholder="Expiration *"
+                    required
+                  />
+                </div>
+
+                <div class="input_cvvcodequery_box">
+                  <input
+                    type="text"
+                    name="cvvcode"
+                    id="cvvcode"
+                    class="input"
+                    placeholder="CVV Code *"
+                    required
+                  />
+                </div>
+
+                <p class="terms">
+                  By clicking "Confirm payment" I agree to the company's Terms
+                  and services.
+                </p>
+
+                <button type="button" class="back">Back</button>
+                <button type="button" class="register">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="master_container_inner">
+          <div class="user_query_container final">
+            <div class="final_img"><img src="./circle_check.png" alt="" /></div>
+            <h1>Payment Successful</h1>
+
+            <p class="terms">
+              By clicking "Confirm payment" I agree to the company's Terms and
+              services.
+            </p>
+
+            <button type="button" class="register final_btn">Confirm</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="right_side">
+        <div class="img_cont">
+          <img src="./painting.png" alt="" />
         </div>
       </section>
     </main>

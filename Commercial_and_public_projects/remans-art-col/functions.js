@@ -20,6 +20,8 @@ document.addEventListener("click", (e) => {
   let ElmData = targetElm.dataset.src;
   let targetElmClass = targetElm.className;
 
+  console.log(targetElmClass);
+
   if (ElmData) {
     invokeDetailsPage(ElmData);
   }
@@ -29,11 +31,16 @@ document.addEventListener("click", (e) => {
     invokeShowPage(mainPic);
   }
 
-  if (targetElmClass === "add_to_cart" || targetElmClass === "buy_btn") {
+  if (targetElmClass === "buy_btn") {
     pageUserData.cart.push(targetElm);
     cardIndicator.forEach((elm) => {
       elm.innerHTML = pageUserData.cart.length;
     });
+  }
+
+  if (targetElmClass === "add_to_cart") {
+    window.location.href =
+      "http://127.0.0.1:5500/Commercial_and_public_projects/remans-art-col/index.html";
   }
 });
 
