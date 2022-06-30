@@ -3,7 +3,7 @@
   overflow: hidden;
   padding: 3px;
   transform: translateY(-71px);
-  background-color: rgba(171, 169, 169, 0.334);
+  background-color: rgba(171, 169, 169, 1);
   z-index: 70;
 }
 

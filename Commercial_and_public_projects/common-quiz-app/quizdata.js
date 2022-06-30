@@ -16,7 +16,7 @@ function getQuizData(elm) {
       let choiceTexts = [];
       for (let j = 0; j < choices.length; j++) {
         if (queries.value === "" || choices[j].value === "") {
-          generateFloatingWindow("Cannot be empty!", ["250px", "330px"]);
+          generateFloatingWindow("Cannot be empty!", ["20%", "0px"]);
           return false;
         }
 
@@ -36,13 +36,19 @@ function getQuizData(elm) {
           extraData[2].value,
         ];
       } else {
-        generateFloatingWindow("Answer must be specified!", ["250px", "330px"]);
+        generateFloatingWindow("Answer must be specified!", ["20%", "0px"]);
         return false;
       }
     }
 
     quizzes++;
-    availableQuizzesData[`${quizzes}`] = [quizCollection, currentSeed + ""];
+    availableQuizzesData[`${quizzes}`] = [
+      quizCollection,
+      currentSeed + "",
+      extraData[0].value,
+      extraData[1].value,
+      extraData[2].value,
+    ];
 
     // console.log(quizCollection);
 
@@ -56,7 +62,7 @@ function getQuizData(elm) {
         answer = answer[1];
         answers.push(answer);
       } else {
-        generateFloatingWindow("Answer must be Given!", ["250px", "330px"]);
+        generateFloatingWindow("Answer must be Given!", ["20%", "0px"]);
         return false;
       }
     }

@@ -48,10 +48,14 @@ function addeventlistenerTextArea(elm) {
 
 function populateAvailQuizz() {
   let quizzes = "";
+  console.log(availableQuizzesData);
 
   let data = Object.keys(availableQuizzesData);
   data.forEach((key) => {
-    quizzes += quizComp(availableQuizzesData[key][1]);
+    quizzes += quizComp(
+      availableQuizzesData[key][1],
+      availableQuizzesData[key][3]
+    );
   });
   availableQuizzes.innerHTML = quizzes;
 }
@@ -151,8 +155,8 @@ let quizBlockUser = function (id, question) {
     `;
 };
 
-let quizComp = function (seed) {
-  return `<div class="av_q" data-seed="${seed}">Quiz-${seed}</div>`;
+let quizComp = function (seed, title) {
+  return `<div class="av_q" data-seed="${seed}">Quiz-${title}</div>`;
 };
 
 let quizProps = {
@@ -272,10 +276,9 @@ done.addEventListener("click", () => {
     let flag = getQuizData(quizPage.querySelectorAll(".mcq"));
     if (flag === true) {
       localStorage.setItem("quizData", JSON.stringify(availableQuizzesData));
-      quizPage.style.display = currentSeed = "";
       populateAvailQuizz();
     } else if (flag === "msg") {
-      generateFloatingWindow("Cancelled!", ["250px", "330px"]);
+      generateFloatingWindow("Cancelled!", ["20%", "0px"]);
       quizPage.style.display = currentSeed = "";
     }
   } else {
@@ -284,8 +287,6 @@ done.addEventListener("click", () => {
 });
 
 back.addEventListener("click", () => {
-  userResultPage.style = currentSeed = quizContainer.innerHTML = "";
-  quizPage.style.display = "";
   generateUserQuiz(lastQuizInd);
   endSequence();
 });

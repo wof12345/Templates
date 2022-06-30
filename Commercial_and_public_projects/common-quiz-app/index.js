@@ -54,11 +54,14 @@ function invokeQuizPage() {
 
 function endSequence() {
   if (interval[0]) {
-    clearInterval(interval[0]);
+    workerTimer.clearInterval(interval[0]);
     interval = [];
+    getAndCheckData();
+  } else {
+    userResultPage.style = currentSeed = quizContainer.innerHTML = "";
+    quizPage.style.display = "";
   }
   show.style = "pointer-events:all;";
-  getAndCheckData();
 }
 
 function allowUser() {
@@ -67,8 +70,10 @@ function allowUser() {
   let time = timeLimit * 1000;
 
   interval.push(
-    setInterval(() => {
+    workerTimer.setInterval(() => {
       extraData[0].value = time / 1000;
+      console.log(time);
+
       time -= 100;
       if (time <= 0) {
         endSequence();
