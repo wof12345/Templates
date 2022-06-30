@@ -42,7 +42,7 @@ function BINARYSEARCH(arr, start, end, target) {
 
     if (arr[mid] > target) return BINARYSEARCH(arr, start, mid - 1, target);
 
-    return BINARYSEARCH(arr, mid + 1, end, target);
+    return BINARYSEARCH(arr, mid, end, target);
   }
   return false;
 }
@@ -53,17 +53,9 @@ function GENERATERANDOMNUMBER(arrayToCompare, lowerrange, upperrange, type) {
   }
   let generatedNumber;
   if (type === "integer") {
-    generatedNumber = +(
-      Math.random() * (upperrange - lowerrange + 1) +
-      lowerrange -
-      1
-    ).toFixed(0);
+    generatedNumber = +(Math.random() * (upperrange - lowerrange)).toFixed(0);
   } else if (type === "double") {
-    generatedNumber = +(
-      Math.random() * (upperrange - lowerrange + 1) +
-      lowerrange -
-      1
-    ).toFixed(5);
+    generatedNumber = +(Math.random() * (upperrange - lowerrange)).toFixed(5);
   }
 
   if (
@@ -164,7 +156,7 @@ function GETDOMQUERY(className) {
 
 function APPLYSTYLES(elements, styles) {
   elements.forEach((elm, ind) => {
-    elm.style = styles[ind];
+    if (elm) elm.style = styles[ind];
   });
 }
 
@@ -183,6 +175,12 @@ function INTERVAL(passedFunction, delay) {
 function CLEARALLTIMEOUT(array) {
   for (let i = 0; i < array.length; i++) {
     clearTimeout(array[i]);
+  }
+}
+
+function CLEARALLINTERVAL(array) {
+  for (let i = 0; i < array.length; i++) {
+    clearInterval(array[i]);
   }
 }
 

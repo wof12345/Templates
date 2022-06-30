@@ -1,17 +1,14 @@
-populateFeature();
-populateItems();
-updateVariables();
-
 document.addEventListener("mouseover", (e) => {
   let target = e.target;
+  let targetClass = target.className;
 
   if (target) {
     // console.log(target);
 
-    if (target.className === pageAnimationElements.logoCover.className)
+    if (targetClass === pageAnimationElements.logoCover.className)
       animateLogo("in");
 
-    if (target.className.includes("cover_nav")) {
+    if (targetClass.includes("cover_nav")) {
       let targetClass = target.closest(".nav__item");
 
       targetClass.classList.toggle("basichoverBackground");
@@ -20,21 +17,18 @@ document.addEventListener("mouseover", (e) => {
         .classList.toggle("nav_link_animation");
     }
 
-    if (
-      target.className.includes("catag") ||
-      target.className.includes("categorymain")
-    ) {
+    if (targetClass.includes("catag") || targetClass.includes("categorymain")) {
       TIMEOUT(collapseCatag.bind(this, false), 500);
     }
 
-    if (!target.className.includes("categories")) {
+    if (!targetClass.includes("categories")) {
       collapseCatag(true);
     }
-    if (target.className.includes("category_item")) {
+    if (targetClass.includes("category_item")) {
       collapseCatag(false);
     }
 
-    if (target.className.includes("nav")) {
+    if (targetClass.includes("nav")) {
       animateSearchBar(false);
       let left = pageAnimationElements.logoLeft.classList;
       let right = pageAnimationElements.logoRight.classList;
@@ -47,9 +41,9 @@ document.addEventListener("mouseover", (e) => {
       }
     }
 
-    if (target.className.includes("feature_card")) {
-      let id = target.getAttribute("id").match(/(\d+)/)[0];
-      console.log(id);
+    if (targetClass.includes("feature_card")) {
+      let id = target.dataset.id.match(/(\d+)/)[0];
+      // console.log(id);
 
       APPLYSTYLES(
         [
@@ -65,11 +59,12 @@ document.addEventListener("mouseover", (e) => {
 
 document.addEventListener("mouseout", (e) => {
   let target = e.target;
+  let targetClass = target.className;
   if (target) {
-    if (target.className === pageAnimationElements.logoCover.className)
+    if (targetClass === pageAnimationElements.logoCover.className)
       animateLogo("out");
 
-    if (target.className.includes("cover_nav")) {
+    if (targetClass.includes("cover_nav")) {
       let targetClass = target.closest(".nav__item");
 
       targetClass.classList.toggle("basichoverBackground");
@@ -78,11 +73,11 @@ document.addEventListener("mouseout", (e) => {
         .classList.toggle("nav_link_animation");
     }
 
-    if (target.className.includes("categories")) {
+    if (targetClass.includes("categories")) {
       collapseCatag(true);
     }
 
-    if (target.className.includes("nav")) {
+    if (targetClass.includes("nav")) {
       animateSearchBar(true);
       let left = pageAnimationElements.logoLeft.classList;
       let right = pageAnimationElements.logoRight.classList;
@@ -95,8 +90,8 @@ document.addEventListener("mouseout", (e) => {
       }
     }
 
-    if (target.className.includes("feature_card")) {
-      let id = target.getAttribute("id").match(/(\d+)/)[0];
+    if (targetClass.includes("feature_card")) {
+      let id = target.dataset.id.match(/(\d+)/)[0];
       APPLYSTYLES(
         [
           pageBasicElements.featureDetails[id - 1],
@@ -111,35 +106,39 @@ document.addEventListener("mouseout", (e) => {
 
 document.addEventListener("click", (e) => {
   let target = e.target;
+  let targetClass = target.className;
 
-  if (target.className.includes("catag"))
+  if (targetClass.includes("catag"))
     collapseCatag(pageLogics.catagoriesCollapsed);
 
-  if (target.className.includes("img_cover"))
-    animateMenu(!pageLogics.menu_open);
+  if (targetClass.includes("img_cover")) animateMenu(!pageLogics.menu_open);
   else {
     animateMenu(false);
   }
 
-  if (target.className.includes("catag")) {
+  if (targetClass.includes("catag")) {
     animateMenu(true);
   }
 
-  if (
-    target.className.includes("feature_card") ||
-    target.className.includes("circle")
-  ) {
-    let id = target.getAttribute("id").match(/(\d+)/)[0];
+  if (targetClass.includes("feature_card") || targetClass.includes("circle")) {
+    let id = target.dataset.id.match(/(\d+)/)[0];
 
     featuredAnimation(id - 1);
   }
 
-  if (target.className.includes("left_feature_cover")) {
+  if (targetClass.includes("left_feature_cover")) {
     featuredAnimation(--pageLogics.lastFeatureItem);
   }
 
-  if (target.className.includes("right_feature_cover")) {
+  if (targetClass.includes("right_feature_cover")) {
     featuredAnimation(++pageLogics.lastFeatureItem);
+  }
+
+  if (targetClass.includes("category_item")) {
+    let currentCatag = target.textContent.split("(")[0];
+    console.log(currentCatag);
+
+    populateItems(pageData.pageItems, currentCatag);
   }
 });
 
@@ -158,6 +157,10 @@ window.addEventListener("resize", (e) => {
 });
 
 INTERVAL(featuredAnimation, 3000);
+
+pageBasicElements.navBtns[3].addEventListener("click", () => {
+  window.location.href = "../index.html";
+});
 
 // console.log(
 //   pageBasicElements.headElementsItems,

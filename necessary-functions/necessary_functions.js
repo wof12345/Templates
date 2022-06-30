@@ -156,7 +156,7 @@ function GETDOMQUERY(className) {
 
 function APPLYSTYLES(elements, styles) {
   elements.forEach((elm, ind) => {
-    elm.style = styles[ind];
+    if (elm) elm.style = styles[ind];
   });
 }
 
