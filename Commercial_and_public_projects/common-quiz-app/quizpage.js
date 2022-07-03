@@ -277,6 +277,7 @@ done.addEventListener("click", () => {
     if (flag === true) {
       localStorage.setItem("quizData", JSON.stringify(availableQuizzesData));
       populateAvailQuizz();
+      quizPage.style.display = "";
     } else if (flag === "msg") {
       generateFloatingWindow("Cancelled!", ["20%", "0px"]);
       quizPage.style.display = currentSeed = "";

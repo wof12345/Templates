@@ -1,4 +1,3 @@
-import { response } from "express";
 import { createPool } from "mysql2";
 
 // import express from "express";
@@ -68,10 +67,10 @@ export const insertdata = (req, response) => {
 export const updateSpecData = (req, response) => {
   let data = req.body;
   let msg = "";
-  console.log(data);
+  console.log("data", data);
 
   createConnection.query(
-    ` UPDATE customusertable SET ${data[0]} WHERE UserNo = '${data[1]}';`,
+    ` UPDATE customusertable SET ${data[0]} WHERE UserNo = '${data[1]}'`,
     function (err, res) {
       if (err) {
         msg = err;

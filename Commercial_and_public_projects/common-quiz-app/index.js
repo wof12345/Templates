@@ -54,7 +54,7 @@ function invokeQuizPage() {
 
 function endSequence() {
   if (interval[0]) {
-    workerTimer.clearInterval(interval[0]);
+  clearInterval(interval[0]);
     interval = [];
     getAndCheckData();
   } else {
@@ -70,7 +70,7 @@ function allowUser() {
   let time = timeLimit * 1000;
 
   interval.push(
-    workerTimer.setInterval(() => {
+    setInterval(() => {
       extraData[0].value = time / 1000;
       console.log(time);
 

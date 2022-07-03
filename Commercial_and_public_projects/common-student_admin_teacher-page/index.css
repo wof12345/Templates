@@ -11,6 +11,15 @@
 
 body {
   overflow: hidden;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-image: url("./main.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
 }
 
 h1,
@@ -20,10 +29,18 @@ h3 {
   font-weight: 400;
 }
 
+h1:hover {
+  background-color: #6f452b97;
+}
+
 button {
   border: none;
   outline: none;
   padding: 5px 20px;
+  text-align: center;
+  min-width: 100px;
+  color: black;
+  border-radius: 20px;
 }
 
 input,
@@ -33,6 +50,7 @@ input,
   padding: 4px;
   width: 200px;
   outline: none;
+  color: black;
 }
 
 label {
@@ -54,7 +72,7 @@ input:focus,
 
 button:hover {
   cursor: pointer;
-  background-color: rgb(199, 196, 196);
+  background-color: rgb(232, 152, 41);
   transition: 0.4s;
 }
 
@@ -64,10 +82,12 @@ button:hover {
   height: max-content;
   max-width: 600px;
   border: 1px solid rgba(0, 0, 0, 0.304);
+  /* background-color: rgb(47, 180, 100); */
 }
 
 .main_container:hover {
   border-radius: 5px;
+  background-color: rgba(123, 118, 118, 0.374);
 }
 
 .parent_container {
@@ -82,8 +102,10 @@ button:hover {
 .query_box {
   display: flex;
   padding: 5px;
-  height: 40px;
+  min-width: 300px;
+  height: 50px;
   justify-content: space-between;
+  /* background-color: rgb(47, 180, 100); */
 }
 
 .indicator {
@@ -135,7 +157,11 @@ button:hover {
 }
 
 .query_box:hover {
-  background-color: rgba(151, 151, 152, 0.386);
+  background-color: rgba(239, 179, 40, 0.258);
+}
+
+.navigation:hover {
+  background-color: rgba(0, 0, 0, 0);
 }
 
 #select_birthdate {
@@ -149,18 +175,32 @@ button:hover {
 
 .navigation {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  height: max-content;
 }
 
-.login {
-  position: absolute;
-  right: 10px;
-  left: 80%;
+.navigation > * {
+  width: 30%;
+  position: relative;
+  padding: 5px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
 }
 
-.register {
-  position: absolute;
-  left: 10px;
-  right: 80%;
+.navigation > *:hover {
+  background-color: rgba(123, 145, 145, 0.321);
+}
+
+.p1 {
+  transform: translateY(0px);
+}
+
+.p2 {
+  transform: translateY(320px);
 }
 
 .inner_container_register {
@@ -172,7 +212,7 @@ button:hover {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 20px;
+  height: max-content;
   text-align: center;
   z-index: 100;
   font-weight: 300;
@@ -181,12 +221,18 @@ button:hover {
 
 .user_page {
   width: 100vw;
+  opacity: 0;
   height: 100vh;
   position: absolute;
   background-color: rgb(215, 218, 218);
   transform: translateX(100%);
-  top: 0;
+  top: 20px;
   text-align: center;
+  color: black;
+  background-image: url("./bg2.jpg");
+  background-position: center;
+  background-size: cover;
+  overflow-y: auto;
 }
 
 .user_page_content {
@@ -197,13 +243,14 @@ button:hover {
   align-items: center;
   flex-direction: column;
   padding: 2px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(53, 154, 221, 0.158);
 }
 
 .user_content_container {
   overflow: auto;
   display: grid;
-  height: 90%;
+  height: auto;
+  max-height: 350px;
   margin: 1px;
   gap: 2px;
   grid-template-columns: auto auto auto;
@@ -219,24 +266,28 @@ table {
 table,
 th,
 td {
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
   padding: 5px;
   font-size: 8px;
+  background-color: rgba(140, 235, 235, 0.153);
 }
 
 tr:hover {
-  background-color: rgb(185, 182, 182);
+  background-color: rgb(229, 136, 136);
   cursor: pointer;
 }
 
-.manipulation_box {
+.manipulation_box,
+.info_box {
   background-color: white;
   padding: 10px;
+  color: black;
 }
 
 .query_manipulation_box {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.212);
+  opacity: 0;
   top: 0;
   right: 0;
   width: 100vw;
@@ -255,6 +306,63 @@ tr:hover {
   display: none;
 }
 
+.register_text {
+  text-align: center;
+}
+
+.h_t {
+  text-decoration: underline;
+  color: white;
+}
+
+.h_t:hover {
+  cursor: pointer;
+  color: rgba(33, 180, 234, 0.893);
+}
+
+.user_page button {
+  margin: 5px 0;
+}
+
+.user_header {
+  padding: 10px 0 10px 0;
+}
+
+.user_info {
+  background-color: rgba(255, 255, 255, 0);
+  padding: 5px;
+}
+
+.user_info input {
+  border: none;
+  background-color: rgba(240, 248, 255, 0);
+  pointer-events: none;
+}
+
+.user_info label {
+  padding: 8px 0 0 0;
+}
+
+.user_info .query_box {
+  justify-content: space-around;
+}
+
+.user_info .query_box:hover {
+  background-color: rgba(201, 203, 204, 0.712);
+}
+
+.field_container_user {
+  background-color: rgba(255, 255, 255, 0.499);
+}
+
+.manipulation_btns {
+  justify-content: space-around;
+}
+
+label {
+  padding: 8px 0;
+}
+
 @media screen and (max-width: 613px) {
   .query_box {
     flex-direction: column;
@@ -265,6 +373,11 @@ tr:hover {
   input,
   #catag {
     width: 100%;
+    min-height: 35px;
+  }
+
+  .p1 {
+    margin-top: 20px;
   }
 
   .indicator {

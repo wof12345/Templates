@@ -42,15 +42,15 @@ document.addEventListener("mouseover", (e) => {
     }
 
     if (targetClass.includes("feature_card")) {
-      let id = target.dataset.id.match(/(\d+)/)[0];
-      // console.log(id);
+      let elm = target.closest(".featured_item");
+      // console.log(elm);
 
+      let id = elm.dataset.id;
+
+      let featureDet = document.getElementById(`${id}dfc`);
+      let featureCardDet = elm.querySelector(".feature_feature_card");
       APPLYSTYLES(
-        [
-          pageBasicElements.featureDetails[id - 1],
-          pageBasicElements.featureCards[id - 1],
-          pageBasicElements.featureDetailsItems[id - 1],
-        ],
+        [elm, featureCardDet, featureDet],
         ["opacity:1;", "bottom:0;top:70px;", "opacity:1;"]
       );
     }
@@ -91,15 +91,16 @@ document.addEventListener("mouseout", (e) => {
     }
 
     if (targetClass.includes("feature_card")) {
-      let id = target.dataset.id.match(/(\d+)/)[0];
-      APPLYSTYLES(
-        [
-          pageBasicElements.featureDetails[id - 1],
-          pageBasicElements.featureCards[id - 1],
-          pageBasicElements.featureDetailsItems[id - 1],
-        ],
-        ["", "", ""]
-      );
+      let elm = target.closest(".featured_item");
+      // console.log(elm);
+
+      let id = elm.dataset.id;
+      let featureDet = document.getElementById(`${id}dfc`);
+
+      let featureCardDet = elm.querySelector(".feature_feature_card");
+      console.log(featureDet);
+
+      APPLYSTYLES([elm, featureCardDet, featureDet], ["", "", ""]);
     }
   }
 });
@@ -121,7 +122,7 @@ document.addEventListener("click", (e) => {
   }
 
   if (targetClass.includes("feature_card") || targetClass.includes("circle")) {
-    let id = target.dataset.id.match(/(\d+)/)[0];
+    let id = target.dataset.serial.match(/(\d+)/)[0];
 
     featuredAnimation(id - 1);
   }

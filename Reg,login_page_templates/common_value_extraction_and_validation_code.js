@@ -5,7 +5,7 @@ function extractAndReturnValues(inputs) {
   for (let i = 0; i < inputs.length; i++) {
     let fieldName = "";
 
-    if (!inputs[i].length) {
+    if (inputs[i].getAttribute("type") !== "radio") {
       fieldName = inputs[i].name;
       console.log(fieldName);
 
@@ -14,12 +14,10 @@ function extractAndReturnValues(inputs) {
       continue;
     }
 
-    for (let j = 0; j < inputs[i].length; j++) {
-      if (inputs[i][j].checked) {
-        fieldName = inputs[i][j].getAttribute("name");
-        contextData = inputs[i][j].value;
-        inputArray[`${fieldName}`] = contextData;
-      }
+    if (inputs[i].checked) {
+      fieldName = inputs[i].getAttribute("name");
+      contextData = inputs[i].value;
+      inputArray[`${fieldName}`] = contextData;
     }
   }
 

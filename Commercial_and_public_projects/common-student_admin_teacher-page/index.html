@@ -8,7 +8,6 @@
     <title>Document</title>
 
     <script defer src="./index.js"></script>
-    <script defer src="./database_njs.js"></script>
   </head>
   <body>
     <section class="page_inthoduction_details">
@@ -144,12 +143,15 @@
           <div class="floating_indicator_message">Can't be empty.</div>
         </div>
       </div>
-
-      <div class="navigation query_box">
-        <button class="login">Login</button>
-        <button class="register">Register</button>
-      </div>
     </section>
+    <div class="navigation query_box">
+      <div class="p1"><button class="login">Login</button></div>
+      <div class="p2"><button class="register">Register</button></div>
+    </div>
+
+    <div class="register_text">
+      Don't have an account? <span class="h_t"> Register</span> here
+    </div>
 
     <section class="info_box"><p>please login to continue.</p></section>
 
@@ -157,6 +159,46 @@
       <div class="user_header">
         <h2>Welcome user</h2>
         <button class="logout">Logout</button>
+
+        <div class="user_info">
+          <div class="info_cont">
+            <div class="field_container_user">
+              <div class="query_box">
+                <label for="UserName/Email">UserName/Email : </label>
+                <p class="info_user">placeholder</p>
+                <div class="floating_indicator_message">Can't be empty.</div>
+              </div>
+
+              <div class="query_box">
+                <label for="Mobile No">Mobile No : </label>
+                <p class="info_user">placeholder</p>
+                <div class="floating_indicator_message">Can't be empty.</div>
+              </div>
+
+              <div class="query_box">
+                <label for="Birth-date">Birth-date : </label>
+                <p class="info_user">placeholder</p>
+                <div class="floating_indicator_message">Can't be empty.</div>
+              </div>
+
+              <div class="query_box">
+                <label for="password">Password :</label>
+                <p class="info_user">placeholder</p>
+                <div class="floating_indicator_message">Can't be empty.</div>
+              </div>
+
+              <div class="query_box">
+                <label for="Role">Role : </label>
+                <p class="info_user">placeholder</p>
+                <div class="floating_indicator_message">Can't be empty.</div>
+              </div>
+            </div>
+
+            <div class="manipulation_btns query_box">
+              <button class="edit">Edit</button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="user_content_container">
@@ -236,6 +278,22 @@
               name="password"
               id="password_manipulate"
               placeholder="User password"
+              class="input"
+            />
+            <div class="indicator">
+              <div class="upper_q"></div>
+              <div class="lower_q"></div>
+            </div>
+            <div class="floating_indicator_message">Can't be empty.</div>
+          </div>
+
+          <div class="input_password query_box">
+            <label for="reenter_password">Re-enter password :</label>
+            <input
+              type="password"
+              name="reenter_password_adm"
+              id="reenter_password_adm"
+              placeholder="Re-write password"
               class="input"
             />
             <div class="indicator">

@@ -32,7 +32,6 @@ function populateFeature(collection) {
   let id = 1;
 
   pageData.features.forEach((elm, ind) => {
-    elm.id = item;
     finalHTML += prepareItem(
       elm,
       "feature_item",
@@ -40,9 +39,10 @@ function populateFeature(collection) {
       "feature_img",
       "feature_detail",
       "feature",
-      elm.tag
+      elm.tag,
+      item
     );
-    pageHTML += `<div class="circle" id="fc${ind + 1}"></div>`;
+    pageHTML += `<div class="circle" data-serial="fc${item}"></div>`;
     if ((ind + 1) % 4 === 0)
       finalHTML += `</div><div class="featured" id="${++id}">`;
 
@@ -64,7 +64,6 @@ function populateItems(collection, query) {
   let item = 1;
   let finalHTML = ``;
   collection.forEach((elm, ind) => {
-    elm.id = item;
     finalHTML += prepareItem(
       elm,
       "view_item",
@@ -72,7 +71,8 @@ function populateItems(collection, query) {
       "feature_card",
       "feature_details",
       "item",
-      elm.tag
+      elm.tag,
+      item
     );
     item++;
   });

@@ -14,7 +14,11 @@
     <title>Document</title>
 
     <script defer src="./index.js"></script>
-    <script src="../common_value_extraction_and_validation_code.js"></script>
+    <script
+      defer
+      src="../common_value_extraction_and_validation_code.js"
+    ></script>
+    <script defer src="./login.js"></script>
   </head>
 
   <body>
@@ -38,14 +42,16 @@
 
             <div class="type_select">
               <div class="type t1">
-                <input name="tc" type="radio" /> <label for="tc">Login</label>
+                <input name="tc" type="radio" value="login" class="input" />
+                <label for="tc">Login</label>
               </div>
               <div class="type t2">
-                <input name="tc" type="radio" />
+                <input name="tc" type="radio" value="register" class="input" />
                 <label for="tc">Register</label>
               </div>
               <div class="type t3">
-                <input name="tc" type="radio" /> <label for="tc">Guest</label>
+                <input name="tc" type="radio" value="guest" class="input" />
+                <label for="tc">Guest</label>
               </div>
             </div>
 

@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  box-sizing: border-box;
+  transition: 0.5s;
+  font-family: "Arima", cursive;
+}
+
+button {
+  padding: 10px 30px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+header {
+  width: 100%;
+  height: 100vh;
+  background-image: white;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+img {
+  width: 100%;
+}
+
+.mainheader {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0070fa;
+}
+
+.logo {
+  width: 60px;
+  aspect-ratio: 1/1;
+  margin: 10px;
+  min-width: 40px;
+}
+
+.mainheader nav {
+  width: 450px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.mainheader nav a {
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+}
+
+.menubtn {
+  margin-right: 60px;
+}
+.mainheader button {
+  padding: 10px 45px;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  border: none;
+  background-image: linear-gradient(to right, #649bff, #0070fa, #649bff);
+  border-radius: 10px;
+}
+
+a:hover {
+  text-shadow: 2px 2px 2px rgba(65, 61, 61, 0.375);
+  background-color: #0070fa00;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url(./m2.jpeg);
+  padding: 20px 50px;
+}
+
+.left-sec h2 {
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: lighter;
+  color: #242424;
+  margin-top: 100px;
+}
+
+.left-sec h1 {
+  font-size: 55px;
+  text-transform: capitalize;
+  font-weight: 700;
+  margin: 15px 0;
+}
+
+.left-sec p {
+  margin-bottom: 20px;
+}
+
+p:hover,
+h1:hover,
+h2:hover {
+  background-color: #cac7c77d;
+}
+.left-sec button {
+  padding: 15px 45px;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  border: none;
+  background-image: linear-gradient(to right, #649bff, #0070fa, #649bff);
+  border-radius: 10px;
+}
+p {
+  max-width: 200px;
+  padding: 3px;
+  text-align: center;
+}
+
+.pontless_points {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 200px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
+}
+
+.card img {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: contain;
+}
+
+figure {
+  max-width: 300px;
+  min-width: 200px;
+}
+
+footer {
+  background-color: #0070fa;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+}

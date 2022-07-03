@@ -5,7 +5,18 @@ let manipulationField = document.querySelector(`.field_container`);
 let add_row_btns = document.querySelectorAll(".add_row");
 let addRowDB = document.querySelector(`.add`);
 let updateRowDB = document.querySelector(`.update`);
+let updateRowUser = document.querySelector(`.edit`);
 let deleteRowDB = document.querySelector(`.delete`);
+let deleteRowUser = document.querySelector(`.delete_user`);
+let context_info = document.querySelector(`.register_text`);
+let login_cont = document.querySelector(`.p1`);
+let reg_cont = document.querySelector(`.p2`);
+let reg_link = document.querySelector(`.h_t`);
+let userInfoCont = document.querySelector(`.user_info`);
+let fields = userInfoCont.querySelectorAll(`.info_user`);
+
+let edit_user = document.querySelector(`.edit`);
+
 let updateDataBlock = {};
 
 let parent_containers = {
@@ -46,6 +57,7 @@ let registerIndicators =
   parent_containers.register.querySelectorAll(`.indicator`);
 
 let manipulationInputs = manipulationField.querySelectorAll(`.input`);
+let queryBoxes = manipulationField.querySelectorAll(".query_box");
 let manipulationIndicators = manipulationField.querySelectorAll(`.indicator`);
 
 let floatingIDMessageReg = parent_containers.register.querySelectorAll(
@@ -76,17 +88,20 @@ let pageStateLogics = {
 };
 
 navigation_buttons.register.addEventListener("click", () => {
-  if (pageStateLogics.switched) {
-    switchPage(pageStateLogics.login);
-    pageStateLogics.switched = false;
-  } else processData(registerInputs, registerIndicators, floatingIDMessageReg);
+  processData(registerInputs, registerIndicators, floatingIDMessageReg);
 });
 
 navigation_buttons.login.addEventListener("click", () => {
+  processData(loginInputs, loginIndicators, floatingIDMessageLog);
+});
+
+reg_link.addEventListener("click", () => {
+  // console.log(pageStateLogics.switched);
   if (!pageStateLogics.switched) {
     switchPage(!pageStateLogics.login);
-    pageStateLogics.switched = true;
-  } else processData(loginInputs, loginIndicators, floatingIDMessageLog);
+  } else {
+    switchPage(pageStateLogics.login);
+  }
 });
 
 navigation_buttons.logout.addEventListener("click", () => {
@@ -97,19 +112,42 @@ navigation_buttons.logout.addEventListener("click", () => {
 
 function switchPage(condition) {
   if (condition) {
-    navigation_buttons.register.style = `left:80%;right:10px;`;
-    navigation_buttons.login.style = `left:10px;right:80%;`;
+    pageStateLogics.switched = false;
+    reg_cont.style = `transform: translateY(0px);`;
+    login_cont.style = `display:none`;
     parent_containers.register.style = `display:block; opacity:1;`;
     parent_containers.login.style = `display:none; opacity:0;`;
+    context_info.innerHTML = `<div class="register_text">
+    Already have an account? <span class="h_t"> Login</span> here
+  </div>`;
   } else {
-    navigation_buttons.register.style = ``;
-    navigation_buttons.login.style = ``;
+    pageStateLogics.switched = true;
+    reg_cont.style = ``;
+    login_cont.style = ``;
     parent_containers.register.style = ``;
     parent_containers.login.style = ``;
+    context_info.innerHTML = `<div class="register_text">
+    Don't have an account? <span class="h_t"> Register</span> here
+  </div>`;
   }
+
+  reg_link = document.querySelector(`.h_t`);
+  reg_link.addEventListener("click", () => {
+    // console.log(pageStateLogics.switched);
+    if (!pageStateLogics.switched) {
+      switchPage(!pageStateLogics.login);
+    } else {
+      switchPage(pageStateLogics.login);
+    }
+  });
 }
 
-function processData(data, indicatorsRef, indocatorCol) {
+edit_user.addEventListener("click", () => {
+  invokeManipulationBox("on", userPageElements.currentUserinfo, "update");
+  updateDataBlock = userPageElements.currentUserinfo;
+});
+
+function processData(data, indicatorsRef, indocatorCol, add) {
   userData = [];
   let passFlag = true;
   let mobileFlag = true;
@@ -130,7 +168,11 @@ function processData(data, indicatorsRef, indocatorCol) {
       passFlag = false;
     } else if (i === 1 && !currentFieldData.match(/^\d{11}$/)) {
       mobileFlag = false;
-    } else if (i === 5 && currentFieldData !== "Student") {
+    } else if (
+      i === 5 &&
+      currentFieldData !== "Student" &&
+      userPageElements.currentUserinfo.Role !== "Admin"
+    ) {
       passFlag = false;
       invokeInfoBox("red", "Registration only available for Students.");
     } else {
@@ -144,7 +186,15 @@ function processData(data, indicatorsRef, indocatorCol) {
       invokeInfoBox("red", "Mobile Number invalid");
       return;
     }
-    validateRegInfo(indicatorsRef, indocatorCol);
+    if (add === undefined) {
+      validateRegInfo(indicatorsRef, indocatorCol);
+    } else {
+      let indicatorsRefBU = [...indicatorsRef];
+      indicatorsRefBU.pop();
+      console.log(indicatorsRefBU);
+
+      validateRegInfo(indicatorsRefBU, indocatorCol);
+    }
   } else if (passFlag) {
     loginProcess(false);
   }
@@ -165,7 +215,7 @@ async function insertdata(data) {
     })
     .then((data) => {
       recievedData = data;
-      console.log(data);
+      // console.log(data);
       if (!recievedData.sqlState) {
         invokeInfoBox("green", "Registration Success!");
       } else {
@@ -190,7 +240,7 @@ async function getSpecdata(data) {
     })
     .then((data) => {
       recievedData = data;
-      console.log(recievedData);
+      // console.log(recievedData);
       userPageElements.currentUserAllowedtables.push(recievedData);
     })
     .catch((err) => {
@@ -213,7 +263,7 @@ async function updateSpecdata(data) {
     })
     .then((data) => {
       recievedData = data;
-      console.log(recievedData);
+      // console.log(recievedData);
       if (!recievedData.sqlState) {
         invokeInfoBox("green", "Updated!");
       } else {
@@ -241,7 +291,7 @@ async function deleteSpecdata(data) {
     })
     .then((data) => {
       recievedData = data;
-      console.log(recievedData);
+      // console.log(recievedData);
 
       if (!recievedData.sqlState) {
         invokeInfoBox("green", "Delete success!");
@@ -269,7 +319,7 @@ async function getData() {
     })
     .then((data) => {
       recievedData = data;
-      console.log(recievedData);
+      // console.log(recievedData);
     })
     .catch((err) => {
       throw err;
@@ -323,9 +373,9 @@ function validate(data, recievedDataVal, loggedin) {
 function validateRegInfo(indicators, floatingMessages) {
   if (userData[3] !== userData[4] && indicators.length > 5) {
     switchIndicators([indicators[3], indicators[4]], "on");
-    etIndicationMessage(floatingMessages[3], "Does not Match!");
+    setIndicationMessage(floatingMessages[3], "Does not Match!");
     setIndicationMessage(floatingMessages[4], "Does not Match!");
-    eturn;
+    return;
   }
   insertdata(userData);
 }
@@ -359,7 +409,7 @@ function errorIndicator() {
   switchIndicators([loginIndicators[0]], "on");
   setIndicationMessage(floatingIDMessageLog[0], "Does not exist!");
   setIndicationMessage(floatingIDMessageLog[1], "Does not exist!");
-  i + nvokeInfoBox("red", "No user!");
+  invokeInfoBox("red", "No user!");
 }
 
 function invokeUserPage(command) {
@@ -367,13 +417,20 @@ function invokeUserPage(command) {
 
   if (command === "login") {
     generateTables(userPageElements.currentUserinfo.Role);
+    populateUserInfo();
     userPageElements.userPageHeaderText.textContent = `Welcome ${userPageElements.currentUserinfo.UserNameEmail},  ${userPageElements.currentUserinfo.Role}`;
-    userPageElements.userPage.style = "transform:none";
+    userPageElements.userPage.style = "transform:none;opacity:1;";
     mainPage.style.opacity = mainPageHeader.style.opacity = 0;
   } else {
     userPageElements.userPage.style = "";
     mainPage.style.opacity = mainPageHeader.style.opacity = 1;
     invokeInfoBox("blue", "Logged out");
+    for (let i = 0; i < userPageElements.tableContainers.length; i++) {
+      userPageElements.tableContainers[i].innerHTML = "";
+    }
+    for (let i = 0; i < fields.length; i++) {
+      fields[i].textContent = "";
+    }
   }
 }
 
@@ -382,14 +439,15 @@ function generateTables(role) {
   for (let i = 0; i < add_row_btns.length; i++) {
     add_row_btns[i].style.display = "";
   }
+  queryBoxes[4].style = "";
+  queryBoxes[5].style = "";
+
   if (role.trim() === "Admin") {
     // console.log(role);
     for (let i = 0; i < add_row_btns.length; i++) {
       add_row_btns[i].style.display = "block";
     }
-    addRowDB.style = "display:none;";
-    updateRowDB.style = "display:block;";
-    deleteRowDB.style = "display:block;";
+    queryBoxes[4].style = "display:none;";
 
     getSpecdata(["Admin", ""]);
     setTimeout(() => {
@@ -402,8 +460,6 @@ function generateTables(role) {
 
   if (role.trim() === "Teacher") {
     addRowDB.style = "display:none;";
-    updateRowDB.style = "display:none;";
-    deleteRowDB.style = "display:none;";
 
     getSpecdata(["Admin", ""]);
     setTimeout(() => {
@@ -412,13 +468,13 @@ function generateTables(role) {
     setTimeout(() => {
       getSpecdata(["Teacher", ""]);
     }, 200);
+    queryBoxes[5].style = "display:none;";
     number = 2;
   }
 
   if (role.trim() === "Student") {
     addRowDB.style = "display:none;";
-    updateRowDB.style = "display:none;";
-    deleteRowDB.style = "display:none;";
+
     getSpecdata(["Admin", ""]);
     setTimeout(() => {
       getSpecdata([
@@ -429,6 +485,7 @@ function generateTables(role) {
     setTimeout(() => {
       getSpecdata(["Teacher", ""]);
     }, 200);
+    queryBoxes[5].style = "display:none;";
     number = 1;
   }
 
@@ -444,19 +501,29 @@ function tableGenerator(tables, number) {
     for (let i = 0; i < userPageElements.tableContainers.length; i++) {
       userPageElements.tableContainers[i].style.display = "block";
     }
+    document.querySelector(`.db_1`).style.display = "";
+    document.querySelector(`.db_2`).style.display = "";
+    document.querySelector(`.db_3`).style.display = "";
   }
 
   if (number < 3) {
     for (let i = 0; i < userPageElements.tableContainers.length; i++) {
       userPageElements.tableContainers[i].style.display = "none";
+
       break;
     }
+    document.querySelector(`.db_1`).style.display = "none";
+    document.querySelector(`.db_2`).style.display = "";
+    document.querySelector(`.db_3`).style.display = "";
   }
 
   if (number < 2) {
     for (let i = 0; i < userPageElements.tableContainers.length; i++) {
       if (i !== 1) userPageElements.tableContainers[i].style.display = "none";
     }
+    document.querySelector(`.db_1`).style.display = "none";
+    document.querySelector(`.db_2`).style.display = "none";
+    document.querySelector(`.db_3`).style.display = "none";
   }
 
   for (let i = 0; i < 3; i++) {
@@ -473,11 +540,25 @@ function tableGenerator(tables, number) {
   }
 }
 
-function invokeManipulationBox(command, query) {
+function invokeManipulationBox(command, query, context) {
   // console.log(query);
 
   if (command === "on") {
-    queryManipulationBox.style.transform = "none";
+    if (context === "add") {
+      updateRowDB.style = "display:none;";
+      deleteRowDB.style = "display:none;";
+      addRowDB.style = "display:block;";
+    } else if (context === "update") {
+      updateRowDB.style = "";
+      deleteRowDB.style = "";
+      addRowDB.style = "display:none;";
+    } else {
+      updateRowDB.style = "";
+      deleteRowDB.style = "";
+      addRowDB.style = "";
+    }
+
+    queryManipulationBox.style = "transform:none;opacity:1;";
 
     manipulationInputs[0].value = query.UserNameEmail;
     manipulationInputs[1].value = query.MobileNo;
@@ -485,7 +566,7 @@ function invokeManipulationBox(command, query) {
     manipulationInputs[3].value = query.UserPass;
     manipulationInputs[4].value = query.Role;
   } else {
-    queryManipulationBox.style.transform = "";
+    queryManipulationBox.style = "";
   }
 }
 
@@ -496,24 +577,24 @@ document.addEventListener("click", (e) => {
 
   if (targetClass) {
     let query = targetClass.split(" ").map((elm) => +elm);
-    // console.log(userPageElements.currentUserAllowedtables);
 
-    if (!isNaN(query[0]) && userPageElements.currentUserinfo.Role === "Admin") {
+    if (!isNaN(query[0])) {
       updateDataBlock =
         userPageElements.currentUserAllowedtables[query[1]][query[0]];
-      addRowDB.style = "display:none;";
-      updateRowDB.style = "display:block;";
-      deleteRowDB.style = "display:block;";
-      invokeManipulationBox("on", updateDataBlock);
+
+      if (userPageElements.currentUserinfo.Role === "Admin") {
+        invokeManipulationBox("on", updateDataBlock, "update");
+      }
     }
   }
 
   if (targetClass === "query_manipulation_box") {
-    invokeManipulationBox("off", []);
+    invokeManipulationBox("off", [], "");
   }
 
   if (targetClass === "update") {
-    let sqlQuery = generateUpdateSql();
+    let sqlQuery = generateUpdateSql(updateDataBlock);
+    console.log(updateDataBlock);
 
     updateSpecdata([sqlQuery, updateDataBlock.UserNo]);
     loginProcess(true);
@@ -528,15 +609,37 @@ document.addEventListener("click", (e) => {
     processData(
       manipulationInputs,
       manipulationIndicators,
-      floatingIDMessageMan
+      floatingIDMessageMan,
+      "a"
     );
     loginProcess(true);
   }
 });
 
-function generateUpdateSql() {
+function generateUpdateSql(ref) {
   let generatedQuery = "";
-  generatedQuery += `UserNameEmail = '${manipulationInputs[0].value}'  ,  MobileNo = '${manipulationInputs[1].value}' , BirthDate = '${manipulationInputs[2].value}' , UserPass = '${manipulationInputs[3].value}' , Role = '${manipulationInputs[4].value}'`;
+  setIndicationMessage(floatingIDMessageMan[3], "Does not match!");
+  setIndicationMessage(floatingIDMessageMan[4], "Does not match!");
+  manipulationIndicators[3].style = "";
+  manipulationIndicators[4].style = "";
+  console.log(ref, manipulationInputs);
+
+  if (userPageElements.currentUserinfo.Role === "Admin") {
+    return (generatedQuery += `UserNameEmail = '${manipulationInputs[0].value}' , MobileNo = '${manipulationInputs[1].value}'  , BirthDate = '${manipulationInputs[2].value}' , UserPass = '${manipulationInputs[3].value}' , Role = '${manipulationInputs[5].value}'`);
+  }
+
+  if (manipulationInputs[3].value === manipulationInputs[4].value) {
+    generatedQuery += `UserNameEmail = '${manipulationInputs[0].value}' ,  MobileNo = '${manipulationInputs[1].value}'   , BirthDate = '${manipulationInputs[2].value}' , UserPass = '${manipulationInputs[3].value}' , Role = '${manipulationInputs[5].value}'`;
+  } else {
+    setIndicationMessage(floatingIDMessageMan[3], "Does not match!");
+    setIndicationMessage(floatingIDMessageMan[4], "Does not match!");
+    manipulationIndicators[3].style = "opacity:1;pointer-events:all;";
+    manipulationIndicators[4].style = "opacity:1;pointer-events:all;";
+
+    invokeInfoBox("red", "Passwords mismatch!");
+  }
+  console.log("Main : ", generatedQuery);
+
   return generatedQuery;
 }
 
@@ -557,20 +660,25 @@ add_row_btns.forEach((elm, ind) => {
 
 function invokeAddPage(command) {
   if (command === "on") {
-    addRowDB.style = "display:block;";
-    updateRowDB.style = "display:none;";
-    deleteRowDB.style = "display:none;";
-    invokeManipulationBox("on", {
-      UserNameEmail: "Username Email",
-      MobileNo: "01xxxxxxx",
-      BirthDate: "2022-12-05",
-      UserPass: "Password",
-      UserNo: null,
-      Role: "Teacher",
-    });
-  } else {
-    addRowDB.style = "";
-    updateRowDB.style = "";
-    deleteRowDB.style = "";
+    invokeManipulationBox(
+      "on",
+      {
+        UserNameEmail: "Username_Email",
+        MobileNo: "01xxxxxxx",
+        BirthDate: "2022-12-05",
+        UserPass: "Password",
+        UserNo: null,
+        Role: "Teacher",
+      },
+      "add"
+    );
   }
+}
+
+function populateUserInfo() {
+  fields[0].textContent = userPageElements.currentUserinfo.UserNameEmail;
+  fields[1].textContent = userPageElements.currentUserinfo.MobileNo;
+  fields[2].textContent = userPageElements.currentUserinfo.BirthDate;
+  fields[3].textContent = userPageElements.currentUserinfo.UserPass;
+  fields[4].textContent = userPageElements.currentUserinfo.Role;
 }

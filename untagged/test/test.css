@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  transition: 0.5s;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+img {
+  width: 100%;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+}
+
+main > * {
+  margin: 10px 0;
+}
+
+.courses {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.courses > * {
+  margin: 10px 0;
+  width: 400px;
+}
+
+course {
+  text-align: center;
+  padding: 5px;
+}
+
+course:hover {
+  background-color: rgba(0, 255, 255, 0.427);
+  width: 100%;
+  cursor: pointer;
+}
+
+course:nth-of-type(1) {
+  color: blue;
+  text-decoration: dashed;
+}
+
+course:nth-of-type(2) {
+  color: pink;
+  text-decoration: wavy;
+}
+
+course:nth-of-type(3) {
+  color: purple;
+  text-decoration: double;
+}
+
+course:nth-of-type(4) {
+  color: green;
+  text-decoration: line-through;
+}
+
+course:nth-of-type(5) {
+  color: black;
+  text-decoration: overline;
+}
+course:nth-of-type(6) {
+  color: brown;
+  text-decoration: underline;
+}
+
+.custom_message {
+  max-width: 400px;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.img_cont {
+  max-width: 400px;
+}
