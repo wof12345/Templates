@@ -51,7 +51,7 @@ function updateUserCart() {
 
 function changeCartState(command) {
   if (command) {
-    user_info.style = "left:10px;";
+    user_info.style = "right:10px;";
     switchState = true;
   } else {
     user_info.style = "";
