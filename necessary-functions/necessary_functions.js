@@ -53,9 +53,12 @@ function GENERATERANDOMNUMBER(arrayToCompare, lowerrange, upperrange, type) {
   }
   let generatedNumber;
   if (type === "integer") {
-    generatedNumber = +(Math.random() * (upperrange - lowerrange)).toFixed(0);
+    generatedNumber = Math.floor(
+      Math.random() * (upperrange - lowerrange - 1) + lowerrange
+    );
   } else if (type === "double") {
-    generatedNumber = +(Math.random() * (upperrange - lowerrange)).toFixed(5);
+    generatedNumber =
+      Math.random() * (upperrange - lowerrange - 1) + lowerrange;
   }
 
   if (
