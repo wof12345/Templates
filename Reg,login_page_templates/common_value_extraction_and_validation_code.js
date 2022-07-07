@@ -25,6 +25,13 @@ function extractAndReturnValues(inputs) {
 }
 
 function validateInputs(inputs, case_0, case_1, case_2) {
+  console.log(inputs);
+
+  for (const input in inputs) {
+    // console.log(inputs[input]);
+    if (inputs[input] === "") return "Can't be empty!";
+  }
+
   if (inputs.mobile_no) {
     if (!inputs.mobile_no.match(/^\d{11}$/)) {
       return "Mobile nunmber not correct!";
@@ -49,7 +56,7 @@ function validateInputs(inputs, case_0, case_1, case_2) {
     }
   }
 
-  if (inputs.password !== inputs.reenter_password) {
+  if (inputs.password !== inputs.reenter_password && inputs.reenter_password) {
     return "Password doesn't match!";
   }
 

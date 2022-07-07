@@ -6,10 +6,10 @@ let masterContainers = document.querySelectorAll(`.master_container_inner`);
 let currentPage = 0;
 
 indicators[0].style = "background-color:black;";
-console.log(indicators);
+// console.log(indicators);
 
 function changePage(command) {
-  console.log(masterContainers[currentPage]);
+  // console.log(masterContainers[currentPage]);
   if (command === "f" && currentPage < 3) {
     masterContainers[currentPage].style = "right:200%;";
     currentPage++;
@@ -17,7 +17,7 @@ function changePage(command) {
     if (currentPage <= 2)
       indicators[currentPage].style = "background-color:black;";
 
-    console.log(masterContainers[currentPage]);
+    // console.log(masterContainers[currentPage]);
     masterContainers[currentPage].style = "right:0;";
   } else if (command === "b") {
     if (currentPage > 0) {
@@ -30,13 +30,10 @@ function changePage(command) {
   }
 }
 
-function validation() {
-  return true;
-}
-
 registerBtn.forEach((elm) => {
   elm.addEventListener("click", () => {
-    if (validation()) {
+    let inputs = getAndReturn();
+    if (validateInputs(inputs) === "pass") {
       changePage("f");
     }
   });
