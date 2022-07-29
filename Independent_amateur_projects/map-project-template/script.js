@@ -4,57 +4,61 @@ let currentPos = {
   lat: 0,
 };
 
-var geoJson = {
-  type: "FeatureCollection",
-  myTag: "geoJson",
-  features: [
-    {
-      type: "Feature",
-      properties: {},
-      geometry: {
-        type: "Point",
-        coordinates: [-989.6484375000001, 61.438767493682825],
-      },
-    },
-    {
-      type: "Feature",
-      properties: {},
-      geometry: {
-        type: "LineString",
-        coordinates: [
-          [-989.6484375000001, 60.75915950226991],
-          [-1130.9765625, -10.141931686131018],
-          [-947.1093750000001, -25.48295117535531],
-          [-976.9921875, 36.03133177633187],
-        ],
-      },
-    },
-  ],
-};
+var southWest = L.latLng(-89.92732325125809, -205.4687500000001),
+  northEast = L.latLng(89.9273232512581, 187.4687500000001),
+  bounds = L.latLngBounds(southWest, northEast);
 
-var map = new L.Map("map", {
+var map = new L.map("map", {
   center: [0, 0],
   zoom: 0,
   layers: [
     new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
         'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+      maxBounds: bounds,
+      minZoom: 2,
+      maxZoom: 18,
     }),
   ],
+}).setView([43.5768, 45.685], 4);
+
+console.log(map.getBounds());
+
+map.setMaxBounds(bounds);
+
+L.control
+  .scale({ metric: true, imperial: false, position: "topright" })
+  .addTo(map);
+
+L.Control.Watermark = L.Control.extend({
+  onAdd: function (map) {
+    var img = L.DomUtil.create("img");
+    img.src = "logo.png";
+    img.style = "width:130px;";
+    return img;
+  },
+  onRemove: function (map) {},
 });
 
-let pointPlay = L.geoJSON(geoJson).addTo(map);
-console.log(pointPlay);
+L.control.watermark = function (opts) {
+  return new L.Control.Watermark(opts);
+};
 
-setInterval(() => {
-  pointPlay = L.geoJSON(geoJson).addTo(map);
+L.control.watermark().addTo(map);
 
-  console.log(geoJson.features[0].geometry.coordinates);
+let pointPlay = L.geoJSON(data).addTo(map);
+map.removeLayer(data);
+// console.log(pointPlay);
 
-  movePointerFunction(100, generateNumber(1, 0), generateNumber(1, 0));
+// setInterval(() => {
+//   pointPlay = L.geoJSON(geoJson).addTo(map);
 
-  map.removeLayer(pointPlay);
-}, 3000);
+//   console.log(geoJson.features[0].geometry.coordinates);
+
+//   movePointerFunction(100, generateNumber(1, 0), generateNumber(1, 0));
+
+//   map.removeLayer(pointPlay);
+// }, 3000);
 
 function movePointerFunction(velocity, lat, long) {
   console.log(lat, long);
@@ -71,8 +75,4 @@ function movePointerFunction(velocity, lat, long) {
   if (!lat && long) {
     geoJson.features[0].geometry.coordinates[1] += velocity;
   }
-}
-
-function generateNumber(upper, lower) {
-  return Math.floor(Math.random() * (upper - lower + 1));
 }
