@@ -22,12 +22,12 @@ class PriorityQueue {
 
     let contain = false;
     let isPushed = false;
-    for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i].element === qElement.element) {
-        contain = true;
-        break;
-      }
-    }
+    // for (let i = 0; i < this.items.length; i++) {
+    //   if (this.items[i].element === qElement.element) {
+    //     contain = true;
+    //     break;
+    //   }
+    // }
 
     if (!contain) {
       for (let i = 0; i < this.items.length; i++) {
