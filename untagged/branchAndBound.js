@@ -159,14 +159,18 @@ function printPath() {
 
 function solve(initial, x, y, final) {
   let pqForLiveNodes = new PriorityQueue();
+  let debugIt = 0;
 
   let root = newNode(initial, x, y, x, y, 0, null);
   root.cost = calculateCost(initial, final);
+  console.log(root);
 
   pqForLiveNodes.push(root, root.cost);
 
   while (!pqForLiveNodes.isEmpty()) {
     let min = pqForLiveNodes.front().element;
+    // console.log(min);
+
     states.push(min);
 
     pqForLiveNodes.pop();
@@ -188,29 +192,33 @@ function solve(initial, x, y, final) {
           min
         );
         child.cost = calculateCost(child.mat, final);
-        // console.log("pq : ", child);
+        console.log("pq : ", child);
 
         pqForLiveNodes.push(child, child.cost);
       }
     }
+    console.log("^ ", min);
+
+    debugIt++;
+    if (debugIt >= 3) break;
   }
 }
 
 function maincall() {
   let initial = [
     [1, 2, 3],
-    [5, 6, 0],
-    [7, 8, 4],
+    [5, 6, 7],
+    [0, 8, 4],
   ];
 
   let final = [
     [1, 2, 3],
-    [5, 8, 6],
-    [0, 7, 4],
+    [5, 6, 7],
+    [8, 4, 0],
   ];
 
-  let x = 1,
-    y = 2;
+  let x = 2,
+    y = 0;
 
   printMatrix(initial);
 
