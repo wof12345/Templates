@@ -11,8 +11,5 @@ int main()
     {
         printf("%s\n",str[i]);
     }
-    
-    
-
-
+    return 0;
 }
