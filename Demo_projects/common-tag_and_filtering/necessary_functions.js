@@ -242,6 +242,16 @@ function ARRAYTOOBJ(arr) {
   return obj;
 }
 
+function asciiFy(collection) {
+  let newElemValue = 0;
+  //   console.log(collection);
+
+  for (let j = 0; j < collection.length; j++) {
+    newElemValue += collection.charCodeAt(j);
+  }
+  return newElemValue;
+}
+
 // console.log(GENERATERANDOMNUMBER([0, 1, 2, 3, 4, 8, 9], 0, 10, "integer"));
 // let arr = OBJECTTOARRAY({ maun: "come", woman: "come" });
 // console.log(arr);

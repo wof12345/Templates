@@ -49,8 +49,9 @@ button:hover {
   width: 300px;
 }
 
-#tag_filter {
+select {
   padding: 3px;
+  width: 300px;
 }
 
 .items_container {
@@ -110,10 +111,6 @@ button:hover {
   /* width: 100%; */
 }
 
-.tags_select {
-  width: 300px;
-}
-
 .close {
   background-color: white;
   border-radius: 20px;
@@ -171,6 +168,16 @@ tag:hover {
   border-radius: 100px;
   background-color: white;
   /* border-top: 1px solid black; */
+}
+
+.item-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.date-item {
 }
 
 .style_part > .item_name {
