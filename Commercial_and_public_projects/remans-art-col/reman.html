@@ -5,8 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="reman.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
     <title>Document</title>
     <script defer src="./functions.js"></script>
+    <!-- <script defer src="./slide.js"></script> -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body>
@@ -86,6 +99,46 @@
         <div class="featured_section_body">
           <div class="featured_main_body"></div>
         </div>
+      </section>
+
+      <section>
+        <h4>Our products</h4>
+        <section class="product_cart w-100">
+          <div class="product_display d-flex justify-content-between"></div>
+          <div class="cart_details d-flex flex-column">
+            <h1>My cart</h1>
+            <div class="totprod cost_detail">
+              Total Product :
+              <p class="costs">0</p>
+            </div>
+            <div class="price cost_detail">
+              Price :
+              <p class="costs">0</p>
+            </div>
+            <div class="delivery cost_detail">
+              Delivery
+              <p class="costs">0</p>
+            </div>
+            <div class="shipping cost_detail">
+              Shipping :
+              <p class="costs">0</p>
+            </div>
+            <div class="totprice cost_detail">
+              Total price :
+              <p class="costs">0</p>
+            </div>
+            <div class="tax cost_detail">
+              Tax :
+              <p class="costs">0</p>
+            </div>
+            <div class="tottax cost_detail">
+              Total Price with Tax
+              <p class="costs">0</p>
+            </div>
+
+            <button class="check_out btn btn-dark">Check out</button>
+          </div>
+        </section>
       </section>
 
       <section class="common_section" id="artists">
@@ -191,12 +244,101 @@
         </div>
       </section>
 
-      <section class="showcase_page">
+      <!-- <section class="product_slide">
+        <div class="slide_left slide_btn">
+          <div class="slide_left_1"></div>
+        </div>
+
+        <div class="product_slider"></div>
+
+        <div class="page_no"></div>
+
+        <div class="slide_right slide_btn">
+          <div class="slide_right_1"></div>
+        </div>
+      </section> -->
+
+      <section class="showcase_page position-fixed">
         <div class="showpage_back">
           <img src="./remans-col/buttonback.svg" alt="" />
         </div>
         <div class="img_holder"><img src="" alt="" class="show_img" /></div>
       </section>
+
+      <section class="slider_review carousel slide" data-bs-ride="carousel">
+        <div class="slider_review-inner carousel-inner">
+          <div class="item carousel-item active">
+            <img class="d-block" src="./remans-col/Testimonial.png" alt="" />
+          </div>
+          <div class="item carousel-item">
+            <img class="d-block" src="./remans-col/Testimonial.png" alt="" />
+          </div>
+          <div class="item carousel-item">
+            <img class="d-block" src="./remans-col/Testimonial.png" alt="" />
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="cart_info w-100 h-100 fixed-top d-flex align-items-center justify-content-center d-none"
+      >
+        <div
+          class="cart_info-box d-flex flex-column justify-content-center align-items-center p-4"
+        >
+          <img class="cart_info-img ci" src="" alt="" />
+          <p class="message ci"></p>
+          <p class="price_message ci"></p>
+          <button class="confirm btn btn-dark">Confirm</button>
+        </div>
+      </section>
+
+      <footer
+        class="absolute-fixed d-flex flex-column justify-content-center align-items-center"
+      >
+        <div class="info_1"><img src="./remans-col/logo.png" alt="" /></div>
+        <div class="ppage_links">
+          <ul class="nav__links">
+            <li class="nav__item">
+              <a class="nav__link" href="./reman.html">PAINTINGS</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="./reman_drawing.html">DRAWINGS</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="./reman_sculpture.html">SCULPTURE</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="./reman_artists.html">ARTISTS</a>
+            </li>
+            <li class="nav__item">
+              <img src="./remans-col/search.png" alt="" />
+            </li>
+          </ul>
+        </div>
+
+        <div class="info_2 d-flex p-2">
+          <div class="info_2-box m-1">
+            <img src="" alt="" />
+            <p>Lorem, ipsum.</p>
+          </div>
+
+          <div class="info_2-box m-1">
+            <img src="" alt="" />
+            <p>Lorem, ipsum.</p>
+          </div>
+
+          <div class="info_2-box m-1">
+            <img src="" alt="" />
+            <p>Lorem, ipsum.</p>
+          </div>
+        </div>
+
+        <div class="info_3 d-flex">
+          <img src="" alt="" />
+          <img src="" alt="" />
+          <img src="" alt="" />
+        </div>
+      </footer>
     </main>
   </body>
 </html>

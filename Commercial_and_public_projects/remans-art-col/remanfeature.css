@@ -6,7 +6,11 @@
 }
 
 .common_section {
-  margin-top: 70px;
+  margin-top: 30px;
+}
+
+.common_section:nth-child(2) {
+  margin-top: 60px;
 }
 
 .featured_section_header h1 {
@@ -24,11 +28,21 @@
   background-color: rgba(109, 109, 110, 0.274);
 }
 
+.featured_section_body-outer {
+  overflow-y: visible;
+}
+
 .featured_section_body,
 .artists_section_body {
   display: flex;
-  overflow-x: auto;
-  /* height: 600px; */
+  overflow-x: scroll;
+  height: max-content;
+  padding: 10px 0;
+  height: 450px;
+}
+
+.featured_section_body:hover {
+  padding: 20px 0;
 }
 
 .featured_main_body,
@@ -38,6 +52,7 @@
   gap: 80px;
   width: max-content;
   /* background-color: white; */
+  overflow: visible;
   padding: 16px;
   margin: 5px auto;
 }
@@ -46,6 +61,7 @@
   max-height: 380px;
   position: relative;
   z-index: 30;
+  overflow: visible;
 }
 
 .feature_card,
@@ -56,6 +72,7 @@
   height: 260px;
   position: relative;
   background-color: white;
+  overflow: visible;
 }
 
 .feature_card:hover,
@@ -65,7 +82,7 @@
 }
 
 .feature_card:hover {
-  height: 370px;
+  height: 410px;
 }
 
 .feature_card:hover .hidden {
@@ -131,9 +148,6 @@
 }
 
 #artists {
-  position: absolute;
-  /* z-index: 0; */
-  top: 530px;
   background-color: #f4f4f2;
   padding: 10px;
   width: 100vw;
@@ -162,12 +176,16 @@
   background-color: #f4f4f200;
 }
 
+.artists_card .img_part {
+  height: 100%;
+  width: 40%;
+}
+
 .artists_card img {
   /* max-width: 80px; */
-  height: 81.5px;
-  margin-bottom: -11px;
-  margin-left: -2px;
-  border: 1px solid rgba(0, 0, 0, 0);
+  height: 100%;
+  width: 60%;
+  object-fit: cover;
 }
 
 .artist_desc {
@@ -206,4 +224,107 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.product {
+  padding: 10px 60px;
+  display: flex;
+}
+
+.product img {
+  width: 100%;
+  max-width: 300px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.product_cart {
+  width: 100%;
+  max-height: 550px;
+  background-color: var(--theme-cart);
+  display: flex;
+}
+
+.product_display {
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 14px;
+
+  overflow-y: auto;
+}
+
+.cart_details {
+  width: 40%;
+  padding: 10px;
+}
+
+.cost_detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 10px 0;
+}
+
+.slider_review-inner {
+  margin: 10px;
+}
+
+.d-block {
+  width: 80%;
+  padding: 20px;
+  margin: 10px;
+  margin: auto;
+}
+
+.artists_section_body {
+  height: 200px;
+}
+
+.cart_info {
+  background-color: rgba(118, 119, 121, 0.678);
+}
+
+.cart_info img {
+  aspect-ratio: 1/1;
+  width: 60px;
+}
+
+.cart_info p {
+  color: white;
+}
+
+.cart_info-box {
+  background-color: black;
+  aspect-ratio: 1/1;
+  width: max-content;
+}
+
+footer {
+  background-color: black;
+  padding: 10px;
+  font-size: 13px;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+footer p {
+  color: white;
+}
+
+footer > * {
+  margin: 5px;
+}
+
+.info_1 {
+  background-color: white;
+  padding: 2px;
+}
+
+.info_2-box {
+  padding: 0 3px;
 }

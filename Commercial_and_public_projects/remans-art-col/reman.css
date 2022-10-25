@@ -23,6 +23,12 @@ button:hover {
   cursor: pointer;
 }
 
+h4 {
+  padding: 20px;
+  margin-bottom: 40px;
+  padding-left: 140px;
+}
+
 .header {
   padding: 0 3rem;
   height: 100vh;
@@ -41,7 +47,6 @@ button:hover {
   padding: 0 6rem;
   z-index: 100;
   background-color: #ffffff;
-  z-index: 100;
 }
 
 .nav_aside_links {
@@ -127,8 +132,8 @@ svg:hover {
 }
 
 ::-webkit-scrollbar {
-  width: 2px;
-  height: 5px;
+  width: 1px;
+  height: 1px;
 }
 
 ::-webkit-scrollbar-track {
