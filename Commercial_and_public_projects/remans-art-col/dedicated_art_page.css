@@ -22,6 +22,10 @@
   justify-content: center;
 }
 
+.details_img_part img {
+  max-width: 300px;
+}
+
 .angle_img_container {
   width: 60px;
   display: flex;

@@ -179,7 +179,10 @@ function detainShowPage() {
 function fillMainBody(number) {
   let genHtml = "";
   for (let i = 0; i < number; i++) {
-    genHtml += componentFunctionFeatureCard(i, "./remans-col/Painting 2.png");
+    genHtml += componentFunctionFeatureCard(
+      i,
+      `./remans-col/${GENERATERANDOMNUMBER([], 1, 10, "integer")}.png`
+    );
   }
 
   mainBodyCards.innerHTML = genHtml;
@@ -227,7 +230,12 @@ function componentFunctionFeatureCard(number, src_context) {
     class="feature_pricing hidden"
     data-src="${src_context}"
   >
-    <p class="price" data-src="${src_context}">$664</p>
+    <p class="price" data-src="${src_context}">$${GENERATERANDOMNUMBER(
+    [],
+    100,
+    5000,
+    "integer"
+  )}</p>
     <div class="shop_icons" data-src="${src_context}">
       <img src="./remans-col/button-share.png" alt="" />
       <img class="buy_btn" src="./remans-col/button-buy.png" alt="" />

@@ -122,6 +122,10 @@ h4 {
   width: 100vw;
 }
 
+.cart_section {
+  margin-top: 400px;
+}
+
 svg {
   fill: black;
 }
@@ -146,6 +150,10 @@ svg:hover {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(85, 85, 85, 0.425);
+}
+
+.featured_section_body::-webkit-scrollbar {
+  display: none;
 }
 
 @media screen and (max-width: 990px) {
