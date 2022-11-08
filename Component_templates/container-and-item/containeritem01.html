@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="container-model-outer-basic grid">
+      <div class="item-model-basic">
+        <div class="part-img"><img src="" alt="" /></div>
+
+        <div class="part-desc">
+          <h1>item</h1>
+          <div class="part-desc-desc">
+            <div class="text-demo">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis
+              necessitatibus debitis aliquid quidem tenetur labore voluptas quia
+              est alias qui quaerat nobis sapiente mollitia, vero placeat
+              aspernatur similique libero esse recusandae veritatis. Eaque
+              voluptates perferendis saepe, est mollitia laborum, quaerat
+              deserunt vel repudiandae aperiam, placeat soluta quia voluptate
+              provident veritatis neque quo! Similique, esse explicabo iste
+              consectetur nihil tempora hic officiis voluptatum consequuntur
+              molestias dolorem sint incidunt vero, fuga nesciunt veniam
+              aliquam, quas magni tenetur praesentium animi? Mollitia pariatur
+              excepturi saepe quo expedita doloremque dolore nulla ipsa aut! Est
+              veritatis odio eaque laudantium ducimus ut, aspernatur harum quis,
+              obcaecati numquam cum! Vel accusamus nesciunt quis facere?
+              Expedita, veritatis. Rerum, suscipit saepe. Totam ducimus eos
+              beatae iste. Nesciunt at nulla unde id, impedit fuga laudantium
+              voluptatem repudiandae ratione quo sed quisquam enim voluptas
+              recusandae ad adipisci corrupti nihil, ipsam quaerat non.
+              Aspernatur tenetur molestias enim cum veritatis fuga, nesciunt,
+              quas eaque labore deleniti, vero neque quidem velit perspiciatis
+              doloribus est ducimus ipsa nobis corrupti accusantium illo
+              expedita. Possimus sunt in fugiat mollitia reprehenderit repellat
+              eveniet cum, suscipit dicta quam? Soluta doloribus iure molestiae.
+              Dolore aspernatur corporis explicabo? Saepe vel, tempora labore
+              ipsam repudiandae necessitatibus tenetur dignissimos velit
+              repellat illo! Accusantium iusto numquam corrupti eveniet facere.
+            </div>
+            <div class="text-demo"></div>
+            <div class="text-demo"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
+
+<style>
+  .flex {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 2fr));
+  }
+
+  .container-model-outer-basic {
+    background-color: aquamarine;
+    height: max-content;
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .item-model-basic {
+    width: 300px;
+    height: 300px;
+    background-color: white;
+    margin: 5px;
+  }
+
+  .part-img {
+    height: 40%;
+    background-color: black;
+  }
+
+  .part-desc {
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .part-desc-desc {
+    overflow-y: auto;
+  }
+</style>
