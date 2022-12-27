@@ -61,8 +61,8 @@ def reverseOrder():
 
 
 # comment the problems you don't want to see
-# employeeProb()
-# discountProb()
-# canGiveExam()
-# mildSexism()
+employeeProb()
+discountProb()
+canGiveExam()
+mildSexism()
 reverseOrder()
