@@ -7,6 +7,7 @@ import time
 # destructure game element collections and utility functions (for readability)
 giveTT = gameutilityfunctions.giveTraitTurn
 
+
 traitObjectList = traitcollection.traits
 spellObjectList = spellcollection.spells
 
@@ -16,6 +17,10 @@ class baseEntity:
         self.name = name
 
         self.traits = startingTraits
+
+        self.lastMoveList = [0]
+
+        self.isTurn = False
 
         self.stats = {
             'health': 0,
@@ -81,7 +86,7 @@ class baseEntity:
         for index, trait in enumerate(self.traits):
 
             if (trait['turns'] >= 0):
-                if (mod > 0):
+                if (trait['added']):
                     trait['turns'] -= 1
 
                 if (trait['added'] == False):
@@ -96,11 +101,11 @@ class baseEntity:
                     self.updateStatByKey(name, -mod * int(value))
 
     def applyTurn(self, turnData, spell):
-        currentMove = turnData['current']
+        currentMove = turnData['current']  # entity currently on turn
         self.traitCheck()
         currentMove.traitCheck()
 
-        if (spell < 0):
+        if (spell < -1):
             # if normal attack
             if (currentMove.stats['isStunned'] <= 0):
                 healed = 0
@@ -122,7 +127,7 @@ class baseEntity:
             else:
                 print(currentMove.name + " is stunned!")
 
-        else:
+        elif (spell > -1):
             # if spell cast
             spell = list(spellObjectList.keys())[spell-1]
             spellEffect = spellObjectList[spell]

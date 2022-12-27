@@ -8,7 +8,7 @@ traits = {
     'weakend': {'extraAttack': -40},
     'shielded': {'extraHealth': 100},
     'stunned': {'istunnedExtraFactor': 1},
-    'invulnerable': {'extraDamageTakenMult': -41}
+    'invulnerable': {'extraDamageTakenMult': -51}
 }
 
 

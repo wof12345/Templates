@@ -1,8 +1,11 @@
 # test data
 stateTree = {
-    '1': ['2', '3'],
-    '2': ['4'],
-    '3': ['3', '-7'],
+    '-2': ['3', '20'],
+    '3': ['-8', '7'],
+    '20': ['15', '14'],
+    '10': ['-8', '-1'],
+    '-8': ['8', '-5'],
+    '-1': ['1', '0']
 }
 
 
@@ -42,5 +45,5 @@ def minimax(state, depth, isMaximizingPlayer, alpha, beta, stateTree):
         return state
 
 
-value = minimax('1', 0, True, 0, 0, stateTree)
+value = minimax('-2', 0, True, 0, 0, stateTree)
 print(value)

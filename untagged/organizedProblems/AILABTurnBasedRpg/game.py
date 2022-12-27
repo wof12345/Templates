@@ -2,6 +2,7 @@ import random
 import traitcollection
 import spellcollection
 import baseentity
+import gameinfo
 import gameutilityfunctions
 
 # destructure game element collections and utility functions (for readability)
@@ -10,6 +11,7 @@ spells = spellcollection.spells
 entity = baseentity
 
 giveTT = gameutilityfunctions.giveTraitTurn
+calculateMoveWeight = gameutilityfunctions.calculateMoveWeight
 
 # terminal state is when player or enemy health is 0
 gameStateInfo = {
@@ -21,22 +23,38 @@ gameStateInfo = {
 def actionDeterminer(action, ally, enemy):
     if (action == 1):
         enemy.applyTurn(
-            {'current': ally, }, -1)
+            {'current': ally, }, -2)
     elif (action == 2):
-        ally.addTrait(giveTT(traits[9], 3))
-
-        print(ally.name + "Used defend and gained 50% damage immunity.")
-    elif (action == 3):
-        print("1 - dazzle\n2 - burst\n3 - shield")
-        spell = input()
+        if (ally.lastMoveList[-1] != 2):
+            ally.addTrait(giveTT(traits[9], 1))
+            print(ally.name + " used defend and gained 50% damage immunity.")
+        else:
+            print('Cannot use defend subsequently!')
         enemy.applyTurn(
-            {'current': ally, }, int(spell))
+            {'current': ally, }, -1)
+    elif (action == 3):
+        if (gameStateInfo['playerturn'] == False):
+            print("1 - dazzle\n2 - burst\n3 - shield")
+            spell = input()
+        else:
+            spell = 2
+
+        calculateMoveWeight(ally, enemy, 3, spell)
+
+        if (ally.lastMoveList[-1] != spell):
+            enemy.applyTurn(
+                {'current': ally, }, int(spell))
+        else:
+            print('Cannot use same spell subsequently!')
 
     enemy.logStats()
 
 
 def turnSimulation(action, ally, enemy):
-    actionDeterminer(action, ally, enemy)
+    if (ally.stats['isStunned'] <= 0):
+        actionDeterminer(action, ally, enemy)
+    else:
+        print(ally.name + " is stunned!")
 
 
 def init():
@@ -48,26 +66,37 @@ def init():
     player = entity.baseEntity(300, 10, 300, 'player', [])
     enemy = entity.baseEntity(400, 10, 100, 'enemy', [])
 
-    player.statCheckSequence()
-    enemy.statCheckSequence()
-
     player.addTrait(giveTT(traits[0], 3))
     player.addTrait(giveTT(traits[5], 2))
     player.addTrait(giveTT(traits[3], 2))
+
+    player.traitCheck()
+    enemy.traitCheck()
+
+    player.statCheckSequence()
+    enemy.statCheckSequence()
 
     if (random.randint(0, 1)):
         gameStateInfo['playerturn'] = False
 
     debug = 100
-    print(player.stats['health'], enemy.stats['health'])
     while (player.stats['health'] > 0 and enemy.stats['health'] > 0 and debug > 0):
         if (gameStateInfo['playerturn']):
-            action = input()
-            gameStateInfo['playerturn'] = False
-            turnSimulation(int(action), player, enemy)
+            action = int(input())
+            if (action < 4):
+                gameStateInfo['playerturn'] = False
+                player.isTurn = True
+                enemy.isTurn = False
+                turnSimulation(action, player, enemy)
+                player.lastMoveList.append(action)
         else:
             gameStateInfo['playerturn'] = True
-            turnSimulation(1, enemy, player)
+            enemyMove = 3
+            player.isTurn = False
+            enemy.isTurn = True
+            calculateMoveWeight(enemy, player, enemyMove, 0)
+            turnSimulation(enemyMove, enemy, player)
+            enemy.lastMoveList.append(enemyMove)
 
         debug -= 1
 
@@ -75,6 +104,9 @@ def init():
         print("player wins!")
     else:
         print("player loses!")
+
+    print(player.lastMoveList)
+    print(enemy.lastMoveList)
 
 
 init()
