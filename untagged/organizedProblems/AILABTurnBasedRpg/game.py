@@ -2,7 +2,7 @@ import random
 import traitcollection
 import spellcollection
 import baseentity
-import gameinfo
+
 import gameutilityfunctions
 
 # destructure game element collections and utility functions (for readability)
@@ -12,6 +12,7 @@ entity = baseentity
 
 giveTT = gameutilityfunctions.giveTraitTurn
 calculateMoveWeight = gameutilityfunctions.calculateMoveWeight
+
 
 # terminal state is when player or enemy health is 0
 gameStateInfo = {
@@ -38,8 +39,6 @@ def actionDeterminer(action, ally, enemy):
             spell = input()
         else:
             spell = 2
-
-        calculateMoveWeight(ally, enemy, 3, spell)
 
         if (ally.lastMoveList[-1] != spell):
             enemy.applyTurn(
@@ -91,10 +90,21 @@ def init():
                 player.lastMoveList.append(action)
         else:
             gameStateInfo['playerturn'] = True
-            enemyMove = 3
+            # CopyOfEnemy = type(
+            #     'CopyOfEnemy', enemy.__bases__, dict(enemy.__dict__))
+            # CopyOfAlly = type('CopyOfAlly', player.__bases__,
+            #                   dict(player.__dict__))
+            # refEnemy = CopyOfEnemy()
+            # refAlly = CopyOfAlly()
+
+            # print('test', CopyOfAlly.logStats())
+            enemyMove = gameutilityfunctions.generateGameTreeAndFindMove(
+                enemy, player)
+
             player.isTurn = False
+
             enemy.isTurn = True
-            calculateMoveWeight(enemy, player, enemyMove, 0)
+
             turnSimulation(enemyMove, enemy, player)
             enemy.lastMoveList.append(enemyMove)
 

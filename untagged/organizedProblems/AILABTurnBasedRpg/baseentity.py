@@ -12,7 +12,9 @@ traitObjectList = traitcollection.traits
 spellObjectList = spellcollection.spells
 
 
-class baseEntity:
+class baseEntity(object):
+    x = 0
+
     def __init__(self, health, attack, mana, name, startingTraits):
         self.name = name
 
