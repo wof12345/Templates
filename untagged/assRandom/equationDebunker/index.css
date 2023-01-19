@@ -1,0 +1,57 @@
+* {
+  padding: 0;
+  margin: 0;
+  transition: 0.5s;
+}
+
+button {
+  width: 10%;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+main {
+  background-color: black;
+  min-width: 300px;
+  max-width: 800px;
+  margin: 10% auto;
+  padding: 40px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#equation-input {
+  padding: 6px;
+  border-radius: 5px;
+  width: 70%;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0);
+  outline: none;
+}
+
+#equation-input:focus {
+  border: 1px solid black;
+}
+
+.equation-view {
+  width: 100%;
+  background-color: rgb(93, 69, 232);
+  height: 40px;
+  text-align: center;
+  font-size: large;
+}
+
+.user-style {
+  background-color: aqua;
+  width: 100%;
+  height: 100px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
