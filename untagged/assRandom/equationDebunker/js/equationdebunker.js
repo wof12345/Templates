@@ -5,3 +5,9 @@ inputBtn.addEventListener("click", (e) => {
   tokenizeText(inputText);
   inputView.textContent = inputText;
 });
+
+methodSelection.addEventListener("change", () => {
+  currentMethod = methodSelection.value;
+
+  if (currentMethod === "Horner's Rule") contextInput.placeholder = "point";
+});

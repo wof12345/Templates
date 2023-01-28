@@ -1,24 +1,41 @@
 function divideCoefficients(array) {
-  let coefficientObjString = equation.coefficientObjString;
+  let coefficientObj = equation.coefficientObj;
   array.forEach((elm, ind) => {
     let coefficient = "";
     let variable = "";
 
-    if (elm !== "") {
-      let refinedElm = fillEmptyOperator(elm);
-      elm = refinedElm;
+    if (elm !== "" && elm !== "=") {
+      let refinedElm = fillEmptyOperator(elm).trim();
+      let totalString = refinedElm.split("^");
 
-      for (let i = 0; i < elm.length; i++) {
-        if (isVariable(elm[i])) variable += elm[i];
-        else coefficient += elm[i];
+      let toCompare = totalString[0] !== "" ? totalString[0] : refinedElm;
+      let forVariable = totalString[1];
+
+      let isVariableDefiner = false;
+
+      for (let i = 0; i < toCompare.length; i++) {
+        // console.log(variable, coefficient);
+        if (isVariable(toCompare[i])) {
+          variable += toCompare[i];
+          isVariableDefiner = true;
+        } else coefficient += toCompare[i];
       }
 
-      if (!(variable in coefficientObjString))
-        coefficientObjString[variable] = "";
+      if (isVariableDefiner) {
+        variable += forVariable !== undefined ? "^" + forVariable : "";
+      }
 
-      coefficientObjString[variable] += coefficient;
+      if (!(variable in coefficientObj)) coefficientObj[variable] = "";
+
+      // console.log("efficeint", elm, +coefficient);
+      coefficientObj[variable] += !isNaN(+coefficient)
+        ? coefficient
+        : coefficient + "1";
     }
   });
+
+  // translateObjStringToInteger();
+  processInitialEquationView();
 }
 
 function identifyCoefficients(text) {

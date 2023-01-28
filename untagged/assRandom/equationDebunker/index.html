@@ -7,14 +7,26 @@
     <link rel="stylesheet" href="./index.css" />
     <title>Equation debunker</title>
 
+    <script defer src="./js/priorityqueue.js"></script>
     <script defer src="./js/equationvariables.js"></script>
     <script defer src="./js/utilityfunctions.js"></script>
     <script defer src="./js/tokenizetext.js"></script>
-    <script defer src="./js/identifycoeffiecients.js"></script>
+    <script defer src="./js/processEquation.js"></script>
     <script defer src="./js/equationdebunker.js"></script>
+    <script defer src="./js/solutionFunctions.js"></script>
+    <script defer src="./js/identifycoeffiecients.js"></script>
   </head>
   <body>
     <main>
+      <select title="solution-method" name="method" id="solution">
+        <option value="Horner's Rule">Horner's Rule</option>
+        <option value="Horner's Rule">Horner's Rule</option>
+        <option value="Horner's Rule">Horner's Rule</option>
+        <option value="Horner's Rule">Horner's Rule</option>
+      </select>
+
+      <input type="text" name="input" id="context-input" placeholder="point" />
+
       <section class="user-input user-style">
         <input
           type="text"

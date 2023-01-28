@@ -1,0 +1,2 @@
+E:/Regular/Templates/Untagged/build/CMakeFiles/edit_cache.dir
+E:/Regular/Templates/Untagged/build/CMakeFiles/rebuild_cache.dir

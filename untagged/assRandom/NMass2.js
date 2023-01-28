@@ -1,3 +1,4 @@
+//extract number
 let line = "misnf3n3b34m3m0n1";
 let gotNumbers = [];
 

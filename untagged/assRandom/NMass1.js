@@ -1,3 +1,4 @@
+//count significant
 let number = "0400030340.000000000230";
 
 let numberOfSignificant = 0;
