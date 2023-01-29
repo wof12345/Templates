@@ -9,5 +9,6 @@ inputBtn.addEventListener("click", (e) => {
 methodSelection.addEventListener("change", () => {
   currentMethod = methodSelection.value;
 
-  if (currentMethod === "Horner's Rule") contextInput.placeholder = "point";
+  if (currentMethod === "Horner's Rule") contextInput.placeholder = "x=?";
+  if (currentMethod === "Bisection") contextInput.placeholder = "decimal point";
 });

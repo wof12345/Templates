@@ -52,12 +52,23 @@ function findMaxExponentFromString() {
   }
 }
 
-function translateObjStringToInteger(translationLine) {
-  let translatedInteger;
-  let operatorStack = [];
+function translateObjStringToInteger(givenValue = 1) {
+  let coefficientObj = equation.coefficientObj;
 
+  let total = 0;
   for (let key in coefficientObj) {
+    let keyNumber = +key.split("^")[1];
+    if (isNaN(+keyNumber)) keyNumber = 1;
+
+    if (key !== "") {
+      total += Math.pow(givenValue, keyNumber) * +coefficientObj[key];
+    } else {
+      total += +coefficientObj[key];
+    }
+    // console.log("bis", total, +coefficientObj[key]);
   }
+
+  return total;
 }
 
 function resetEquation() {

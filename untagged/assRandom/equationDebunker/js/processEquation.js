@@ -9,7 +9,6 @@ function processInitialEquationView() {
 
   inputView.textContent = equationString;
 
-  console.log(currentMethod);
-
   if (currentMethod === "Horner's Rule") hornerEvaluation();
+  if (currentMethod === "Bisection") bisectionSolution();
 }
