@@ -11,10 +11,10 @@
     <script defer src="./js/equationvariables.js"></script>
     <script defer src="./js/utilityfunctions.js"></script>
     <script defer src="./js/tokenizetext.js"></script>
-    <script defer src="./js/processEquation.js"></script>
+    <script defer src="./js/processequation.js"></script>
     <script defer src="./js/equationdebunker.js"></script>
-    <script defer src="./js/hornerSolution.js"></script>
-    <script defer src="./js/bisectionSolution.js"></script>
+    <script defer src="./js/hornersolution.js"></script>
+    <script defer src="./js/bisectionsolution.js"></script>
     <script defer src="./js/identifycoeffiecients.js"></script>
   </head>
   <body>
@@ -22,6 +22,11 @@
       <select title="solution-method" name="method" id="solution">
         <option value="Horner's Rule">Horner's Rule</option>
         <option value="Bisection">Bisection</option>
+        <option value="Fixed point">Fixed point</option>
+        <option value="Newton raphson">Newton raphson</option>
+        <option value="False position">False position</option>
+        <option value="Secant">Secant</option>
+        <option value="Quotient">Quotient</option>
       </select>
 
       <input type="text" name="input" id="context-input" placeholder="x=?" />

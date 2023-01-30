@@ -45,7 +45,7 @@ function BINARYSEARCH(arr, start, end, target) {
   return false;
 }
 // /we will go home after finishing the class today!
-let cipherText = "llxfasfs";
+let cipherText = "LRLLODEOHW";
 let possibleRow = [];
 let possibleColumn = [];
 
@@ -84,17 +84,31 @@ function generateMaxPossibleMatrix() {
 
 function generatePossiblePlaintexts() {
   matrixPhysical.forEach((elm) => {
+    console.log("elm", elm);
+    let objLength = Object.keys(elm).length;
     for (let keyPrimary in elm) {
       let possibleString = "";
-      for (let keySecondary in elm) {
-        if (keyPrimary !== keySecondary) possibleString += elm[keyPrimary];
+      possibleString += elm[keyPrimary];
+      for (let i = 0; i < objLength; i++) {
+        for (let j = 0; j < objLength; j++) {
+          let indexToUse = i + 1;
+          if (indexToUse >= objLength) {
+            indexToUse = objLength - indexToUse;
+          }
+
+          if (i !== j) possibleString += elm[indexToUse];
+          // console.log(elm[indexToUse + ""]);
+        }
+
+        console.log(possibleString);
       }
-      console.log(possibleString);
     }
+    console.log("\n");
   });
 }
 
 getMaxPossibleMatrix();
 generateMaxPossibleMatrix();
 generatePossiblePlaintexts();
-console.log(possibleRow, possibleColumn, matrixPhysical);
+
+console.log(matrixPhysical);

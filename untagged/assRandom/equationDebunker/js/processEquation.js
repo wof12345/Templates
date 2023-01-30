@@ -11,4 +11,9 @@ function processInitialEquationView() {
 
   if (currentMethod === "Horner's Rule") hornerEvaluation();
   if (currentMethod === "Bisection") bisectionSolution();
+  if (currentMethod === "Fixed point") fixedPointSolution();
+  // if (currentMethod === "Bisection") bisectionSolution();
+  // if (currentMethod === "Bisection") bisectionSolution();
+  // if (currentMethod === "Bisection") bisectionSolution();
+  // if (currentMethod === "Bisection") bisectionSolution();
 }

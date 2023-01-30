@@ -17,22 +17,28 @@ function hornerEvaluation() {
 
     let result = 0;
 
+    // console.log("it", +currentIterationItemNext, exponentObj);
     if (!isNaN(+currentIterationItemNext[2]))
       currentIterationItemNext = currentIterationItemNext[2];
+    else currentIterationItemNext = +currentIterationItemNext;
 
     if (!isNaN(+currentIterationItem[2]))
       currentIterationItem = currentIterationItem[2];
+    else currentIterationItem = +currentIterationItem;
 
-    lastResult = result = +lastResult * sayX + +currentIterationItemNext;
-    console.log(currentIterationItemNext);
+    result = +lastResult * sayX + +currentIterationItemNext;
 
     resultString =
       lastResult +
       "*" +
       sayX +
       "" +
-      currentIterationItemNext +
-      `= ${lastResult}`;
+      (isOperator(currentIterationItemNext[0])
+        ? currentIterationItemNext
+        : "+" + currentIterationItemNext) +
+      `= ${result}`;
+
+    lastResult = result;
 
     if (!isNaN(result)) {
       resultArray.push(result);
