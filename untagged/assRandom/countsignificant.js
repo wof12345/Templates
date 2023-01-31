@@ -22,7 +22,7 @@ for (let i = 0; i < number.length; i++) {
   if (afterDecimal && number[i] !== "0" && number[i] !== ".") {
     // console.log(number[i]);
 
-    isSignificant = true; //if after decimal and not zero and not decimal
+    isSignificant = true; //if after decimal and not zero and not decimal point
   }
 
   if (isSignificant) {

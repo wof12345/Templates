@@ -242,6 +242,31 @@ function ARRAYTOOBJ(arr) {
   return obj;
 }
 
+const stringPermutations = (str, root = 0) => {
+  if (str.length <= 2) return str.length === 2 ? [str, str[1] + str[0]] : [str];
+  return str.split("").reduce(
+    (acc, letter, i) =>
+      acc.concat(
+        stringPermutations(str.slice(0, i) + str.slice(i + 1), ++root).map(
+          (val) => {
+            console.log(
+              str.slice(0, i),
+              str.slice(0, i + 1),
+              letter,
+              val,
+              i,
+              root
+            );
+            return letter + val;
+          }
+        )
+      ),
+    []
+  );
+};
+
+console.log(stringPermutations("abc"));
+
 // console.log(GENERATERANDOMNUMBER([0, 1, 2, 3, 4, 8, 9], 0, 10, "integer"));
 // let arr = OBJECTTOARRAY({ maun: "come", woman: "come" });
 // console.log(arr);
