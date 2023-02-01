@@ -24,6 +24,8 @@ let coefficients = [1, -6, 4];
 let roots = [];
 
 while (degree--) {
+  point = degree + 1;
+
   while (1) {
     point = raphsonFormula(point);
 
@@ -31,7 +33,7 @@ while (degree--) {
 
     it++;
     if (errorEval(point, lastPoint) || it > 10000) {
-      root = point.toFixed(3);
+      root = point.toFixed(5);
       roots.push(root);
       syntheticDivision(root);
       break;
@@ -78,5 +80,5 @@ function syntheticDivision(root) {
     }
   }
   coefficients = coefficientArray;
-  console.log(equation, coefficients);
+  console.log(equation);
 }
