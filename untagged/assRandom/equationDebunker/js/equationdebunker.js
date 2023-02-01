@@ -11,4 +11,6 @@ methodSelection.addEventListener("change", () => {
 
   if (currentMethod === "Horner's Rule") contextInput.placeholder = "x=?";
   if (currentMethod === "Bisection") contextInput.placeholder = "decimal point";
+  if (currentMethod === "Fixed point")
+    contextInput.placeholder = "decimal point";
 });

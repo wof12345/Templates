@@ -5,7 +5,7 @@ let methodSelection = document.querySelector(`#solution`);
 let resultView = document.querySelector(`.user-result`);
 let contextInput = document.querySelector(`#context-input`);
 
-let currentMethod = "Horner's Rule";
+let currentMethod = "Fixed point";
 
 let resultFormat = function (result) {
   return `<result>${result}</result>`;

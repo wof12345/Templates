@@ -35,6 +35,39 @@ function isLastElmOfArray(param1, param2) {
   return false;
 }
 
+function formulateFixedPointEquation() {
+  let exponentObj = equation.exponentObj;
+  let coefficientObj = equation.coefficientObj;
+  let equationArray = [];
+
+  for (let key in coefficientObj) {
+    let keyNumber;
+    keyNumber = +key.split("^")[1];
+
+    if (!isNaN(keyNumber))
+      exponentObj.push([keyNumber, key, coefficientObj[key]], keyNumber);
+    else {
+      if (isVariable(key)) {
+        exponentObj.push([1, key, coefficientObj[key]], 1);
+      } else exponentObj.push(+coefficientObj[key], -new Date().getTime());
+    }
+  }
+
+  let maxExponent = exponentObj.rear();
+  let nextToMax = exponentObj.nextLastToRear();
+  let cutoff = nextToMax[0];
+
+  while (!exponentObj.isEmpty()) {
+    let toPush = exponentObj.rear();
+    toPush[0] = Math.abs(cutoff - toPush[0]);
+    equationArray.push(toPush);
+
+    exponentObj.pop();
+  }
+
+  return equationArray;
+}
+
 function findMaxExponentFromString() {
   let exponentObj = equation.exponentObj;
   let coefficientObj = equation.coefficientObj;
