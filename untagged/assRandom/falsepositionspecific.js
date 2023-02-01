@@ -1,17 +1,20 @@
-function equationEval(x) {
+function evaluation(x) {
   return Math.pow(x, 3) - x + 2;
 }
 
 function fpFormula(x1, x2) {
-  return (
-    x1 - (equationEval(x1) * (x2 - x1)) / (equationEval(x2) - equationEval(x1))
-  );
+  return x1 - (evaluation(x1) * (x2 - x1)) / (evaluation(x2) - evaluation(x1));
 }
 
 function fpCondition(x1, x2) {
-  if (equationEval(x1) * equationEval(x2) < 0) {
+  if (evaluation(x1) * evaluation(x2) < 0) {
     return true;
   }
+  return false;
+}
+
+function errorEval(a, b, err = 0.0005) {
+  if (Math.abs(evaluation(a) - evaluation(b)) <= err) return true;
   return false;
 }
 
@@ -31,7 +34,7 @@ while (1) {
   console.log(fpValue);
 
   it++;
-  if (it > 500 || lastEval.toFixed(3) === fpValue.toFixed(3)) break;
+  if (it > 500 || errorEval(fpValue, lastEval)) break;
 
   lastEval = fpValue;
 }
