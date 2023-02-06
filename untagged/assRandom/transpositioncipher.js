@@ -90,11 +90,11 @@ function viewAllPossibleString() {
         string += elmStr[i];
       });
 
-      if (string === sayPlainText) {
-        resultObject["string"] = string;
-        resultObject["permutationNo"] = i;
-      }
-      // console.log(string);
+      // if (string === sayPlainText) {
+      //   resultObject["string"] = string;
+      //   resultObject["permutationNo"] = i;
+      // }
+      console.log(string);
     }
   });
   console.log(resultObject);
