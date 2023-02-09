@@ -18,8 +18,8 @@ function errorEval(a, b, err = 0.0005) {
 let point = 1;
 let lastPoint = 0;
 let it = 0;
-let degree = 3;
-let coefficients = [1, -6, 4];
+let coefficients = [2, 1, -9.575, -179.558514];
+let degree = coefficients.length;
 
 let roots = [];
 
@@ -28,8 +28,6 @@ while (degree--) {
 
   while (1) {
     point = raphsonFormula(point);
-
-    let equationVal = evaluation(point);
 
     it++;
     if (errorEval(point, lastPoint) || it > 10000) {

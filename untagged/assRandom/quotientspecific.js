@@ -22,8 +22,8 @@ function errorEval(a, b, err = 0.0005) {
   return false;
 }
 
-let coefficients = [1, -5, 10];
-let root = 2;
+let coefficients = [1, -7, 15, -9];
+let root = 3;
 let maxExponent = coefficients.length - 1;
 let b3 = 0;
 
@@ -37,5 +37,5 @@ for (let i = 0; i < coefficients.length; i++) {
     (i < coefficients.length - 1 ? "x" : "") +
     (maxExponent > 0 ? "^" + maxExponent : "");
   maxExponent--;
-  console.log(equation);
 }
+console.log(equation);
