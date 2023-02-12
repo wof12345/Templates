@@ -21,7 +21,7 @@ function getFactorial(range) {
 function getPerm(value, it) {
   let result = value;
   for (let j = 1; j < it; j++) {
-    result *= value - j;
+    result *= value + j;
   }
 
   return result;
@@ -38,20 +38,27 @@ function generateDifferenceTable() {
 
     uArrayDifferenceTableArray.push([...uArrayY]);
   }
-  // console.log(uArrayDifferenceTableArray);
+  console.log(uArrayDifferenceTableArray);
 }
 
-function getNewtonDifferenceValue(x) {
-  let pxConstant = (x - uArrayX[0]) / xDifferenceInterval;
-  let result = uArrayDifferenceTableArray[0][0];
+function newtonBackwardEval(x) {
+  let pxConstant = (x - uArrayX[uArrayX.length - 1]) / xDifferenceInterval;
+  let iteration = uArrayDifferenceTableArray.length;
+  console.log(pxConstant);
 
-  for (let j = 1; j < uArrayDifferenceTableArray.length; j++) {
-    result +=
-      (getPerm(pxConstant, j).toFixed(2) * uArrayDifferenceTableArray[j][0]) /
+  let result =
+    uArrayDifferenceTableArray[0][uArrayDifferenceTableArray[0].length - 1];
+
+  for (let j = 1; j < iteration; j++) {
+    let iterationLength = uArrayDifferenceTableArray[j].length - 1;
+    let currentEval =
+      (getPerm(pxConstant, j).toFixed(2) *
+        uArrayDifferenceTableArray[j][iterationLength]) /
       getFactorial(j);
+    result += currentEval;
   }
   console.log(result);
 }
 
 generateDifferenceTable();
-getNewtonDifferenceValue(1895);
+newtonBackwardEval(1925);
