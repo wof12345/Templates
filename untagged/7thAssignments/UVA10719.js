@@ -3,6 +3,21 @@ let root = 3;
 let maxExponent = coefficients.length - 1;
 let b3 = 0;
 
+function isOperator(char, isDivide) {
+  if (
+    char === "+" ||
+    char === "-" ||
+    char === "/" ||
+    char === "*" ||
+    char === "=" ||
+    char === "%"
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
 let equation = "";
 for (let i = 0; i < coefficients.length; i++) {
   b3 = coefficients[i] + b3 * root;

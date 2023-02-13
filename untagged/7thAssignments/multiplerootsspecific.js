@@ -24,21 +24,19 @@ let degree = coefficients.length;
 let roots = [];
 
 while (degree--) {
-  point = degree + 1;
+  console.log("eq", coefficients);
 
-  while (1) {
-    point = raphsonFormula(point);
+  point = raphsonFormula(point);
 
-    it++;
-    if (errorEval(point, lastPoint) || it > 10000) {
-      root = point.toFixed(5);
-      roots.push(root);
-      syntheticDivision(root);
-      break;
-    }
+  let root = point.toFixed(5);
+  roots.push(root);
+  syntheticDivision(root, degree);
 
-    lastPoint = point;
+  it++;
+  if (errorEval(point, lastPoint) || it > 2) {
+    break;
   }
+  lastPoint = point;
 }
 
 console.log(roots);
@@ -58,22 +56,25 @@ function isOperator(char, isDivide) {
   return false;
 }
 
-function syntheticDivision(root) {
-  let maxExponent = coefficients.length - 1;
+function syntheticDivision(root, degree) {
+  let maxExponent = degree;
+
   let bn = 0;
 
   let equation = "";
   let coefficientArray = [];
 
-  for (let i = 0; i < coefficients.length; i++) {
+  for (let i = 0; i < degree + 1; i++) {
     bn = coefficients[i] + bn * root;
 
     if (i !== maxExponent) {
       coefficientArray.push(bn);
+      if (maxExponent > -1) {
+      }
       equation +=
         (isOperator(bn.toString()[0]) ? bn : "+" + bn) +
-        (i < coefficients.length - 1 ? "x" : "") +
-        (maxExponent > 0 ? "^" + maxExponent : "");
+        (i < coefficients.length - 1 ? (maxExponent > 0 ? "x" : "") : "") +
+        (maxExponent > 1 ? "^" + maxExponent : "");
       maxExponent--;
     }
   }
