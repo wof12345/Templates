@@ -1,3 +1,4 @@
+//lagrange inverse
 let uArrayX = [162, 120, 72, 63];
 let uArrayY = [3, 7, 9, 10];
 

@@ -69,22 +69,11 @@ function bisectionSolution() {
   lastMarkupper = upperLimitG;
 
   while (1) {
-    //bisection loop
-    // console.log(Math.exp(-2));
-
     let iterationMark = (lastMark + lastMarkupper) / 2;
     let parsedFloat = iterationMark.toFixed(decimalRange);
     let parsedFloatlastMark = lastMark.toFixed(decimalRange);
 
     let translatedMark = evaluation(iterationMark);
-
-    // console.log(
-    //   lastMark,
-    //   lastMarkupper,
-    //   iterationMark,
-    //   translatedMark
-    //   //   translatedMark2
-    // );
 
     if (iteration > 100 || errorEval(lastMark, lastMarkupper)) {
       console.log(iterationMark.toFixed(decimalRange));

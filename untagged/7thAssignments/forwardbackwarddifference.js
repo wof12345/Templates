@@ -1,3 +1,4 @@
+//difference table
 let uArrayX = [1891, 1901, 1911, 1921, 1931];
 let uArrayY = [46, 66, 81, 93, 101];
 

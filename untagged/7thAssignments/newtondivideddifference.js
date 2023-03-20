@@ -1,4 +1,4 @@
-//forward difference
+//divided difference
 //https://atozmath.com/example/CONM/NumeInterPola.aspx?he=e&q=DD
 let uArrayX = [300, 304, 305, 307];
 let uArrayY = [2.4771, 2.4829, 2.4843, 2.4871];
