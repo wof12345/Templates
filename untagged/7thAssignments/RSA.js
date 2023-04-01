@@ -248,7 +248,7 @@ function RSA() {
 
   let newPrime = new Prime();
 
-  let coPrimes = newPrime.getSingleRandomCoPrimeRange(1, 50);
+  let coPrimes = newPrime.getSingleRandomCoPrimeRange(500, 1000);
   console.log(coPrimes);
 
   let prime1 = coPrimes[0];

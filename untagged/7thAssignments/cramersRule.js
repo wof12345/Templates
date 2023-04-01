@@ -68,3 +68,10 @@ function cramersRule(matrix) {
 }
 
 cramersRule(matrix);
+
+// let data = {
+//   img: "mafa",
+// };
+
+// let { img } = data;
+// console.log(img);
