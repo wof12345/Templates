@@ -9,6 +9,7 @@ const userModel = require("../models/userModel");
 //   admin_address: "Mymensingh ,Bangladesh",
 //   admin_password: "HumanityRules1234567890!",
 // };
+//reinit
 
 exports.getAdmin = async (req, res) => {
   try {

@@ -248,7 +248,7 @@ function RSA() {
 
   let newPrime = new Prime();
 
-  let coPrimes = newPrime.getSingleRandomCoPrimeRange(500, 1000);
+  let coPrimes = newPrime.getSingleRandomCoPrimeRange(50, 100);
   console.log(coPrimes);
 
   let prime1 = coPrimes[0];
@@ -264,7 +264,8 @@ function RSA() {
   let constant = 3;
   let decryption = ((1 + constant * phi) / exponent).toFixed();
 
-  let message = "hi";
+  let message = "data";
+  let text = message + "";
 
   message = numberifyMessage(message);
 
@@ -275,7 +276,15 @@ function RSA() {
   let plaintext = ciphertext ** BigInt(decryption) % firstPartOfKey;
 
   //let plaintext = ciphertext ** decryption % firstPartOfKey;
-  console.log(ciphertext, plaintext, message);
+  console.log(
+    "Ciphertext : ",
+    ciphertext,
+    "Plaintext :",
+    plaintext,
+    "Originaltext :",
+    message,
+    text
+  );
 
   console.log(
     prime1,
