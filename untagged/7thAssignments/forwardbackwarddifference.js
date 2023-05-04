@@ -6,12 +6,6 @@ let xDifferenceInterval = uArrayX[1] - uArrayX[0];
 
 let uArrayDifferenceTableArray = [[...uArrayY]];
 
-let newArray = [];
-
-let number = "";
-
-// console.log(getFactorial(3));
-
 function generateDifferenceTable() {
   for (let j = 0; j < uArrayX.length - 1; j++) {
     for (let i = 0; i < uArrayY.length - 1; i++) {

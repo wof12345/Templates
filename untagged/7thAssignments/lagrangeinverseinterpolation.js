@@ -24,7 +24,7 @@ function lowerEval(index) {
 
 // console.log(lowerEval(0));
 
-function larangeEval(x) {
+function lagrangeEval(x) {
   let result = 0;
   for (let i = 0; i < uArrayX.length; i++) {
     let currentEval = (upperEval(x, i) / lowerEval(i)) * uArrayX[i];
@@ -33,4 +33,4 @@ function larangeEval(x) {
   console.log(result);
 }
 
-larangeEval(6);
+lagrangeEval(6);
