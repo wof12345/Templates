@@ -34,7 +34,7 @@ for point in edges:
     # reverse of point
 
     M[goal, goal] = 100
-    print(M)
+    # print(M)
 
     Q = np.matrix(np.zeros([MATRIX_SIZE, MATRIX_SIZE]))
 
@@ -47,6 +47,7 @@ initial_state = 1
 
 def available_actions(state):
     current_state_row = M[state, ]
+    print(current_state_row)
     available_action = np.where(current_state_row >= 0)[1]
     return available_action
 
