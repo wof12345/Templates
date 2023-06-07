@@ -116,8 +116,12 @@ class Itegration:
             if (avgErrorDiff <= accuracy):
                 self.smallestAvgErrorDiff = avgErrorDiff
                 self.bestIteration = i
-                print('Best iteration : ',self.bestIteration)
-                print('Smallest Average Error : ',self.smallestAvgError)
+                print('Avg Error Diff to Accuracy : ',
+                      avgErrorDiff, '<=', accuracy)
+                print('Last iteration : ', self.bestIteration)
+                print('Best iteration : ', self.smallestPointIteration[
+                    len(self.smallestPointIteration)-1])
+                print('Smallest Average Error : ', self.smallestAvgError)
                 break
             if (avgError < self.smallestAvgError):
                 self.smallestAvgError = avgError
@@ -134,7 +138,8 @@ class Itegration:
         # print(self.lastAvgErrorDiff)
         # print(self.lastIterations)
         # print(self.smallestAvgErrorDiff)
-        # print(self.smallestPoints)
+        # print(self.smallestPointAvgError)
+        # print(self.smallestPointIteration)
 
         return [self.smallestPointIteration, self.smallestPointAvgError]
 
