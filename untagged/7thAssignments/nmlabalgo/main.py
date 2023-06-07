@@ -9,8 +9,8 @@ def main():
 
     integration = Itegration('new', accuracy, lowerlimit, upperlimit)
 
+    # print(integration.getAvgError())
     coords = integration.getBestIterationForThisAccuracy(accuracy)
-    print()
     generateGraph(coords[0], coords[1])
 
 
