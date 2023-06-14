@@ -101,8 +101,8 @@ class Itegration:
                     relativeErrors.append({error: [idx, j+1]})
                     sum += error
 
-        # print(results)
-        # print(sum, sum/3, relativeErrors)
+        print(results)
+        print(sum, sum/3, relativeErrors)
         return sum/3
 
     def getBestIterationForThisAccuracy(self, accuracy):

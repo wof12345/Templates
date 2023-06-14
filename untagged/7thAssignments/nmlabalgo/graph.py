@@ -5,9 +5,9 @@ def generateGraph(x, y):
 
     plt.plot(x, y)
 
-    plt.xlabel('x - axis')
+    plt.xlabel('Iteration')
 
-    plt.ylabel('y - axis')
+    plt.ylabel('Smallest Average Error')
 
     plt.title('Graph for given params : ')
 
