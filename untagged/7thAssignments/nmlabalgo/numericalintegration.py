@@ -20,7 +20,7 @@ class Itegration:
         self.smallestPointIteration = []
         self.smallestPointAvgError = []
 
-        self.bestIteration = 0
+        self.lastIteration = 0
 
         self.h = self.formTable(iteration=100)
 
@@ -101,38 +101,36 @@ class Itegration:
                     relativeErrors.append({error: [idx, j+1]})
                     sum += error
 
-        print(results)
-        print(sum, sum/3, relativeErrors)
+        # print(results)
+        # print(sum, sum/3, relativeErrors)
         return sum/3
 
     def getBestIterationForThisAccuracy(self, accuracy):
 
         for i in range(10000):
             self.formTable(iteration=i+1)
-            # print(len(self.getTable()[0]))
             avgError = self.getAvgError()
             avgErrorDiff = abs(self.smallestAvgError-avgError)
             self.lastAvgErrorDiff.append(avgErrorDiff)
-            if (avgErrorDiff <= accuracy):
-                self.smallestAvgErrorDiff = avgErrorDiff
-                self.bestIteration = i
-                print('Avg Error Diff to Accuracy : ',
-                      avgErrorDiff, '<=', accuracy)
-                print('Last iteration : ', self.bestIteration)
-                print('Best iteration : ', self.smallestPointIteration[
-                    len(self.smallestPointIteration)-1])
-                print('Smallest Average Error : ', self.smallestAvgError)
-                break
             if (avgError < self.smallestAvgError):
                 self.smallestAvgError = avgError
                 self.smallestPointIteration.append(i)
                 self.smallestPointAvgError.append(avgError)
+            if (avgErrorDiff <= accuracy):
+                self.smallestAvgErrorDiff = avgErrorDiff
+                self.lastIteration = i
+                print('Avg Error Diff to Accuracy : ',
+                      avgErrorDiff, '<=', accuracy)
+                print('Last iteration : ', self.lastIteration)
+                print('Last Average Error : ', avgError)
+                print('Best iteration : ', self.smallestPointIteration[
+                    len(self.smallestPointIteration)-1])
+                print('Smallest Average Error : ', self.smallestAvgError)
+                break
+
             self.lastAvgErrors.append(avgError)
             self.lastIterations.append(i+1)
             self.clearLocals()
-
-            # if (self.smallestAvgError <= accuracy):
-            # break
 
         # print(self.lastAvgErrors)
         # print(self.lastAvgErrorDiff)
