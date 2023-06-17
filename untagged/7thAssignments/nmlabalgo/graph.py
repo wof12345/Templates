@@ -7,7 +7,7 @@ def generateGraph(x, y):
 
     plt.xlabel('Iteration')
 
-    plt.ylabel('Smallest Average Error')
+    plt.ylabel('Average Error')
 
     plt.title('Graph for given params : ')
 

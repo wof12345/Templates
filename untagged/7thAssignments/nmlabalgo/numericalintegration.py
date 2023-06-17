@@ -11,6 +11,7 @@ class Itegration:
         self.lowerlimit = lowerlimit
         self.upperlimit = upperlimit
 
+        self.lastAvgError = 0
         self.lastAvgErrors = []
         self.lastIterations = []
         self.lastAvgErrorDiff = []
@@ -110,19 +111,15 @@ class Itegration:
         for i in range(10000):
             self.formTable(iteration=i+1)
             avgError = self.getAvgError()
-            avgErrorDiff = abs(self.smallestAvgError-avgError)
-            self.lastAvgErrorDiff.append(avgErrorDiff)
             if (avgError < self.smallestAvgError):
                 self.smallestAvgError = avgError
                 self.smallestPointIteration.append(i)
                 self.smallestPointAvgError.append(avgError)
-            if (avgErrorDiff <= accuracy):
-                self.smallestAvgErrorDiff = avgErrorDiff
+            if (self.smallestAvgError <= accuracy):
                 self.lastIteration = i
-                print('Avg Error Diff to Accuracy : ',
-                      avgErrorDiff, '<=', accuracy)
-                print('Last iteration : ', self.lastIteration)
-                print('Last Average Error : ', avgError)
+                print('Avg Error to Accuracy : ',
+                      self.smallestAvgError, '<=', accuracy)
+                print('Smallest average errors : ', self.smallestPointAvgError)
                 print('Best iteration : ', self.smallestPointIteration[
                     len(self.smallestPointIteration)-1])
                 print('Smallest Average Error : ', self.smallestAvgError)
